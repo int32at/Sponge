@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sponge.Common.Configuration;
 
 namespace Sponge.Tests
 {
