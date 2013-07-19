@@ -10,24 +10,37 @@ namespace Sponge.Common.Configuration
     {
         public static T Get<T>(string app, string key)
         {
-            object obj = null;
+            var conf = ConfigurationObject.Local;
 
-            SPSecurity.RunWithElevatedPrivileges(() =>
-            {
-                var conf =  ConfigurationObject.Local.Foo;
-                obj = conf;
-            });
-            return (T)obj;
+            if (!conf.Items.ContainsKey(app))
+                throw new Exception(string.Format("Application '{0}' not found.", app));
+
+            if(!conf.Items[app].Items.ContainsKey(key))
+                throw new Exception(string.Format("Key '{0}' not found.", key));
+
+            return (T)conf.Items[app].Items[key];
         }
 
         public static void Set(string app, string key, object value)
         {
-            SPSecurity.RunWithElevatedPrivileges(() =>
-            {
-                ConfigurationObject.Local.Foo = value;
-                ConfigurationObject.Local.Update();
-            });
+            var conf = ConfigurationObject.Local;
 
+            //app has previously been added
+            if (conf.Items.ContainsKey(app))
+            {
+                if (conf.Items[app].Items.ContainsKey(key))
+                    conf.Items[app].Items[key] = value;
+                else
+                    conf.Items[app].Items.Add(key, value);
+            }
+            else
+            {
+                var coll = new ConfigurationItemCollection();
+                coll.Items.Add(key, value);
+                conf.Items.Add(app, coll);
+            }
+
+            conf.Update();
         }
     }
 }
