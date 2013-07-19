@@ -12,17 +12,24 @@ namespace Sponge.Common.Configuration
     {
         public static T Get<T>(string app, string key)
         {
-            var query = from item in Utils.Context.ConfigItems
-                        where item.Application.Title == app &&
-                              item.Title == key
-                        select item.Value;
+            object result = null;
 
-            var conf = query.FirstOrDefault();
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                var query = from item in Utils.Context.ConfigItems
+                            where item.Application.Title == app &&
+                                  item.Title == key
+                            select item.Value;
 
-            if (conf == null)
-                throw new Exception(string.Format("No Entry for Key '{0}' in Application '{1}' found.", key, app));
+                var conf = query.FirstOrDefault();
 
-            return (T)Convert.ChangeType(conf, typeof(T));
+                if (conf == null)
+                    throw new Exception(string.Format("No Entry for Key '{0}' in Application '{1}' found.", key, app));
+
+                result = conf;
+            });
+
+            return (T)result;
         }
 
         public static object Get(string app, string key)
@@ -32,59 +39,79 @@ namespace Sponge.Common.Configuration
 
         public static Dictionary<string, string> GetAll(string app)
         {
-            var query = from item in Utils.Context.ConfigItems
-                        where item.Application.Title == app
-                        select new { Key = item.Title, Value = item.Value };
+            var dict = new Dictionary<string, string>();
 
-            return query.ToDictionary(i => i.Key, i => i.Value);
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                var query = from item in Utils.Context.ConfigItems
+                            where item.Application.Title == app
+                            select new { Key = item.Title, Value = item.Value };
+
+                dict = query.ToDictionary(i => i.Key, i => i.Value);
+            });
+
+            return dict;
         }
 
         public static void Set(string app, string key, object value)
         {
-            var query = from item in Utils.Context.ConfigItems
-                        where item.Application.Title == app &&
-                              item.Title == key
-                        select item;
-
-            var conf = query.FirstOrDefault();
-
-            if (conf == null)
+            SPSecurity.RunWithElevatedPrivileges(() =>
             {
-                var appItem = Utils.Context.ConfigApplications.Where(i => i.Title == app).FirstOrDefault();
+                var query = from item in Utils.Context.ConfigItems
+                            where item.Application.Title == app &&
+                                  item.Title == key
+                            select item;
 
-                if (appItem == null)
-                    throw new Exception(string.Format("Application '{0}' not found"));
+                var conf = query.FirstOrDefault();
 
-                var item = new ConfigItemsItem()
+                if (conf == null)
                 {
-                    Application = appItem,
-                    Title = key,
-                    Value = value.ToString()
-                };
+                    var appItem = Utils.Context.ConfigApplications.Where(i => i.Title == app).FirstOrDefault();
 
-                Utils.Context.ConfigItems.InsertOnSubmit(item);
-            }
-            else
-            {
-                conf.Value = value.ToString();
-            }
+                    if (appItem == null)
+                        throw new Exception(string.Format("Application '{0}' not found"));
 
-            Utils.Context.SubmitChanges();
+                    var item = new ConfigItemsItem()
+                    {
+                        Application = appItem,
+                        Title = key,
+                        Value = value.ToString()
+                    };
+
+                    Utils.Context.ConfigItems.InsertOnSubmit(item);
+                }
+                else
+                {
+                    conf.Value = value.ToString();
+                }
+
+                Utils.Context.SubmitChanges();
+            });
         }
         
         public static void CreateApplication(string appName)
         {
-            if (ApplicationExists(appName))
-                throw new Exception(string.Format("Application '{0}' already exists.", appName));
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                if (ApplicationExists(appName))
+                    throw new Exception(string.Format("Application '{0}' already exists.", appName));
 
-            var app = new Item() { Title = appName };
-            Utils.Context.ConfigApplications.InsertOnSubmit(app);
-            Utils.Context.SubmitChanges();
+                var app = new Item() { Title = appName };
+                Utils.Context.ConfigApplications.InsertOnSubmit(app);
+                Utils.Context.SubmitChanges();
+            });
         }
 
         public static bool ApplicationExists(string appName)
         {
-            return Utils.Context.ConfigApplications.Where(i=>i.Title == appName).FirstOrDefault() != null;
+            var result = false;
+
+            SPSecurity.RunWithElevatedPrivileges(() =>
+            {
+                result = Utils.Context.ConfigApplications.Where(i => i.Title == appName).FirstOrDefault() != null;
+            });
+
+            return result;
         }
     }
 }
