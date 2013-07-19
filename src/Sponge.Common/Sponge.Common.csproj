@@ -48,7 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Configuration\ConfigurationObject.cs" />
+    <Compile Include="Configuration\ConfigurationManager.cs" />
     <Compile Include="Models\SPListManager.cs" />
     <Compile Include="Models\SPManager.cs" />
     <Compile Include="Models\SPManagerBase.cs" />
