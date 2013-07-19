@@ -9,27 +9,35 @@
     <UrlAction Url="/Sponge/default.aspx"/>
   </CustomActionGroup>
   <CustomAction
-    Id="Sponge.UI.CentralAdmin.Configuration"
+    Id="Sponge.UI.CentralAdmin.ConfigurationItems"
     GroupId="Sponge.UI.CentralAdmin"
     Location="Microsoft.SharePoint.Administration.Default"
-    Title="Sponge Configuration"
-    Description="Sponge Configuration">
-    <UrlAction Url="/Sponge/Lists/Configurations"/>
+    Title="Config Items"
+    Description="Config Items">
+    <UrlAction Url="/Sponge/Lists/ConfigItems"/>
+  </CustomAction>
+  <CustomAction
+    Id="Sponge.UI.CentralAdmin.ConfigurationApplications"
+    GroupId="Sponge.UI.CentralAdmin"
+    Location="Microsoft.SharePoint.Administration.Default"
+    Title="Config Applications"
+    Description="Config Applications">
+    <UrlAction Url="/Sponge/Lists/ConfigApplications"/>
   </CustomAction>
   <CustomAction
     Id="Sponge.UI.CentralAdmin.Logging.Configs"
     GroupId="Sponge.UI.CentralAdmin"
     Location="Microsoft.SharePoint.Administration.Default"
-    Title="Sponge Logging Configs"
-    Description="Sponge Logging Configs">
+    Title = "Logging Config"
+    Description="Logging Configs">
     <UrlAction Url="/Sponge/Lists/LogConfigs"/>
   </CustomAction>
   <CustomAction
    Id="Sponge.UI.CentralAdmin.Logging.Appenders"
    GroupId="Sponge.UI.CentralAdmin"
    Location="Microsoft.SharePoint.Administration.Default"
-   Title="Sponge Logging Appenders"
-   Description="Sponge Logging Appenders">
+   Title="Logging Appenders"
+   Description="Logging Appenders">
     <UrlAction Url="/Sponge/Lists/LogAppenders"/>
   </CustomAction>
 </Elements>
