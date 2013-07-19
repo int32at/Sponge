@@ -25,6 +25,11 @@ namespace Sponge.Common.Configuration
             return (T)Convert.ChangeType(conf, typeof(T));
         }
 
+        public static object Get(string app, string key)
+        {
+            return Get<object>(app, key);
+        }
+
         public static Dictionary<string, string> GetAll(string app)
         {
             var query = from item in Utils.Context.ConfigItems
