@@ -48,6 +48,9 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Features\Sponge.Feature\Sponge.EventReceiver.cs">
+      <DependentUpon>Sponge.Feature.feature</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
