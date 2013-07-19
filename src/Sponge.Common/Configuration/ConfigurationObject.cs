@@ -28,13 +28,11 @@ namespace Sponge.Common.Configuration
         }
 
         [Persisted]
-        private Dictionary<string, ConfigurationItemCollection> _configItems = new Dictionary<string, ConfigurationItemCollection>();
-
-
-        public Dictionary<string, ConfigurationItemCollection> Items
+        private Dictionary<string, ConfigurationItem> _items = new Dictionary<string, ConfigurationItem>();
+        public Dictionary<string, ConfigurationItem> Items
         {
-            get { return _configItems; }
-            set { _configItems = value; }
+            get { return _items; }
+            set { _items = value; }
         }
 
         public ConfigurationObject()
@@ -43,7 +41,7 @@ namespace Sponge.Common.Configuration
 
         protected override bool HasAdditionalUpdateAccess()
         {
-            return true; //return base.HasAdditionalUpdateAccess();
+            return true;
         }
 
         private ConfigurationObject(SPPersistedObject parent)
@@ -52,28 +50,14 @@ namespace Sponge.Common.Configuration
         }
     }
 
-    internal class ConfigurationItemCollection : SPAutoSerializingObject
-    {
-        [Persisted]
-        private Dictionary<string, object> _configItems = new Dictionary<string, object>();
-
-        public Dictionary<string, object> Items
-        {
-            get { return _configItems; }
-            set { _configItems = value; }
-        }
-
-    }
-
     internal class ConfigurationItem : SPAutoSerializingObject
     {
         [Persisted]
-        private string key;
-
-        [Persisted]
-        private object val;
-
-        public string Key { get { return key; } set { key = value; } }
-        public object Value { get { return val; } set { val = value; } }
+        private Dictionary<string, object>_items = new Dictionary<string, object>();
+        public Dictionary<string, object> Items
+        {
+            get { return _items; }
+            set { _items = value; }
+        }
     }
 }

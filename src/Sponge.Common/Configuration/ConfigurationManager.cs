@@ -15,7 +15,7 @@ namespace Sponge.Common.Configuration
             if (!conf.Items.ContainsKey(app))
                 throw new Exception(string.Format("Application '{0}' not found.", app));
 
-            if(!conf.Items[app].Items.ContainsKey(key))
+            if (!conf.Items[app].Items.ContainsKey(key))
                 throw new Exception(string.Format("Key '{0}' not found.", key));
 
             return (T)conf.Items[app].Items[key];
@@ -25,7 +25,6 @@ namespace Sponge.Common.Configuration
         {
             var conf = ConfigurationObject.Local;
 
-            //app has previously been added
             if (conf.Items.ContainsKey(app))
             {
                 if (conf.Items[app].Items.ContainsKey(key))
@@ -35,9 +34,9 @@ namespace Sponge.Common.Configuration
             }
             else
             {
-                var coll = new ConfigurationItemCollection();
-                coll.Items.Add(key, value);
-                conf.Items.Add(app, coll);
+                var item = new ConfigurationItem();
+                item.Items.Add(key, value);
+                conf.Items.Add(app, item);
             }
 
             conf.Update();
