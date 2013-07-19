@@ -12,16 +12,24 @@
     Id="Sponge.UI.CentralAdmin.Configuration"
     GroupId="Sponge.UI.CentralAdmin"
     Location="Microsoft.SharePoint.Administration.Default"
-    Title="Sponge Configuration Framework"
-    Description="Sponge Configuration Framework">
+    Title="Sponge Configuration"
+    Description="Sponge Configuration">
     <UrlAction Url="/Sponge/Lists/Configurations"/>
   </CustomAction>
   <CustomAction
-    Id="Sponge.UI.CentralAdmin.Logging"
+    Id="Sponge.UI.CentralAdmin.Logging.Configs"
     GroupId="Sponge.UI.CentralAdmin"
     Location="Microsoft.SharePoint.Administration.Default"
-    Title="Sponge Logging Framework"
-    Description="Sponge Logging Framework">
-    <UrlAction Url="/Sponge/Lists/Configurations"/>
+    Title="Sponge Logging Configs"
+    Description="Sponge Logging Configs">
+    <UrlAction Url="/Sponge/Lists/LogConfigs"/>
+  </CustomAction>
+  <CustomAction
+   Id="Sponge.UI.CentralAdmin.Logging.Appenders"
+   GroupId="Sponge.UI.CentralAdmin"
+   Location="Microsoft.SharePoint.Administration.Default"
+   Title="Sponge Logging Appenders"
+   Description="Sponge Logging Appenders">
+    <UrlAction Url="/Sponge/Lists/LogAppenders"/>
   </CustomAction>
 </Elements>

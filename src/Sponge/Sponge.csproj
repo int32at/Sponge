@@ -84,10 +84,10 @@
     <Content Include="Features\Sponge.Feature\Sponge.Feature.Template.xml">
       <DependentUpon>Sponge.Feature.feature</DependentUpon>
     </Content>
+    <Content Include="Images\Sponge\logo.png" />
     <Content Include="UI\CentralAdminLinks\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Images\Sponge\" />
     <Folder Include="Layouts\Sponge\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
