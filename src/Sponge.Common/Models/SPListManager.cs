@@ -10,9 +10,36 @@ namespace Sponge.Common.Models
     {
         public SPListManager(SPManager parent) : base(parent) { }
 
-        public SPList Create(string title, string description, SPListTemplate template)
+        public SPList Create(string title, string description, SPListTemplateType template)
         {
-            throw new NotImplementedException();
+            if (!Exists(title))
+            {
+                var guid = Parent.ParentWeb.Lists.Add(title, description, template);
+                return Parent.ParentWeb.Lists[guid];
+            }
+            else
+                throw new Exception(string.Format("List with Name '{0}' already exists", title));
+        }
+
+        public bool Exists(string internalName)
+        {
+            try
+            {
+                var tmp = Parent.ParentWeb.Lists[internalName];
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public void Delete(string internalName)
+        {
+            if(Exists(internalName))
+            {
+                Parent.ParentWeb.Lists[internalName].Delete();
+            }
         }
     }
 }

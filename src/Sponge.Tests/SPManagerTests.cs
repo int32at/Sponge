@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sponge.Common.Models;
 using Sponge.Common.Utilities;
+using Microsoft.SharePoint;
 
 namespace Sponge.Tests
 {
@@ -31,6 +32,32 @@ namespace Sponge.Tests
             {
                 mgr.Webs.Delete("Sponge");
                 Assert.AreEqual(false, mgr.Webs.Exists("Sponge"));
+            }
+        }
+
+        [TestMethod]
+        public void CreateTestList()
+        {
+            var ca = SPWebManager.GetCentralAdminWeb();
+            Assert.IsNotNull(ca);
+
+            using (var mgr = new SPManager(ca.Site))
+            {
+                mgr.Lists.Create("LogAppenders", "", SPListTemplateType.GenericList);
+                Assert.AreEqual(true, mgr.Lists.Exists("LogAppenders"));
+            }
+        }
+
+        [TestMethod]
+        public void DeleteTestList()
+        {
+            var ca = SPWebManager.GetCentralAdminWeb();
+            Assert.IsNotNull(ca);
+
+            using (var mgr = new SPManager(ca.Site))
+            {
+                mgr.Lists.Delete("LogAppenders");
+                Assert.AreEqual(false, mgr.Lists.Exists("LogAppenders"));
             }
         }
     }
