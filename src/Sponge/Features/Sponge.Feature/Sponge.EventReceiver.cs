@@ -52,17 +52,25 @@ namespace Sponge.Feature
 
         private void UpdateLists(SPManager mgr, bool delete)
         {
-            if(delete)
+            //no need to handle the deletions of the lists
+            //because the parent web is deleted anyway
+            if(!delete)
             {
-                _listNames.ForEach(i => mgr.Lists.Delete(i));
-            }
-            else
-            {
-                foreach(var name in _listNames)
+                foreach (var name in _listNames)
                 {
                     var list = mgr.Lists.Create(name, "", SPListTemplateType.GenericList);
                     list.OnQuickLaunch = true;
                     list.Update();
+
+                    switch(name)
+                    {
+                        case "LogAppenders":
+                            break;
+                        case "LogConfigs":
+                            break;
+                        case "Configurations":
+                            break;
+                    }
                 }
             }
         }
