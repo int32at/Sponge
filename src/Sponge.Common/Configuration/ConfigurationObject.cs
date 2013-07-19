@@ -9,7 +9,7 @@ namespace Sponge.Common.Configuration
 {
     internal class ConfigurationObject : SPPersistedObject
     {
-        private const string CONFIG_NAME = "SpongeConfig";
+        private const string CONFIG_NAME = "SpongeConfiguration";
 
         public static ConfigurationObject Local
         {

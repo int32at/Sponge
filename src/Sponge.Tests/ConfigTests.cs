@@ -11,7 +11,7 @@ namespace Sponge.Tests
         public void SetValue()
         {
             var val1 = 3;
-            var val2 = "abc";
+            var val2 = "abc123";
 
             //set the value 
             ConfigurationManager.Set("myapp", "mykey1", val1);
