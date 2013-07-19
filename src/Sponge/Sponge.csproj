@@ -68,6 +68,7 @@
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{00f8b62e-6d87-4dc1-b69b-460bc5dbd75d}</SharePointProjectItemId>
     </None>
+    <None Include="packages.config" />
     <None Include="Package\Package.package">
       <PackageId>{260c5559-a3d4-4fef-825a-2809816b6378}</PackageId>
     </None>
