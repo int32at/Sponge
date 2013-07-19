@@ -14,6 +14,8 @@ namespace Sponge.Feature
             using (var mgr = new SPManager(ca.Site))
             {
                 var sponge = mgr.Webs.Create("Sponge Framework", "", "Sponge", "STS#1");
+                sponge.SiteLogoUrl = "_layouts/images/Sponge/logo.png";
+                sponge.Update();
             }
         }
 
