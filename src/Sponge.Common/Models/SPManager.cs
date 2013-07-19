@@ -8,8 +8,8 @@ namespace Sponge.Common.Models
         public SPSite ParentSite;
         public SPWeb ParentWeb;
 
-        public SPListManager Lists { get; private set; }
-        public SPWebManager Webs { get; private set; }
+        public SPListManager Lists { get; set; }
+        public SPWebManager Webs { get; set; }
 
         public SPManager(string spSiteUrl)
         {
