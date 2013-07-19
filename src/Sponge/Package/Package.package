@@ -1,3 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package dslVersion="1.0.0.0" Id="260c5559-a3d4-4fef-825a-2809816b6378" solutionId="260c5559-a3d4-4fef-825a-2809816b6378" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" name="Sponge">
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="260c5559-a3d4-4fef-825a-2809816b6378" solutionId="260c5559-a3d4-4fef-825a-2809816b6378" resetWebServer="false" name="Sponge" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="c9e5c423-7fe5-499e-a942-4c9eb17da24b" />
+  </features>
 </package>

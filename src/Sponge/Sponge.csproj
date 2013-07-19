@@ -51,6 +51,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Features\Sponge.Feature\Sponge.Feature.feature">
+      <FeatureId>{c9e5c423-7fe5-499e-a942-4c9eb17da24b}</FeatureId>
+    </None>
     <None Include="key.snk" />
     <None Include="Package\Package.package">
       <PackageId>{260c5559-a3d4-4fef-825a-2809816b6378}</PackageId>
@@ -59,8 +62,11 @@
       <DependentUpon>Package.package</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Features\" />
+    <Content Include="Features\Sponge.Feature\Sponge.Feature.Template.xml">
+      <DependentUpon>Sponge.Feature.feature</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
