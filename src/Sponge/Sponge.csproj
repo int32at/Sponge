@@ -57,12 +57,21 @@
     <None Include="Features\Sponge.Feature\Sponge.Feature.feature">
       <FeatureId>{c9e5c423-7fe5-499e-a942-4c9eb17da24b}</FeatureId>
     </None>
+    <None Include="Images\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{fdd3dc6b-863d-4494-9391-490f43016eac}</SharePointProjectItemId>
+    </None>
     <None Include="key.snk" />
+    <None Include="Layouts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{00f8b62e-6d87-4dc1-b69b-460bc5dbd75d}</SharePointProjectItemId>
+    </None>
     <None Include="Package\Package.package">
       <PackageId>{260c5559-a3d4-4fef-825a-2809816b6378}</PackageId>
     </None>
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
+    </None>
+    <None Include="UI\CentralAdminLinks\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{10fdce67-d565-413e-847b-7281a6cecee2}</SharePointProjectItemId>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -75,6 +84,11 @@
     <Content Include="Features\Sponge.Feature\Sponge.Feature.Template.xml">
       <DependentUpon>Sponge.Feature.feature</DependentUpon>
     </Content>
+    <Content Include="UI\CentralAdminLinks\Elements.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\Sponge\" />
+    <Folder Include="Layouts\Sponge\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
