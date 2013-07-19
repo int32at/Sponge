@@ -1,26 +1,56 @@
 ﻿using System;
+using System.Collections;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Sponge.Common.Configuration;
+using Sponge.Common.Models;
+using Sponge.Common.Utilities;
 
 namespace Sponge.Tests
 {
     [TestClass]
     public class ConfigTests
     {
-        //[TestMethod]
-        //public void SetValue()
-        //{
-        //    var val1 = 3;
-        //    var val2 = "abc123";
+        [TestMethod]
+        public void GetSpongeWeb()
+        {
+            var sponge = Utils.GetSpongeWeb();
+            Assert.IsNotNull(sponge);
+        }
 
-        //    //set the value 
-        //    ConfigurationManager.Set("myapp", "mykey1", val1);
-        //    ConfigurationManager.Set("myapp", "mykey2", val2);
+        [TestMethod]
+        public void GetSpongeUrl()
+        {
+            var spongeUrl = Utils.GetSpongeUrl();
+            Assert.IsNotNull(spongeUrl);
+        }
 
-        //    //retreive it at casted string
-        //    var set1 = ConfigurationManager.Get<int>("myapp", "mykey1");
-        //    var set2 = ConfigurationManager.Get<string>("myapp", "mykey2");
-        //    Assert.AreEqual(val1, set1);
-        //    Assert.AreEqual(val2, set2);
-        //}
+        [TestMethod]
+        public void GetAllValues()
+        {
+            var app = "Sponge Unit Test";
+
+            var actual = ConfigurationManager.GetAll(app);
+
+            Assert.IsNotNull(actual);
+        }
+
+        [TestMethod]
+        public void CreateAppAndAdd10TestItemsAndChangeValues()
+        {
+            var appName = "Sponge Unit Tests";
+            ConfigurationManager.CreateApplication(appName);
+
+            Assert.AreEqual(true, ConfigurationManager.ApplicationExists(appName));
+
+            foreach (var i in Enumerable.Range(0, 10))
+                ConfigurationManager.Set(appName, "Sample" + i, i * i);
+
+            Assert.AreNotEqual(0, ConfigurationManager.GetAll(appName));
+            Assert.AreNotEqual(0, ConfigurationManager.Get<int>(appName, "Sample9"));
+
+            ConfigurationManager.Set(appName, "Sample9", "ASDF");
+            Assert.AreEqual("ASDF", ConfigurationManager.Get<string>(appName, "Sample9"));
+        }
     }
 }
