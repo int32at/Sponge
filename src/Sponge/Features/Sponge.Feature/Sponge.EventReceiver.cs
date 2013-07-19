@@ -51,8 +51,8 @@ namespace Sponge.Feature
         {
             CreateConfigApplications(mgr);
             CreateConfigItems(mgr);
-            CreateLogAppenders(mgr);
-            CreateLogConfigs(mgr);
+            //CreateLogAppenders(mgr);
+            //CreateLogConfigs(mgr);
         }
 
         private void CreateConfigItems(SPManager mgr)
