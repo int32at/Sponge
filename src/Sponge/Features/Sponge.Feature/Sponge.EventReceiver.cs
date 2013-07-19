@@ -1,6 +1,5 @@
 using System;
 using System.Runtime.InteropServices;
-using System.Security.Permissions;
 using Microsoft.SharePoint;
 using Sponge.Common.Models;
 
