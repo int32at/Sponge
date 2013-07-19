@@ -37,7 +37,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.SharePoint, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\bluekiwi-sharepoint-connectors\lib\Microsoft.SharePoint.dll</HintPath>
+      <HintPath>..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\ISAPI\Microsoft.SharePoint.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -59,6 +59,16 @@
   <ItemGroup>
     <Compile Include="FeatureTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sponge\Sponge.Common\Sponge.Common.csproj">
+      <Project>{03ec5d38-1b92-43ad-b83a-6278f03eb896}</Project>
+      <Name>Sponge.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sponge\Sponge.csproj">
+      <Project>{2c6070d5-c8f5-4e79-83db-6f6d90c0b60d}</Project>
+      <Name>Sponge</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
