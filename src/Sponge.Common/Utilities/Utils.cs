@@ -9,9 +9,5 @@ namespace Sponge.Common.Utilities
 {
     public static class Utils
     {
-        public static SPWeb GetCentralAdminRootWeb()
-        {
-            return SPAdministrationWebApplication.Local.Sites[0].RootWeb;
-        }
     }
 }

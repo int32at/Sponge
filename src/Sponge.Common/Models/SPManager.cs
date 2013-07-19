@@ -5,27 +5,53 @@ namespace Sponge.Common.Models
 {
     public class SPManager : IDisposable
     {
-        private SPSite _site;
-        private SPWeb _web;
+        public SPSite ParentSite;
+        public SPWeb ParentWeb;
+
+        public SPListManager Lists { get; private set; }
+        public SPWebManager Webs { get; private set; }
 
         public SPManager(string spSiteUrl)
         {
-            _site = new SPSite(spSiteUrl);
-            _web = _site.RootWeb;
+            ParentSite = new SPSite(spSiteUrl);
+            ParentWeb = ParentSite.RootWeb;
+            CreateInstances();            
         }
+
         public SPManager(string spSiteUrl, string spwebUrl)
         {
-            _site = new SPSite(spSiteUrl);
-            _web = _site.OpenWeb(spwebUrl); ;
+            ParentSite = new SPSite(spSiteUrl);
+            ParentWeb = ParentSite.OpenWeb(spwebUrl);
+            CreateInstances();
+        }
+
+        public SPManager(SPSite site)
+        {
+            ParentSite = site;
+            ParentWeb = site.RootWeb;
+            CreateInstances();
+        }
+
+        public SPManager(SPSite site, SPWeb web)
+        {
+            ParentSite = site;
+            ParentWeb = web;
+            CreateInstances();
+        }
+
+        private void CreateInstances()
+        {
+            Lists = new SPListManager(this);
+            Webs = new SPWebManager(this);
         }
 
         public void Dispose()
         {
-            if (_site != null)
-                _site.Dispose();
+            if (ParentSite != null)
+                ParentSite.Dispose();
 
-            if (_web != null)
-                _web.Dispose();
+            if (ParentWeb != null)
+                ParentWeb.Dispose();
         }
     }
 }
