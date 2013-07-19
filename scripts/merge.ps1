@@ -1,7 +1,7 @@
 New-Item -ItemType Directory -Force -Path ..\lib\tmp
 write-host "created tmp dir"
 
-gci ..\src\ -recurse -include *.dll -exclude *Tests* | Copy-Item -destination ..\lib\tmp\ -force
+gci ..\src\ -recurse -include *.dll -exclude *Tests* Sponge.dll | Copy-Item -destination ..\lib\tmp\ -force
 write-host "copied dlls to tmp dir"
 
 $rel = resolve-path ..\lib\
