@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Web.UI.WebControls.WebParts;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.WebPartPages;
 using Sponge.Common.Models;
 using Sponge.Common.Utilities;
 
@@ -53,6 +55,8 @@ namespace Sponge.Feature
             CreateConfigItems(mgr);
             //CreateLogAppenders(mgr);
             //CreateLogConfigs(mgr);
+
+            CreateWebParts(mgr);
         }
 
         private void CreateConfigItems(SPManager mgr)
@@ -76,11 +80,9 @@ namespace Sponge.Feature
                 ct.FieldLinks.Reorder(new string[] { "Application", "Key", "Value" });
             }
 
-
-
-
             var title = list.Fields["Title"];
             title.Title = "Key";
+            title.Description = "Do not use blanks or special characters here!";
             title.Update();
 
             SPView view = list.DefaultView;
@@ -116,6 +118,26 @@ namespace Sponge.Feature
             list.Update();
 
             return list;
+        }
+
+        private void CreateWebParts(SPManager mgr)
+        {
+            var configItems = new XsltListViewWebPart();
+            configItems.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_CONFIGITEMS].ID;
+           
+            var configApps = new XsltListViewWebPart();
+            configApps.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_CONFIGAPPLICATIONS].ID;
+
+            AddWebPart(mgr.ParentWeb, "default.aspx", configApps, "left", 1);
+            AddWebPart(mgr.ParentWeb, "default.aspx", configItems, "left", 2);
+        }
+
+        private void AddWebPart(SPWeb web, string pageURL, System.Web.UI.WebControls.WebParts.WebPart webPart, string zoneID, int zoneIndex)
+        {
+            SPLimitedWebPartManager webPartManager = web.GetLimitedWebPartManager(pageURL, PersonalizationScope.Shared);
+            webPartManager.AddWebPart(webPart, zoneID, zoneIndex);
+            webPartManager.SaveChanges(webPart);
+            web.Update();
         }
     }
 }

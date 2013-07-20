@@ -37,3 +37,8 @@ install-spsolution -Identity "$wspFileName" -gacdeployment
 wait4timer($wspFileName)
 write-host "Done adding"
 
+$ca = Get-SPWebApplication -IncludeCentralAdministration | where {$_.DisplayName -eq "SharePoint Central Administration v4"} | select Url
+$url =  $ca.Url + "Sponge/default.aspx"
+
+Start-Process $url
+
