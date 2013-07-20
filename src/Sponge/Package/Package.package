@@ -2,8 +2,6 @@
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="260c5559-a3d4-4fef-825a-2809816b6378" solutionId="260c5559-a3d4-4fef-825a-2809816b6378" resetWebServer="false" name="Sponge" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
   <assemblies>
     <projectOutputAssembly location="Sponge.Common.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\Sponge.Common\Sponge.Common.csproj" />
-    <projectOutputAssembly location="Sponge.Common.Configuration.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\Sponge.Common.Configuration\Sponge.Common.Configuration.csproj" />
-    <projectOutputAssembly location="Sponge.Common.Logging.dll" deploymentTarget="GlobalAssemblyCache" projectPath="..\Sponge.Common.Logging\Sponge.Common.Logging.csproj" />
   </assemblies>
   <features>
     <featureReference itemId="c9e5c423-7fe5-499e-a942-4c9eb17da24b" />
