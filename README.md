@@ -3,7 +3,7 @@ Sponge
 
 Sponge SharePoint Configuration &amp; Logging Framework.
 
-The Idea behind Sponge is pretty simple - A consistant, centralized and easily to configurable Configuration and
+The Idea behind Sponge is pretty simple - A consistant, centralized and easy to configurable Configuration and
 Logging component based on top of SharePoint. Every developer has asked him/her-self the same questions:
 
 - Where should i put the configuration of my application?
@@ -25,8 +25,8 @@ There are several good and bad ways of storing your configuration in and around 
 
 Sponge creates a Site with multiple lists in your Central Administration **http://myadmin/Sponge**:
 
-- ConfigApplications: The name's of your applications you want to configure. This gives you a nice grouping of the config entries later on!
-- ConfigItems: This is where the actual config goes to. Add your Key/Value pairs to your application and you are ready to go!
+- **ConfigApplications**: The name's of your applications you want to configure. This gives you a nice grouping of the config entries later on!
+- **ConfigItems**: This is where the actual config goes to. Add your Key/Value pairs to your application and you are ready to go!
 
 
 ####Configuration Framework
