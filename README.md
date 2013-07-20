@@ -96,3 +96,11 @@ That's it. The Client Side API will call the Sponge Config Web Service in order 
 All of these functions are available in both the Server and Client Side API!
 ###Logging Framework
 Not included in this version - work in progress! Check out the develop branch!
+
+
+###Installation
+
+1.  Download `Sponge.wsp` and `install.ps1` in a folder (or clone this repo)
+2.  Run `install.ps1` with PowerShell (with the most-privileged account possible)
+3.  Browser will open and take you directly to Sponge.
+4.  Read the `Usage` Sections on how to interact with Sponge from Code!
