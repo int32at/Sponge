@@ -34,7 +34,7 @@ Sponge creates a Site with multiple lists in your Central Administration **http:
 At first, you have to decide which application you want to configure - is it an application that "lives" on SharePoint e.g. WebPart, Timer Job, etc. or is it a client application like WinForms or even an Windows Phone App!
 
 #####Server Side
-Obviously, Sponge has to be installed on your SharePoint Farm first. See the Installation part of this readme! If this has been done, simply reference the Sponge.Common.dll from the GAC and include the Sponge.Common.Configuration Namespace to your usings.
+Obviously, Sponge has to be installed on your SharePoint Farm first. See the Installation part of this readme! If this has been done, simply reference the `Sponge.Common.dll` from the GAC and include the `Sponge.Common.Configuration` Namespace to your usings.
 
 ```c#
 public void CreateAppServerSide()
@@ -57,7 +57,7 @@ public void CreateAppServerSide()
 }
 ```
 #####Client Side
-Same as the Server Side, Sponge has to be installed on your SharePoint Farm first. To use the Client Side API you have to reference the Sponge.Common.Configuration.dll and then add the same to your usings! Your config entries can be managed using the `ConfigurationManager` class.
+Same as the Server Side, Sponge has to be installed on your SharePoint Farm first. To use the Client Side API you have to reference the `Sponge.Common.Configuration.dll` and then add the same to your usings! Your config entries can be managed using the `ConfigurationManager` class.
 
 ```c#
 public void CreateAppClientSide()
