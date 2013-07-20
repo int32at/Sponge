@@ -24,7 +24,7 @@
     Description="Config Applications">
     <UrlAction Url="/Sponge/Lists/ConfigApplications"/>
   </CustomAction>
-  <CustomAction
+  <!--<CustomAction
     Id="Sponge.UI.CentralAdmin.Logging.Configs"
     GroupId="Sponge.UI.CentralAdmin"
     Location="Microsoft.SharePoint.Administration.Default"
@@ -39,5 +39,5 @@
    Title="Logging Appenders"
    Description="Logging Appenders">
     <UrlAction Url="/Sponge/Lists/LogAppenders"/>
-  </CustomAction>
+  </CustomAction>-->
 </Elements>
