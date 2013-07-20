@@ -52,16 +52,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Context\SpongeContext.cs" />
     <Compile Include="Models\SPListManager.cs" />
     <Compile Include="Models\SPManager.cs" />
     <Compile Include="Models\SPManagerBase.cs" />
     <Compile Include="Models\SPWebManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\ConfigurationManager.cs" />
     <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Utilities\Utils.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Extensions\" />
     <Folder Include="Interfaces\" />
   </ItemGroup>
   <ItemGroup>

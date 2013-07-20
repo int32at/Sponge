@@ -36,21 +36,22 @@ namespace Sponge.Tests
         }
 
         [TestMethod]
-        public void CreateAppAndAdd10TestItemsAndChangeValues()
+        public void CreateAppServerSide()
         {
-            var appName = "Sponge Unit Tests";
-            ConfigurationManager.CreateApplication(appName);
+            var app = "Sponge Unit Test";
+            ConfigurationManager.CreateApplication(app);
+            Assert.AreEqual(app, ConfigurationManager.ApplicationExists(app));
+        }
 
-            Assert.AreEqual(true, ConfigurationManager.ApplicationExists(appName));
-
-            foreach (var i in Enumerable.Range(0, 10))
-                ConfigurationManager.Set(appName, "Sample" + i, i * i);
-
-            Assert.AreNotEqual(0, ConfigurationManager.GetAll(appName));
-            Assert.AreNotEqual(0, ConfigurationManager.Get<int>(appName, "Sample9"));
-
-            ConfigurationManager.Set(appName, "Sample9", "ASDF");
-            Assert.AreEqual("ASDF", ConfigurationManager.Get<string>(appName, "Sample9"));
+        [TestMethod]
+        public void CreateAppClientSide()
+        {
+            var app = "Sponge Unit Test";
+            using (var cfg = new Config(Utils.GetSpongeUrl()))
+            {
+                cfg.CreateApplication(app);
+                Assert.AreEqual(app, ConfigurationManager.ApplicationExists(app));
+            }
         }
     }
 }

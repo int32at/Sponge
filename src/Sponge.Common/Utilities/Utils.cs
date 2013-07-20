@@ -1,22 +1,14 @@
-﻿using Microsoft.SharePoint;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
+using System.Xml.Linq;
+using Microsoft.SharePoint;
 using Sponge.Common.Models;
-using Sponge.Common.Context;
 
 namespace Sponge.Common.Utilities
 {
     public static class Utils
     {
-        private static SpongeContextDataContext _ctx;
-        public static SpongeContextDataContext Context
-        {
-            get
-            {
-                if (_ctx == null)
-                    _ctx = new SpongeContextDataContext(GetSpongeUrl());
-
-                return _ctx;
-            }
-        }
         public static SPWeb GetSpongeWeb()
         {
             using (var ca = SPWebManager.GetCentralAdminWeb())
@@ -27,6 +19,25 @@ namespace Sponge.Common.Utilities
         {
             using (var ca = SPWebManager.GetCentralAdminWeb())
                 return ca.Url + "/" + Constants.SPONGE_WEB_URL;
+        }
+
+        public static XmlDocument ToXml(Dictionary<string, string> dict)
+        {
+            XElement el = new XElement("Config",
+                dict.Select(kv => new XElement(kv.Key, kv.Value)));
+            var doc = new XmlDocument();
+            doc.LoadXml(el.ToString());
+
+            return doc;
+        }
+
+        public static Dictionary<string, string> FromXml(XmlDocument doc)
+        {
+            var dict = new Dictionary<string, string>();
+            foreach (XmlNode el in doc.ChildNodes)
+                dict.Add(el.Name, el.Value);
+
+            return dict;
         }
     }
 }
