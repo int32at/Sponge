@@ -1,7 +1,7 @@
 Sponge
 ======
 
-Sponge SharePoint Configuration &amp; Logging Framework.
+#####Sponge SharePoint Configuration &amp; Logging Framework.
 
 The Idea behind Sponge is pretty simple - A consistant, centralized and easy to configurable Configuration and
 Logging component based on top of SharePoint. Every developer has asked him/her-self the same questions:
@@ -44,18 +44,30 @@ public void CreateAppServerSide()
 }
 ```
 #####Client Side
-Same as the Server Side, Sponge has to be installed on your SharePoint Farm first. To use the Client Side API you have to reference the Sponge.Common.Configuration.dll and then add the same to your usings!
+Same as the Server Side, Sponge has to be installed on your SharePoint Farm first. To use the Client Side API you have to reference the Sponge.Common.Configuration.dll and then add the same to your usings! Your config entries can be managed using the `ConfigurationManager` class.
 
 ```c#
- public void CreateAppClientSide()
+public void CreateAppClientSide()
 {
-  var app = "Sponge App";
-	using (var cfg = new Config("http://mysp"))
-	{
-		cfg.CreateApplication(app);
-	}
+    var app = "Sponge App";
+    using (var cfg = new Config("http://mysp"))
+    {
+        cfg.CreateApplication(app);
+    }
 }
 ```
 
+That's it. The Client Side API will call the Sponge Config Web Service in order to retrieve values from the config store. Instead of using the `ConfigurationManager` class, the Client Side API uses the `Config` class. If you prefer to use the Config Web Service directly, feel free to do so! It's available at `http://mysp/_layouts/Sponge/ConfigService.asmx`.
+
+####Supported API
+
+- **CreateApplication(appName)**: Creates an entry in the Config Applications list.
+- **ApplicationExists(appName)**: Whether an entry exists in the Config Applications list.
+- **Get<T>(appName, key)**: Gets an entry for the specified app and key and cast it to T.
+- **Get(appName, key)**: Same as Get<T> where T = object, so it can be used i.e. with Powershell.
+- **GetAll(appName)**: Gets all Key/Value's for the specified app.
+- **Set(appName, key, value)**: Sets the value of the entry for the specified app and key.
+
+All of these functions are available in both the Server and Client Side API!
 ###Logging Framework
 Not included in this version - work in progress! Check out the develop branch!
