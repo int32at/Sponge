@@ -13,7 +13,7 @@ Sponge tries to make these tasks very simple and straight forward. See the [Wiki
 
 ###Installation
 
-1.  Download [Sponge.wsp](../../raw/master/lib/Sponge.wsp) and [install.ps1](../../raw/master/scripts/install.ps1) in a folder (or clone this repo)
+1.  Download [Sponge.wsp](../../raw/master/lib/Sponge.wsp) and [install.ps1](../../raw/master/lib/install.ps1) in a folder (or clone this repo)
 2.  Run `install.ps1` with PowerShell (with the most-privileged account possible) on your SP Server(s)
 3.  Browser will open and take you directly to Sponge.
 4.  Read the `Wiki` Pages on how to interact with Sponge from Code!
