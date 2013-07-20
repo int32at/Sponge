@@ -39,8 +39,21 @@ Obviously, Sponge has to be installed on your SharePoint Farm first. See the Ins
 ```c#
 public void CreateAppServerSide()
 {
+    //create application
     var app = "Sponge App";
     ConfigurationManager.CreateApplication(app);
+	
+	//set the MyKey value to 3 in app
+	//if exists, it will be updated; if not exists it will be created
+	ConfigurationManager.Set(app, "MyKey", 3);
+	
+	//retreive the value we just created
+	var myValue = ConfigurationManager.Get<int>(app, "MyKey");
+	
+	foreach(var item in ConfigurationManager.GetAll(app))
+	{
+		Console.WriteLine("{0} - {1}", item.Key, item.Value);
+	}
 }
 ```
 #####Client Side
@@ -50,9 +63,21 @@ Same as the Server Side, Sponge has to be installed on your SharePoint Farm firs
 public void CreateAppClientSide()
 {
     var app = "Sponge App";
+    
+	//init connection to the config service
     using (var cfg = new ClientConfigurationManager("http://mysp"))
     {
+		//create app
         cfg.CreateApplication(app);
+		
+		cfg.Set(app, "MyKey", Guid.NewGuid.ToString());
+		
+		var myValue = cfg.Get(app, "MyKey");
+		
+		foreach(var item in cfg.GetAll(app))
+		{
+			Console.WriteLine("{0} - {1}", item.Key, item.Value);
+		}
     }
 }
 ```
