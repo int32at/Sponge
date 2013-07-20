@@ -27,3 +27,7 @@ Sponge creates a Site with multiple lists in your Central Administration **http:
 
 - ConfigApplications: The name's of your applications you want to configure. This gives you a nice grouping of the config entries later on!
 - ConfigItems: This is where the actual config goes to. Add your Key/Value pairs to your application and you are ready to go!
+
+
+####Configuration Framework
+Not included in this version - work in progress! Check out the develop branch!
