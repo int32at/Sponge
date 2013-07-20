@@ -1,5 +1,6 @@
 ﻿using System.Web.Services;
 using System.Xml;
+using Sponge.Common.Configuration;
 using Sponge.Common.Utilities;
 
 namespace Sponge.WebService

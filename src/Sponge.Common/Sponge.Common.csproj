@@ -57,7 +57,7 @@
     <Compile Include="Models\SPManagerBase.cs" />
     <Compile Include="Models\SPWebManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\ConfigurationManager.cs" />
+    <Compile Include="Configuration\ConfigurationManager.cs" />
     <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Utilities\Utils.cs" />
   </ItemGroup>

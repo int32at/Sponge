@@ -2,8 +2,9 @@
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.SharePoint;
+using Sponge.Common.Utilities;
 
-namespace Sponge.Common.Utilities
+namespace Sponge.Common.Configuration
 {
     public class ConfigurationManager
     {

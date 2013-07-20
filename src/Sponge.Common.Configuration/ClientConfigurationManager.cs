@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Xml;
 using Sponge.Common.Configuration.ServiceReference;
 
-namespace Sponge.Common.Utilities
+namespace Sponge.Common.Configuration
 {
-    public class Config : IDisposable
+    public class ClientConfigurationManager: IDisposable
     {
         private ConfigService _svc;
-
-        public Config(string url)
+        
+        public ClientConfigurationManager(string url)
         {
             if (!url.EndsWith("/"))
                 url += "/";

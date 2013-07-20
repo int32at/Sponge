@@ -46,11 +46,11 @@ namespace Sponge.Tests
         [TestMethod]
         public void CreateAppClientSide()
         {
-            var app = "Sponge Unit Test";
-            using (var cfg = new Config(Utils.GetSpongeUrl()))
+            var app = "Sponge App";
+            using (var cfg = new ClientConfigurationManager("http://mysp"))
             {
                 cfg.CreateApplication(app);
-                Assert.AreEqual(app, ConfigurationManager.ApplicationExists(app));
+                Assert.AreEqual(app, cfg.ApplicationExists(app));
             }
         }
     }
