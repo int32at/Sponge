@@ -102,6 +102,7 @@
     <Content Include="Features\Sponge.Feature\Sponge.Feature.Template.xml">
       <DependentUpon>Sponge.Feature.feature</DependentUpon>
     </Content>
+    <Content Include="Images\Sponge\logo_s.png" />
     <Content Include="Images\Sponge\logo.png" />
     <Content Include="Layouts\Sponge\ConfigService.asmx" />
     <Content Include="UI\CentralAdminLinks\Elements.xml" />
