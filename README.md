@@ -1,15 +1,19 @@
 Sponge (beta)
 ======
 
-#####Sponge SharePoint Configuration &amp; Logging Framework.
+#####Sponge - SharePoint Framework.
 
-The Idea behind Sponge is pretty simple - A consistant, centralized and easy to configurable Configuration and
-Logging component based on top of SharePoint. Every developer has asked him/her-self the same questions:
+The idea behind Sponge is pretty simple - provide centralized logging and configuration components, as well as other useful tools, controls, web parts and application pages that makes the life's of developers and administrators a lot simplier!
 
-- Where should i put the configuration of my application?
-- Where should i log my exceptions to?
+Sponge includes the following components:
+- [Centralized Configuration Framework](../../wiki/Configuration-Framework) 
+- Centralized Logging Component (todo)
+- ULS Log Viewer (todo)
+- Site Property Manager (todo)
+- EventHandler Manager (todo)
+- Hosting Web Part (todo)
 
-Sponge tries to make these tasks very simple and straight forward. See the [Wiki](../../wiki/Home)  for more information.
+See the [Wiki](../../wiki/Home)  for more information.
 
 ###Installation
 
@@ -17,8 +21,3 @@ Sponge tries to make these tasks very simple and straight forward. See the [Wiki
 2.  Run `install.ps1` with PowerShell (with the most-privileged account possible) on your SP Server(s)
 3.  Browser will open and take you directly to Sponge.
 4.  Read the [Wiki](../../wiki/Home) and [FAQ](../../wiki/FAQ) on how to interact with Sponge.
-
-###Wiki
-
-- [Configuration Framework](../../wiki/Configuration-Framework) 
-- [Logging Framework](../../wiki/Logging-Framework) 
