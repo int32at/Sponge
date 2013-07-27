@@ -10,7 +10,7 @@ Sponge includes the following components:
 - Centralized Logging Component (todo)
 - ULS Log Viewer (todo)
 - Site Property Manager (todo)
-- EventHandler Manager (todo)
+- Event Handler Manager (todo)
 - Hosting Web Part (todo)
 
 See the [Wiki](../../wiki/Home)  for more information.
