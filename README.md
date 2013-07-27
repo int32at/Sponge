@@ -12,6 +12,7 @@ Sponge includes the following components:
 - Site Property Manager (todo)
 - Event Handler Manager (todo)
 - Hosting Web Part (todo)
+- Advanced Event Handlers (todo)
 
 See the [Wiki](../../wiki/Home)  for more information.
 
