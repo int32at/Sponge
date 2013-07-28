@@ -6,7 +6,7 @@ Sponge (beta)
 The idea behind Sponge is pretty simple - provide centralized logging and configuration components, as well as other useful tools, controls, web parts and application pages that makes the life's of developers and administrators a lot simplier!
 
 Sponge includes the following components:
-- [Centralized Configuration Framework](../../wiki/Configuration-Framework) 
+- [Centralized Configuration Component](../../wiki/Configuration-Framework) 
 - Centralized Logging Component (todo)
 - ULS Log Viewer (todo)
 - Site Property Manager (todo)
