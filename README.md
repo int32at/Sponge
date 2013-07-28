@@ -13,6 +13,7 @@ Sponge includes the following components:
 - Event Handler Manager (todo)
 - Hosting Web Part (todo)
 - Advanced Event Handlers (todo)
+- etc
 
 See the [Wiki](../../wiki/Home)  for more information.
 
