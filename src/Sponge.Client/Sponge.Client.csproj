@@ -44,20 +44,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ClientConfigurationManager.cs" />
+    <Compile Include="Logging\ClientLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Web References\ConfigServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\LoggingServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Logging\" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -69,6 +76,11 @@
     </None>
     <None Include="Web References\ConfigServiceReference\COnfigService.wsdl" />
     <None Include="Web References\ConfigServiceReference\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\LoggingServiceReference\LoggingService.wsdl" />
+    <None Include="Web References\LoggingServiceReference\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -88,9 +100,23 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>Sponge_Client_ConfigServiceReference_ConfigService</CachedSettingsPropName>
     </WebReferenceUrl>
+    <WebReferenceUrl Include="http://demo/_layouts/Sponge/LoggingService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\LoggingServiceReference\</RelPath>
+      <UpdateFromURL>http://demo/_layouts/Sponge/LoggingService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Sponge_Client_LoggingServiceReference_LoggingService</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\ConfigServiceReference\COnfigService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\LoggingServiceReference\LoggingService.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

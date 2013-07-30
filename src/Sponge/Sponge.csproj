@@ -94,7 +94,7 @@
     <Compile Include="Layouts\Sponge\SitePropertyManager.aspx.designer.cs">
       <DependentUpon>SitePropertyManager.aspx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Logging\LogManager.cs" />
     <Compile Include="Models\SPListManager.cs" />
     <Compile Include="Models\SPManager.cs" />
     <Compile Include="Models\SPManagerBase.cs" />
@@ -105,6 +105,9 @@
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="WebParts\HostingWebPart\HostingWebPart.cs" />
     <Compile Include="WebService\ConfigService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebService\LoggingService.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
@@ -182,6 +185,7 @@
     <Content Include="Layouts\Sponge\ConfigService.asmx" />
     <Content Include="ADMIN\Sponge\CorrelationViewer\Results.aspx" />
     <Content Include="ADMIN\Sponge\CorrelationViewer\Get.aspx" />
+    <Content Include="Layouts\Sponge\LoggingService.asmx" />
     <Content Include="Layouts\Sponge\scripts\jquery-1.7.2.min.js" />
     <Content Include="Layouts\Sponge\SitePropertyManager.aspx" />
     <Content Include="Layouts\Sponge\styles\sponge.css" />

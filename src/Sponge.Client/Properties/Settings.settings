@@ -5,5 +5,8 @@
     <Setting Name="Sponge_Client_ConfigServiceReference_ConfigService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">http://demo/_layouts/Sponge/COnfigService.asmx</Value>
     </Setting>
+    <Setting Name="Sponge_Client_LoggingServiceReference_LoggingService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://demo/_layouts/Sponge/LoggingService.asmx</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

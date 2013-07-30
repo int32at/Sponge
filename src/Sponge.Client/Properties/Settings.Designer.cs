@@ -32,5 +32,15 @@ namespace Sponge.Client.Properties {
                 return ((string)(this["Sponge_Client_ConfigServiceReference_ConfigService"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://demo/_layouts/Sponge/LoggingService.asmx")]
+        public string Sponge_Client_LoggingServiceReference_LoggingService {
+            get {
+                return ((string)(this["Sponge_Client_LoggingServiceReference_LoggingService"]));
+            }
+        }
     }
 }
