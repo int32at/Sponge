@@ -90,16 +90,16 @@
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
     </None>
-    <None Include="UI\CentralAdminSettings\SharePointProjectItem.spdata">
+    <None Include="UI\Farm\CentralAdminSettings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{10fdce67-d565-413e-847b-7281a6cecee2}</SharePointProjectItemId>
     </None>
-    <None Include="UI\SiteSettings\SharePointProjectItem.spdata">
+    <None Include="UI\Site\SiteSettings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0274915c-c420-4ece-a436-4b94bf1aa710}</SharePointProjectItemId>
     </None>
-    <None Include="UI\SitePropertyManager\SharePointProjectItem.spdata">
+    <None Include="UI\Web\SitePropertyManager\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{de92e3bc-e339-4647-be78-689e8c66b22b}</SharePointProjectItemId>
     </None>
-    <None Include="UI\WebSettings\SharePointProjectItem.spdata">
+    <None Include="UI\Web\WebSettings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f55945f7-8e52-46ca-9eab-de453f5ed929}</SharePointProjectItemId>
     </None>
   </ItemGroup>
@@ -132,12 +132,13 @@
     <Content Include="Layouts\Sponge\ConfigService.asmx" />
     <Content Include="Layouts\Sponge\scripts\jquery-1.7.2.min.js" />
     <Content Include="Layouts\Sponge\SitePropertyManager.aspx" />
-    <Content Include="UI\CentralAdminSettings\Elements.xml">
+    <Content Include="Layouts\Sponge\styles\sponge.css" />
+    <Content Include="UI\Farm\CentralAdminSettings\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="UI\SiteSettings\Elements.xml" />
-    <Content Include="UI\SitePropertyManager\Elements.xml" />
-    <Content Include="UI\WebSettings\Elements.xml" />
+    <Content Include="UI\Site\SiteSettings\Elements.xml" />
+    <Content Include="UI\Web\SitePropertyManager\Elements.xml" />
+    <Content Include="UI\Web\WebSettings\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Templates\" />

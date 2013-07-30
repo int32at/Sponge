@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <CustomAction GroupId="Sponge.UI.WebSettings" Id="UserInterfaceCustomActions.SiteSettings" Location="Microsoft.SharePoint.SiteSettings" Sequence="106" RequireSiteAdministrator="true" Title="Manage Site Properties">
+  <CustomAction GroupId="Sponge.UI.Web.WebSettings" Id="UserInterfaceCustomActions.SiteSettings" Location="Microsoft.SharePoint.SiteSettings" Sequence="106" RequireSiteAdministrator="true" Title="Manage Site Properties">
     <UrlAction Url="{SiteUrl}/_layouts/Sponge/SitePropertyManager.aspx?Source={SiteUrl}" />
   </CustomAction>
 </Elements>

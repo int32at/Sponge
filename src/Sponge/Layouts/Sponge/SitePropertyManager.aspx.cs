@@ -13,40 +13,29 @@ namespace Sponge.Layouts.Sponge
 {
     public partial class SitePropertyManager : LayoutsPageBase
     {
-        private string Referrer = null;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            RefreshPropertyTable();
+            Refresh();
         }
 
         protected void Page_Init(object sender, EventArgs e)
         {
-            if (this.Referrer == null)
-            {
-                this.Referrer = this.Request.QueryString["Source"];
-            }
         }
 
         protected void OKButton_Click(object sender, EventArgs e)
         {
-            // finally redirect to the referrer
-            if (!string.IsNullOrEmpty(this.Referrer))
-                this.Response.Redirect(this.Referrer);
+            Redirect();
         }
 
         protected void CancelButton_Click(object sender, EventArgs e)
         {
-
-            // go back to the referring page only
-            if (!string.IsNullOrEmpty(this.Referrer))
-                this.Response.Redirect(this.Referrer);
+            Redirect();
         }
 
-        protected void AddPropertyButton_Click(object sender, EventArgs e)
+        protected void Add_Click(object sender, EventArgs e)
         {
-            var property = this.PropertyTextBox.Text.Trim();
-            var value = this.ValueTextBox.Text.Trim();
+            var property = this.txtKey.Text.Trim();
+            var value = this.txtValue.Text.Trim();
 
             if (!string.IsNullOrEmpty(property) &&
                 !string.IsNullOrEmpty(value))
@@ -65,14 +54,14 @@ namespace Sponge.Layouts.Sponge
             //LoadLastKnownError();
         }
 
-        private void RefreshPropertyTable()
+        private void Refresh()
         {
             const string cellPadding = "3px";
             const string propertyEditClickTemplate = "onclick='javascript:SetEditProperty(\"{0}\", \"{1}\")'";
 
             // clear table except header row
-            while (this.PropertyTable.Rows.Count > 1)
-                this.PropertyTable.Rows.RemoveAt(1);
+            while (propertyTable.Rows.Count > 1)
+                propertyTable.Rows.RemoveAt(1);
 
             // get properties from site collection's property bag
             var properties = SPContext.Current.Site.RootWeb.AllProperties;
@@ -124,7 +113,7 @@ namespace Sponge.Layouts.Sponge
                 row.Cells.Add(propertyCell);
                 row.Cells.Add(valueCell);
                 row.Cells.Add(buttonCell);
-                this.PropertyTable.Rows.Add(row);
+                propertyTable.Rows.Add(row);
 
                 idx++;
             }
@@ -140,14 +129,20 @@ namespace Sponge.Layouts.Sponge
             SPContext.Current.Site.RootWeb.TryRemovePropertyString(property);
 
             Response.Redirect(Request.Url.ToString());
-
-            //RefreshPropertyTable();
         }
 
         private string StripHtml(string htmlText)
         {
             var reg = new Regex("<[^>]+>", RegexOptions.IgnoreCase);
             return HttpUtility.HtmlDecode(reg.Replace(htmlText, ""));
+        }
+
+        private void Redirect()
+        {
+            var source = Request.QueryString.Get("Source");
+
+            if (!string.IsNullOrEmpty(source))
+                this.Response.Redirect(source);
         }
     }
 }

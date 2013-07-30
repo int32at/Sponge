@@ -17,33 +17,25 @@
 
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SitePropertyManager.aspx.cs" Inherits="Sponge.Layouts.Sponge.SitePropertyManager" DynamicMasterPageFile="~masterurl/default.master" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
+<asp:Content ID="cnt1" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
     Sponge Site Property Manager
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea"
-    runat="server">
-    <a href="../settings.aspx">
-        <SharePoint:EncodedLiteral ID="EncodedLiteral2" runat="server" Text="<%$Resources:wss,settings_pagetitle%>"
-            EncodeMethod="HtmlEncode" /></a>&#32;<SharePoint:ClusteredDirectionalSeparatorArrow
-                ID="ClusteredDirectionalSeparatorArrow1" runat="server" />
+<asp:Content ID="cnt2" ContentPlaceHolderID="PlaceHolderPageTitleInTitleArea" runat="server">
     Sponge Site Property Manager
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="PlaceHolderPageDescription" runat="server">
+<asp:Content ID="cnt3" ContentPlaceHolderID="PlaceHolderPageDescription" runat="server">
 </asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
-    <SharePoint:CssRegistration ID="CssRegistration1" runat="server" Name="core.css" />
-    <SharePoint:ScriptLink ID="ScriptLink1" Language="javascript" Name="core.js" runat="server" />
-    <SharePoint:ScriptLink ID="ScriptLink2" Language="javascript" Name="/_layouts/Sponge/scripts/jquery-1.7.2.min.js"
-        runat="server" />
+<asp:Content ID="cnt4" ContentPlaceHolderID="PlaceHolderAdditionalPageHead" runat="server">
+    <SharePoint:CssRegistration ID="coreCss" runat="server" Name="core.css" />  
+    <SharePoint:ScriptLink ID="coreJs" Language="javascript" Name="core.js" runat="server" />
+
+    <!-- SPONGE REGISTRATION -->
+    <SharePoint:CssRegistration ID="spongeCss" runat="server" Name="_layouts/Sponge/styles/sponge.css" />
+    <SharePoint:ScriptLink ID="jQuery"  runat="server" Language="javascript" Name="/_layouts/Sponge/scripts/jquery-1.7.2.min.js"/>
+
     <script type="text/javascript" language="javascript">
-
-        // client initialization
         $(document).ready(function () {
-
-            // manage Add/Update button caption
             OnPropertyNameChanged();
-
-            // suppress submit through Enter key
             $("#aspnetForm").keypress(function (e) {
                 if (e.which == 13) {
                     return false;
@@ -51,9 +43,6 @@
             });
         });
 
-        // sets the specified property name and value
-        // in the textboxes where the user can start
-        // editing the property immediately
         function SetEditProperty(propertyName, propertyValue) {
 
             var propertyNameInput = $('[id$="PropertyTextBox"]');
@@ -65,11 +54,9 @@
             OnPropertyNameChanged();
         }
 
-        // iterate over the table rows to check if
-        // a specific property exists
         function IsPropertyExisting(propertyName) {
 
-            var prefix = "AEE_";
+            var prefix = "";
 
             if ($.trim(propertyName) == '')
                 return false;
@@ -83,18 +70,15 @@
                 if (($.trim(currentPropertyName.toLowerCase()) == $.trim(propertyName.toLowerCase())) || ($.trim(currentPropertyName.toLowerCase()) == $.trim(propertyNameWithPrefix.toLowerCase()))) {
 
                     isExisting = true;
-                    return false; // break jQuery "each"
+                    return false;
                 }
             });
 
             return isExisting;
         }
 
-        // handles changes of the property name textbox
         function OnPropertyNameChanged(e) {
 
-            // sets "Add" as button caption if the entered property
-            // does not yet exit otherwise "Update" is set as caption
             var propertyName = $('[id$="PropertyTextBox"]').val();
             if (IsPropertyExisting(propertyName)) {
 
@@ -105,60 +89,29 @@
                 $('[id$="AddPropertyButton"]').val('Add');
             }
 
-            // abort if no event info is available
             if (e == undefined || e == null)
                 return;
 
-            // set focus to value input if Enter is pressed
             if (e.keyCode == 13) {
 
                 $('[id$="ValueTextBox"]').focus();
             }
         }
 
-        // handles changes of the property value textbox
         function OnPropertyValueChanged(e) {
 
             if (e == undefined || e == null)
                 return;
 
-            // simulate Add/Update click in case
-            // Enter was pressed
             if (e.keyCode == 13) {
-
                 __doPostBack('<%= AddPropertyButton.UniqueID %>', '')
             }
         }
 
     </script>
-    <style type="text/css">
-        .sponge-logo
-        {
-            background-image: url("/_layouts/images/sponge/logo_s.png");
-            background-repeat: no-repeat;
-            background-position: left top;
-        }
-
-        .sponge-clearerrorbutton
-        {
-            float: right;
-            margin-top: 5px;
-        }
-
-        .sponge-propertytable
-        {
-            min-width: 450px;
-        }
-
-        .ms-secondary-title
-        {
-            padding-bottom: 3px;
-            display: block;
-        }
-    </style>
 </asp:Content>
-<asp:Content ID="Content5" ContentPlaceHolderID="PlaceHolderMain" runat="server">
-    <table class="propertysheet sponge-logo" border="0" width="100%" cellspacing="0" cellpadding="0">
+<asp:Content ID="cnt5" ContentPlaceHolderID="PlaceHolderMain" runat="server">
+    <table class="properties" border="0" width="100%" cellspacing="0" cellpadding="0">
         <wssuc:ButtonSection ShowStandardCancelButton="false" TopButtons="true" BottomSpacing="5"
             ShowSectionLine="false" runat="server">
             <template_buttons>
@@ -166,24 +119,24 @@
 				<asp:Button runat="server" class="ms-ButtonHeightWidth" OnClick="CancelButton_Click" Text="<%$Resources:wss,multipages_cancelbutton_text%>" id="topCancelButton" accesskey="<%$Resources:wss,cancelbutton_accesskey%>"/>
             </template_buttons>
         </wssuc:ButtonSection>
-        <wssuc:InputFormSection ID="PropertySection" Title="Custom Properties" runat="server">
+        <wssuc:InputFormSection ID="propertySection" Title="Custom Site Properties" runat="server">
             <template_inputformcontrols>
 				<wssuc:InputFormControl runat="server">
 					<Template_Control>
                         <asp:Label ID="lblProperty" Text="Property:" runat="server" Width="60" />
-                        <asp:TextBox ID="PropertyTextBox" OnKeyPress="OnPropertyNameChanged(event);" OnKeyUp="OnPropertyNameChanged();" OnChange="OnPropertyNameChanged();" runat="server" Width="250"/>
-                        <asp:Button ID="AddPropertyButton" OnClick="AddPropertyButton_Click" Text="Add" runat="server" Width="80" class="ms-ButtonHeightWidth"/><br />
+                        <asp:TextBox ID="txtKey" OnKeyPress="OnPropertyNameChanged(event);" OnKeyUp="OnPropertyNameChanged();" OnChange="OnPropertyNameChanged();" runat="server" Width="250"/>
+                        <asp:Button ID="bttnADd" OnClick="Add_Click" Text="Add" runat="server" Width="80" class="ms-ButtonHeightWidth"/><br />
                         <asp:Label ID="lblValue" Text="Value:" runat="server" Width="60" />
-                        <asp:TextBox ID="ValueTextBox" OnKeyPress="OnPropertyValueChanged(event);" runat="server" Width="250"/><br /><br />
-                        <asp:Table ID="PropertyTable" runat="server" CssClass="sponge-propertytable" CellPadding="2" CellSpacing="0" BorderWidth="1" BorderStyle="Solid" BackColor="#F9F9F9">
-                            <asp:TableHeaderRow ID="PropertyTableHeaderRow" runat="server">
-                                <asp:TableCell ID="TableCell1" runat="server" BorderWidth="1" BorderStyle="Dashed" BorderColor="#dbddde" >
+                        <asp:TextBox ID="txtValue" OnKeyPress="OnPropertyValueChanged(event);" runat="server" Width="250"/><br /><br />
+                        <asp:Table ID="propertyTable" runat="server" CssClass="sponge-spm-table" CellPadding="2" CellSpacing="0" BorderWidth="1" BorderStyle="Solid" BackColor="#F9F9F9">
+                            <asp:TableHeaderRow ID="propertyTableHeaderRow" runat="server">
+                                <asp:TableCell ID="TableCell1" runat="server" BorderWidth="1" BorderStyle="solid" BorderColor="#dbddde" >
                                     <div style="color:#0072bc;font-weight:bold;margin:3px">Property</div>
                                 </asp:TableCell>
-                                <asp:TableCell ID="TableCell2" runat="server" BorderWidth="1" BorderStyle="Dashed" BorderColor="#dbddde" >
+                                <asp:TableCell ID="TableCell2" runat="server" BorderWidth="1" BorderStyle="solid" BorderColor="#dbddde" >
                                     <div style="color:#0072bc;font-weight:bold;margin:3px">Value</div>
                                 </asp:TableCell>
-                                <asp:TableCell ID="TableCell3" runat="server" BorderWidth="1" BorderStyle="Dashed" BorderColor="#dbddde" >                                    
+                                <asp:TableCell ID="TableCell3" runat="server" BorderWidth="1" BorderStyle="solid" BorderColor="#dbddde" >                                    
                                 </asp:TableCell>                            
                             </asp:TableHeaderRow>
                         </asp:Table>         
@@ -192,15 +145,11 @@
 			</template_inputformcontrols>
         </wssuc:InputFormSection>
     </table>
-    <SharePoint:DelegateControl ID="DelegateControl1" runat="server" ControlId="NavigationSettingsPanel1"
-        Scope="Site" />
-    <SharePoint:DelegateControl ID="DelegateControl2" runat="server" ControlId="NavigationSettingsPanel2"
-        Scope="Web" />
     <wssuc:ButtonSection ShowStandardCancelButton="false" runat="server">
         <template_buttons>
 				<asp:Button runat="server" class="ms-ButtonHeightWidth" OnClick="OKButton_Click" Text="<%$Resources:wss,multipages_okbutton_text%>" id="bottomOKButton" accesskey="<%$Resources:wss,okbutton_accesskey%>"/>
 				<asp:Button runat="server" class="ms-ButtonHeightWidth" OnClick="CancelButton_Click" Text="<%$Resources:wss,multipages_cancelbutton_text%>" id="bottomCancelButton" accesskey="<%$Resources:wss,cancelbutton_accesskey%>"/>
 			</template_buttons>
     </wssuc:ButtonSection>
-    <SharePoint:FormDigest ID="FormDigest1" runat="server" />
+    <SharePoint:FormDigest ID="digest" runat="server" />
 </asp:Content>

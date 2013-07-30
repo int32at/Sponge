@@ -13,49 +13,40 @@ namespace Sponge.Layouts.Sponge {
     public partial class SitePropertyManager {
         
         /// <summary>
-        /// EncodedLiteral2 control.
+        /// coreCss control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.EncodedLiteral EncodedLiteral2;
+        protected global::Microsoft.SharePoint.WebControls.CssRegistration coreCss;
         
         /// <summary>
-        /// ClusteredDirectionalSeparatorArrow1 control.
+        /// coreJs control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.ClusteredDirectionalSeparatorArrow ClusteredDirectionalSeparatorArrow1;
+        protected global::Microsoft.SharePoint.WebControls.ScriptLink coreJs;
         
         /// <summary>
-        /// CssRegistration1 control.
+        /// spongeCss control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.CssRegistration CssRegistration1;
+        protected global::Microsoft.SharePoint.WebControls.CssRegistration spongeCss;
         
         /// <summary>
-        /// ScriptLink1 control.
+        /// jQuery control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.ScriptLink ScriptLink1;
-        
-        /// <summary>
-        /// ScriptLink2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.ScriptLink ScriptLink2;
+        protected global::Microsoft.SharePoint.WebControls.ScriptLink jQuery;
         
         /// <summary>
         /// topOKButton control.
@@ -76,13 +67,13 @@ namespace Sponge.Layouts.Sponge {
         protected global::System.Web.UI.WebControls.Button topCancelButton;
         
         /// <summary>
-        /// PropertySection control.
+        /// propertySection control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl PropertySection;
+        protected global::System.Web.UI.UserControl propertySection;
         
         /// <summary>
         /// lblProperty control.
@@ -94,22 +85,22 @@ namespace Sponge.Layouts.Sponge {
         protected global::System.Web.UI.WebControls.Label lblProperty;
         
         /// <summary>
-        /// PropertyTextBox control.
+        /// txtKey control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PropertyTextBox;
+        protected global::System.Web.UI.WebControls.TextBox txtKey;
         
         /// <summary>
-        /// AddPropertyButton control.
+        /// bttnADd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddPropertyButton;
+        protected global::System.Web.UI.WebControls.Button bttnADd;
         
         /// <summary>
         /// lblValue control.
@@ -121,31 +112,31 @@ namespace Sponge.Layouts.Sponge {
         protected global::System.Web.UI.WebControls.Label lblValue;
         
         /// <summary>
-        /// ValueTextBox control.
+        /// txtValue control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ValueTextBox;
+        protected global::System.Web.UI.WebControls.TextBox txtValue;
         
         /// <summary>
-        /// PropertyTable control.
+        /// propertyTable control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table PropertyTable;
+        protected global::System.Web.UI.WebControls.Table propertyTable;
         
         /// <summary>
-        /// PropertyTableHeaderRow control.
+        /// propertyTableHeaderRow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableHeaderRow PropertyTableHeaderRow;
+        protected global::System.Web.UI.WebControls.TableHeaderRow propertyTableHeaderRow;
         
         /// <summary>
         /// TableCell1 control.
@@ -175,24 +166,6 @@ namespace Sponge.Layouts.Sponge {
         protected global::System.Web.UI.WebControls.TableCell TableCell3;
         
         /// <summary>
-        /// DelegateControl1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.DelegateControl DelegateControl1;
-        
-        /// <summary>
-        /// DelegateControl2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.DelegateControl DelegateControl2;
-        
-        /// <summary>
         /// bottomOKButton control.
         /// </summary>
         /// <remarks>
@@ -211,12 +184,12 @@ namespace Sponge.Layouts.Sponge {
         protected global::System.Web.UI.WebControls.Button bottomCancelButton;
         
         /// <summary>
-        /// FormDigest1 control.
+        /// digest control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.FormDigest FormDigest1;
+        protected global::Microsoft.SharePoint.WebControls.FormDigest digest;
     }
 }
