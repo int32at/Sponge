@@ -31,15 +31,6 @@ namespace Sponge.Layouts.Sponge {
         protected global::Microsoft.SharePoint.WebControls.ScriptLink coreJs;
         
         /// <summary>
-        /// spongeCss control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.SharePoint.WebControls.CssRegistration spongeCss;
-        
-        /// <summary>
         /// jQuery control.
         /// </summary>
         /// <remarks>
@@ -94,13 +85,13 @@ namespace Sponge.Layouts.Sponge {
         protected global::System.Web.UI.WebControls.TextBox txtKey;
         
         /// <summary>
-        /// bttnADd control.
+        /// bttnAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button bttnADd;
+        protected global::System.Web.UI.WebControls.Button bttnAdd;
         
         /// <summary>
         /// lblValue control.

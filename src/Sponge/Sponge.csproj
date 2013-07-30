@@ -127,6 +127,7 @@
     <Content Include="Features\Sponge\Sponge.Template.xml">
       <DependentUpon>Sponge.feature</DependentUpon>
     </Content>
+    <Content Include="Images\Sponge\delete.png" />
     <Content Include="Images\Sponge\logo_s.png" />
     <Content Include="Images\Sponge\logo.png" />
     <Content Include="Layouts\Sponge\ConfigService.asmx" />

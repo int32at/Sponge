@@ -30,7 +30,6 @@
     <SharePoint:ScriptLink ID="coreJs" Language="javascript" Name="core.js" runat="server" />
 
     <!-- SPONGE REGISTRATION -->
-    <SharePoint:CssRegistration ID="spongeCss" runat="server" Name="_layouts/Sponge/styles/sponge.css" />
     <SharePoint:ScriptLink ID="jQuery"  runat="server" Language="javascript" Name="/_layouts/Sponge/scripts/jquery-1.7.2.min.js"/>
 
     <script type="text/javascript" language="javascript">
@@ -82,11 +81,11 @@
             var propertyName = $('[id$="PropertyTextBox"]').val();
             if (IsPropertyExisting(propertyName)) {
 
-                $('[id$="AddPropertyButton"]').val('Update');
+                $('[id$="bttnAdd"]').val('Update');
             }
             else {
 
-                $('[id$="AddPropertyButton"]').val('Add');
+                $('[id$="bttnAdd"]').val('Add');
             }
 
             if (e == undefined || e == null)
@@ -104,7 +103,7 @@
                 return;
 
             if (e.keyCode == 13) {
-                __doPostBack('<%= AddPropertyButton.UniqueID %>', '')
+                __doPostBack('<%= bttnAdd.UniqueID %>', '')
             }
         }
 
@@ -125,18 +124,18 @@
 					<Template_Control>
                         <asp:Label ID="lblProperty" Text="Property:" runat="server" Width="60" />
                         <asp:TextBox ID="txtKey" OnKeyPress="OnPropertyNameChanged(event);" OnKeyUp="OnPropertyNameChanged();" OnChange="OnPropertyNameChanged();" runat="server" Width="250"/>
-                        <asp:Button ID="bttnADd" OnClick="Add_Click" Text="Add" runat="server" Width="80" class="ms-ButtonHeightWidth"/><br />
+                        <asp:Button ID="bttnAdd" OnClick="Add_Click" Text="Add" runat="server" Width="80" class="ms-ButtonHeightWidth"/><br />
                         <asp:Label ID="lblValue" Text="Value:" runat="server" Width="60" />
                         <asp:TextBox ID="txtValue" OnKeyPress="OnPropertyValueChanged(event);" runat="server" Width="250"/><br /><br />
                         <asp:Table ID="propertyTable" runat="server" CssClass="sponge-spm-table" CellPadding="2" CellSpacing="0" BorderWidth="1" BorderStyle="Solid" BackColor="#F9F9F9">
                             <asp:TableHeaderRow ID="propertyTableHeaderRow" runat="server">
-                                <asp:TableCell ID="TableCell1" runat="server" BorderWidth="1" BorderStyle="solid" BorderColor="#dbddde" >
+                                <asp:TableCell ID="TableCell1" runat="server" BorderWidth="1" BorderStyle="Dashed" BorderColor="#dbddde" >
                                     <div style="color:#0072bc;font-weight:bold;margin:3px">Property</div>
                                 </asp:TableCell>
-                                <asp:TableCell ID="TableCell2" runat="server" BorderWidth="1" BorderStyle="solid" BorderColor="#dbddde" >
+                                <asp:TableCell ID="TableCell2" runat="server" BorderWidth="1" BorderStyle="Dashed" BorderColor="#dbddde" >
                                     <div style="color:#0072bc;font-weight:bold;margin:3px">Value</div>
                                 </asp:TableCell>
-                                <asp:TableCell ID="TableCell3" runat="server" BorderWidth="1" BorderStyle="solid" BorderColor="#dbddde" >                                    
+                                <asp:TableCell ID="TableCell3" runat="server" BorderWidth="1" BorderStyle="Dashed" BorderColor="#dbddde" >                                    
                                 </asp:TableCell>                            
                             </asp:TableHeaderRow>
                         </asp:Table>         
