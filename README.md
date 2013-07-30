@@ -7,11 +7,11 @@ The idea behind Sponge is pretty simple - provide centralized logging and config
 
 Sponge includes the following components:
 - [Centralized Configuration Component](../../wiki/Configuration-Framework) 
-- Centralized Logging Component (todo)
-- ULS Log Viewer (todo)
-- Site Property Manager (todo)
+- [Centralized Logging Component](../../wiki/Logging-Framework) 
+- [Site Property Manager](../../wiki/Site-Property-Manager) 
+- [Hosting Web Part](../../wiki/Hosting-Web-Part) 
 - Event Handler Manager (todo)
-- Hosting Web Part (todo)
+- ULS Log Viewer (todo)
 - Advanced Event Handlers (todo)
 - etc
 
