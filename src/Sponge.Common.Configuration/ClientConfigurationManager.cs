@@ -62,7 +62,7 @@ namespace Sponge.Common.Configuration
         {
             var dict = new Dictionary<string, string>();
             foreach (XmlNode el in doc.ChildNodes)
-                dict.Add(el.Name, el.Value);
+                dict.Add(el.Name, el.InnerText);
 
             return dict;
         }

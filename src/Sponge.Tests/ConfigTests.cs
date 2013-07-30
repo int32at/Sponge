@@ -26,13 +26,31 @@ namespace Sponge.Tests
         }
 
         [TestMethod]
-        public void GetAllValues()
+        public void GetAllValuesServerSide()
         {
             var app = "Sponge Unit Test";
 
+            if (!ConfigurationManager.ApplicationExists(app))
+                ConfigurationManager.CreateApplication(app);
+
+            ConfigurationManager.Set(app, "Test", DateTime.Now);
             var actual = ConfigurationManager.GetAll(app);
 
             Assert.IsNotNull(actual);
+        }
+
+        [TestMethod]
+        public void GetAllValuesClientSide()
+        {
+            var app = "Sponge Unit Test";
+
+            using (var cfg = new ClientConfigurationManager("http://demo"))
+            {
+                cfg.Set(app, "Test1", DateTime.Now.ToString());
+                var actual = cfg.GetAll(app);
+
+                Assert.IsNotNull(actual);
+            }
         }
 
         [TestMethod]

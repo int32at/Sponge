@@ -32,7 +32,7 @@ namespace Sponge.Common.Configuration
         {
             using (var sponge = Utils.GetSpongeWeb())
             {
-                var query = new SPQuery() { Query = GetAppQuery(app) };
+                var query = new SPQuery() { Query = GetAppQueryItems(app) };
 
                 var items = sponge.Lists[Constants.SPONGE_LIST_CONFIGITEMS].GetItems(query);
 
@@ -108,6 +108,16 @@ namespace Sponge.Common.Configuration
                                         <Eq>
                                             <FieldRef Name='Title' />
                                             <Value Type='Text'>{0}</Value>
+                                        </Eq>
+                                   </Where>", app);
+        }
+
+        private static string GetAppQueryItems(string app)
+        {
+            return string.Format(@"<Where>
+                                        <Eq>
+                                            <FieldRef Name='Application' />
+                                            <Value Type='Lookup'>{0}</Value>
                                         </Eq>
                                    </Where>", app);
         }
