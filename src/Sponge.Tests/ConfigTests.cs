@@ -40,17 +40,17 @@ namespace Sponge.Tests
         {
             var app = "Sponge Unit Test";
             ConfigurationManager.CreateApplication(app);
-            Assert.AreEqual(app, ConfigurationManager.ApplicationExists(app));
+            Assert.AreEqual(true, ConfigurationManager.ApplicationExists(app));
         }
 
         [TestMethod]
         public void CreateAppClientSide()
         {
             var app = "Sponge App";
-            using (var cfg = new ClientConfigurationManager("http://mysp"))
+            using (var cfg = new ClientConfigurationManager("http://demo"))
             {
                 cfg.CreateApplication(app);
-                Assert.AreEqual(app, cfg.ApplicationExists(app));
+                Assert.AreEqual("true", cfg.ApplicationExists(app));
             }
         }
     }

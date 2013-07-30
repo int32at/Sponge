@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <CustomActionGroup Description="Sponge Site Features" Id="Sponge.UI.WebSettings" ImageUrl="" Location="Microsoft.SharePoint.SiteSettings" Sequence="111" Title="Sponge Site Settings">
+  </CustomActionGroup>
+</Elements>

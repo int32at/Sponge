@@ -1,39 +1,32 @@
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Web.UI.WebControls.WebParts;
+﻿using System.Web.UI.WebControls.WebParts;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebPartPages;
 using Sponge.Common.Models;
-using Sponge.Common.Utilities;
 
-namespace Sponge.Feature
+namespace Sponge.Common.Utilities
 {
-    [Guid("f1542a28-46d4-4d83-bd4e-4854d05bd787")]
-    public class EventReceiver : SPFeatureReceiver
+    public static class Setup
     {
-        public override void FeatureActivated(SPFeatureReceiverProperties properties)
+        public static void Install(SPSite site)
         {
-            Update(false);
+            Update(site, false);
         }
 
-        public override void FeatureUninstalling(SPFeatureReceiverProperties properties)
+        public static void Uninstall(SPSite site)
         {
-            Update(true);
+            Update(site, true);
         }
 
-        private void Update(bool delete)
+        private static void Update(SPSite site, bool delete)
         {
-            var ca = SPWebManager.GetCentralAdminWeb();
-            using (var mgr = new SPManager(ca.Site))
+            using (var mgr = new SPManager(site))
             {
                 UpdateWeb(mgr, delete);
                 UpdateLists(mgr);
             }
         }
-
-        private void UpdateWeb(SPManager mgr, bool delete)
+        
+        private static void UpdateWeb(SPManager mgr, bool delete)
         {
             if (delete)
             {
@@ -49,7 +42,7 @@ namespace Sponge.Feature
             }
         }
 
-        private void UpdateLists(SPManager mgr)
+        private static void UpdateLists(SPManager mgr)
         {
             CreateConfigApplications(mgr);
             CreateConfigItems(mgr);
@@ -59,7 +52,7 @@ namespace Sponge.Feature
             CreateWebParts(mgr);
         }
 
-        private void CreateConfigItems(SPManager mgr)
+        private static void CreateConfigItems(SPManager mgr)
         {
             var list = CreateList(mgr, Constants.SPONGE_LIST_CONFIGITEMS);
 
@@ -96,22 +89,22 @@ namespace Sponge.Feature
             view.Update();
         }
 
-        private void CreateConfigApplications(SPManager mgr)
+        private static void CreateConfigApplications(SPManager mgr)
         {
             var list = CreateList(mgr, Constants.SPONGE_LIST_CONFIGAPPLICATIONS);
         }
 
-        private void CreateLogAppenders(SPManager mgr)
+        private static void CreateLogAppenders(SPManager mgr)
         {
             CreateList(mgr, Constants.SPONGE_LIST_LOGAPPENDERS);
         }
 
-        private void CreateLogConfigs(SPManager mgr)
+        private static void CreateLogConfigs(SPManager mgr)
         {
             CreateList(mgr, Constants.SPONGE_LIST_LOGCONFIGS);
         }
 
-        private SPList CreateList(SPManager mgr, string listName)
+        private static SPList CreateList(SPManager mgr, string listName)
         {
             var list = mgr.Lists.Create(listName, "", SPListTemplateType.GenericList);
             list.OnQuickLaunch = true;
@@ -120,11 +113,11 @@ namespace Sponge.Feature
             return list;
         }
 
-        private void CreateWebParts(SPManager mgr)
+        private static void CreateWebParts(SPManager mgr)
         {
             var configItems = new XsltListViewWebPart();
             configItems.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_CONFIGITEMS].ID;
-           
+
             var configApps = new XsltListViewWebPart();
             configApps.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_CONFIGAPPLICATIONS].ID;
 
@@ -132,7 +125,7 @@ namespace Sponge.Feature
             AddWebPart(mgr.ParentWeb, "default.aspx", configItems, "left", 2);
         }
 
-        private void AddWebPart(SPWeb web, string pageURL, System.Web.UI.WebControls.WebParts.WebPart webPart, string zoneID, int zoneIndex)
+        private static void AddWebPart(SPWeb web, string pageURL, System.Web.UI.WebControls.WebParts.WebPart webPart, string zoneID, int zoneIndex)
         {
             SPLimitedWebPartManager webPartManager = web.GetLimitedWebPartManager(pageURL, PersonalizationScope.Shared);
             webPartManager.AddWebPart(webPart, zoneID, zoneIndex);
