@@ -51,6 +51,13 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx.cs">
+      <DependentUpon>SampleControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx.designer.cs">
+      <DependentUpon>SampleControl.ascx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Features\Sponge\Sponge.EventReceiver.cs">
       <DependentUpon>Sponge.feature</DependentUpon>
     </Compile>
@@ -76,6 +83,7 @@
       <DependentUpon>SitePropertyManager.aspx.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebParts\HostingWebPart\HostingWebPart.cs" />
     <Compile Include="WebService\ConfigService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -83,6 +91,9 @@
   <ItemGroup>
     <None Include="ADMIN\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3bf5f888-caef-4cf5-958d-86a1bc4140ea}</SharePointProjectItemId>
+    </None>
+    <None Include="CONTROLTEMPLATES\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{64fa7eb0-e9a5-4a22-8f3f-ec8797563a16}</SharePointProjectItemId>
     </None>
     <None Include="Features\Sponge.Site\Sponge.Site.feature">
       <FeatureId>{c0462f50-8f61-4bd8-b466-33f37e83599f}</FeatureId>
@@ -106,6 +117,7 @@
     </None>
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="UI\Farm\CentralAdminSettings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{10fdce67-d565-413e-847b-7281a6cecee2}</SharePointProjectItemId>
@@ -128,6 +140,10 @@
     <None Include="UI\Web\WebSettings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f55945f7-8e52-46ca-9eab-de453f5ed929}</SharePointProjectItemId>
     </None>
+    <None Include="WebParts\HostingWebPart\HostingWebPart.webpart" />
+    <None Include="WebParts\HostingWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a3a8377a-ebd5-49eb-957b-0383d046717a}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sponge.Common.Configuration\Sponge.Common.Configuration.csproj">
@@ -144,6 +160,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx" />
     <Content Include="Features\Sponge.Site\Sponge.Site.Template.xml">
       <DependentUpon>Sponge.Site.feature</DependentUpon>
     </Content>
@@ -171,6 +188,7 @@
     <Content Include="UI\Site\SiteSettings\Elements.xml" />
     <Content Include="UI\Web\SitePropertyManager\Elements.xml" />
     <Content Include="UI\Web\WebSettings\Elements.xml" />
+    <Content Include="WebParts\HostingWebPart\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Templates\" />

@@ -44,9 +44,9 @@
 
         function SetEditProperty(propertyName, propertyValue) {
 
-            var propertyNameInput = $('[id$="PropertyTextBox"]');
+            var propertyNameInput = $('[id$="txtKey"]');
             propertyNameInput.val(propertyName);
-            var propertyValueInput = $('[id$="ValueTextBox"]');
+            var propertyValueInput = $('[id$="txtValue"]');
             propertyValueInput.val(propertyValue);
             propertyValueInput.focus();
             propertyValueInput.select();
@@ -63,7 +63,7 @@
             var propertyNameWithPrefix = prefix + propertyName;
 
             var isExisting = false;
-            $('[id$="PropertyTable"] tr').each(function () {
+            $('[id$="propertyTable"] tr').each(function () {
 
                 var currentPropertyName = $(this).children().first().text();
                 if (($.trim(currentPropertyName.toLowerCase()) == $.trim(propertyName.toLowerCase())) || ($.trim(currentPropertyName.toLowerCase()) == $.trim(propertyNameWithPrefix.toLowerCase()))) {
@@ -78,7 +78,7 @@
 
         function OnPropertyNameChanged(e) {
 
-            var propertyName = $('[id$="PropertyTextBox"]').val();
+            var propertyName = $('[id$="txtKey"]').val();
             if (IsPropertyExisting(propertyName)) {
 
                 $('[id$="bttnAdd"]').val('Update');
@@ -93,7 +93,7 @@
 
             if (e.keyCode == 13) {
 
-                $('[id$="ValueTextBox"]').focus();
+                $('[id$="txtValue"]').focus();
             }
         }
 
