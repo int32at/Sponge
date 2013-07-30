@@ -50,8 +50,32 @@ namespace Sponge.Tests
             using (var cfg = new ClientConfigurationManager("http://demo"))
             {
                 cfg.CreateApplication(app);
-                Assert.AreEqual("true", cfg.ApplicationExists(app));
+                Assert.AreEqual(true, cfg.ApplicationExists(app));
             }
+        }
+
+        [TestMethod]
+        public void CreateConfigEntryClientSide()
+        {
+            var app = "Sponge App";
+            var actual = "actual";
+            using (var cfg = new ClientConfigurationManager("http://demo"))
+            {
+                cfg.Set(app, "MyKey", "a");
+                var expected = cfg.Get(app, "MyKey");
+                Assert.AreEqual(expected, actual);
+            }
+        }
+
+        [TestMethod]
+        public void CreateConfigEntryServerSide()
+        {
+            var app = "Sponge App";
+            var actual = "actual";
+
+            ConfigurationManager.Set(app, "MyKey", actual);
+            var expected = ConfigurationManager.Get(app, "MyKey");
+            Assert.AreEqual(expected, actual);
         }
     }
 }
