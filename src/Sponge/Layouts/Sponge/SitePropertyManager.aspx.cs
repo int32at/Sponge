@@ -9,7 +9,7 @@ using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
 using Sponge.Common.Extensions;
 
-namespace Sponge.Layouts.Sponge
+namespace Sponge.Pages
 {
     public partial class SitePropertyManager : LayoutsPageBase
     {

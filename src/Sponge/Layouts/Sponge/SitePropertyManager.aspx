@@ -15,7 +15,7 @@
 <%@ Import Namespace="Microsoft.SharePoint" %>
 <%@ Assembly Name="Microsoft.Web.CommandUI, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SitePropertyManager.aspx.cs" Inherits="Sponge.Layouts.Sponge.SitePropertyManager" DynamicMasterPageFile="~masterurl/default.master" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SitePropertyManager.aspx.cs" Inherits="Sponge.Pages.SitePropertyManager" DynamicMasterPageFile="~masterurl/default.master" %>
 
 <asp:Content ID="cnt1" ContentPlaceHolderID="PlaceHolderPageTitle" runat="server">
     Sponge Site Property Manager

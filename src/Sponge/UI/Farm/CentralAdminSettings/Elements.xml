@@ -8,36 +8,4 @@
       Description="Sponge Framework Administration Site">
     <UrlAction Url="/Sponge/default.aspx"/>
   </CustomActionGroup>
-  <CustomAction
-    Id="Sponge.UI.Farm.CentralAdmin.ConfigurationItems"
-    GroupId="Sponge.UI.Farm.CentralAdmin"
-    Location="Microsoft.SharePoint.Administration.Default"
-    Title="Config Items"
-    Description="Config Items">
-    <UrlAction Url="/Sponge/Lists/ConfigItems"/>
-  </CustomAction>
-  <CustomAction
-    Id="Sponge.UI.Farm.CentralAdmin.ConfigurationApplications"
-    GroupId="Sponge.UI.Farm.CentralAdmin"
-    Location="Microsoft.SharePoint.Administration.Default"
-    Title="Config Applications"
-    Description="Config Applications">
-    <UrlAction Url="/Sponge/Lists/ConfigApplications"/>
-  </CustomAction>
-  <!--<CustomAction
-    Id="Sponge.UI.Farm.CentralAdmin.Logging.Configs"
-    GroupId="Sponge.UI.Farm.CentralAdmin"
-    Location="Microsoft.SharePoint.Administration.Default"
-    Title = "Logging Config"
-    Description="Logging Configs">
-    <UrlAction Url="/Sponge/Lists/LogConfigs"/>
-  </CustomAction>
-  <CustomAction
-   Id="Sponge.UI.Farm.CentralAdmin.Logging.Appenders"
-   GroupId="Sponge.UI.Farm.CentralAdmin"
-   Location="Microsoft.SharePoint.Administration.Default"
-   Title="Logging Appenders"
-   Description="Logging Appenders">
-    <UrlAction Url="/Sponge/Lists/LogAppenders"/>
-  </CustomAction>-->
 </Elements>

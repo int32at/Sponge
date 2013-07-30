@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sponge.Layouts.Sponge {
+namespace Sponge.Pages {
     
     
     public partial class SitePropertyManager {

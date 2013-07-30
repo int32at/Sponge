@@ -3,6 +3,7 @@ using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 using Microsoft.SharePoint;
+using Microsoft.SharePoint.Administration;
 using Sponge.Common.Models;
 
 namespace Sponge.Common.Utilities
@@ -38,6 +39,16 @@ namespace Sponge.Common.Utilities
                 dict.Add(el.Name, el.Value);
 
             return dict;
+        }
+
+        public static IEnumerable<string> GetAvailableServerNames()
+        {
+            return SPFarm.Local.Servers.Select(s => s.Name);
+        }
+
+        public static string GetSPDiagnosticsLocation()
+        {
+            return SPDiagnosticsService.Local.LogLocation;
         }
     }
 }

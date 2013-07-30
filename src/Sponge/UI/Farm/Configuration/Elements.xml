@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <CustomAction
+  Id="Sponge.UI.Farm.CentralAdmin.ConfigurationItems"
+  GroupId="Sponge.UI.Farm.CentralAdmin"
+  Location="Microsoft.SharePoint.Administration.Default"
+  Title="Config Items"
+  Description="Config Items">
+    <UrlAction Url="/Sponge/Lists/ConfigItems"/>
+  </CustomAction>
+  <CustomAction
+    Id="Sponge.UI.Farm.CentralAdmin.ConfigurationApplications"
+    GroupId="Sponge.UI.Farm.CentralAdmin"
+    Location="Microsoft.SharePoint.Administration.Default"
+    Title="Config Applications"
+    Description="Config Applications">
+    <UrlAction Url="/Sponge/Lists/ConfigApplications"/>
+  </CustomAction>
+</Elements>
