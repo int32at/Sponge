@@ -1,0 +1,11 @@
+﻿<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <CustomActionGroup
+      Id="Sponge.UI.Farm.CentralAdmin"
+      Location="Microsoft.SharePoint.Administration.Default"
+      Title="Sponge Framework"
+      Sequence="250"
+      ImageUrl="_layouts/images/Sponge/logo.png"
+      Description="Sponge Framework Administration Site">
+    <UrlAction Url="/Sponge/default.aspx"/>
+  </CustomActionGroup>
+</Elements>

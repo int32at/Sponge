@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://demo/_layouts/Sponge/COnfigService.asmx?wsdl" docRef="http://demo/_layouts/Sponge/COnfigService.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://demo/_layouts/Sponge/COnfigService.asmx" xmlns:q1="http://Sponge.WebService.ConfigService" binding="q1:ConfigServiceSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://demo/_layouts/Sponge/COnfigService.asmx" xmlns:q2="http://Sponge.WebService.ConfigService" binding="q2:ConfigServiceSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

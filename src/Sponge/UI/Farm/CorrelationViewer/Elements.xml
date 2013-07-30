@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <!--<CustomAction
+  Id="Sponge.UI.Farm.CentralAdmin.CorrelationViewer"
+  GroupId="Sponge.UI.Farm.CentralAdmin"
+  Location="Microsoft.SharePoint.Administration.Default"
+  Title="Correlation Viewer"
+  Description="Correlation Viewer">
+    <UrlAction Url="/_admin/Sponge/CorrelationViewer/Get.aspx"/>
+  </CustomAction>-->
+</Elements>

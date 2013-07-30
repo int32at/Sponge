@@ -40,13 +40,18 @@
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.SharePoint.Linq, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+    <Reference Include="NLog, Version=2.0.1.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\ISAPI\Microsoft.SharePoint.Linq.dll</HintPath>
+      <HintPath>..\packages\NLog.2.0.1.2\lib\net35\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\WindowsPowerShell\v1.0\System.Management.Automation.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
@@ -54,16 +59,72 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\Sponge.Feature\Sponge.EventReceiver.cs">
-      <DependentUpon>Sponge.Feature.feature</DependentUpon>
+    <Compile Include="Components\CorrelationViewer\CorrelationId.cs" />
+    <Compile Include="Components\CorrelationViewer\CorrelationQuery.cs" />
+    <Compile Include="Configuration\ConfigurationManager.cs" />
+    <Compile Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx.cs">
+      <DependentUpon>SampleControl.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx.designer.cs">
+      <DependentUpon>SampleControl.ascx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\SPWebExtensions.cs" />
+    <Compile Include="Features\Sponge\Sponge.EventReceiver.cs">
+      <DependentUpon>Sponge.feature</DependentUpon>
+    </Compile>
+    <Compile Include="ADMIN\Sponge\CorrelationViewer\Results.aspx.cs">
+      <DependentUpon>Results.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ADMIN\Sponge\CorrelationViewer\Results.aspx.designer.cs">
+      <DependentUpon>Results.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ADMIN\Sponge\CorrelationViewer\Get.aspx.cs">
+      <DependentUpon>Get.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ADMIN\Sponge\CorrelationViewer\Get.aspx.designer.cs">
+      <DependentUpon>Get.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Layouts\Sponge\SitePropertyManager.aspx.cs">
+      <DependentUpon>SitePropertyManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\Sponge\SitePropertyManager.aspx.designer.cs">
+      <DependentUpon>SitePropertyManager.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Logging\LogManager.cs" />
+    <Compile Include="Models\SPListManager.cs" />
+    <Compile Include="Models\SPManager.cs" />
+    <Compile Include="Models\SPManagerBase.cs" />
+    <Compile Include="Models\SPWebManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\Constants.cs" />
+    <Compile Include="Utilities\Setup.cs" />
+    <Compile Include="Utilities\Utils.cs" />
+    <Compile Include="WebParts\HostingWebPart\HostingWebPart.cs" />
     <Compile Include="WebService\ConfigService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WebService\LoggingService.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Features\Sponge.Feature\Sponge.Feature.feature">
+    <None Include="ADMIN\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{3bf5f888-caef-4cf5-958d-86a1bc4140ea}</SharePointProjectItemId>
+    </None>
+    <None Include="CONTROLTEMPLATES\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{64fa7eb0-e9a5-4a22-8f3f-ec8797563a16}</SharePointProjectItemId>
+    </None>
+    <None Include="Features\Sponge.Site\Sponge.Site.feature">
+      <FeatureId>{c0462f50-8f61-4bd8-b466-33f37e83599f}</FeatureId>
+    </None>
+    <None Include="Features\Sponge.Web\Sponge.Web.feature">
+      <FeatureId>{4cdc0ac5-e5c7-4b7a-88a5-4a33d56737cc}</FeatureId>
+    </None>
+    <None Include="Features\Sponge\Sponge.feature">
       <FeatureId>{c9e5c423-7fe5-499e-a942-4c9eb17da24b}</FeatureId>
     </None>
     <None Include="Images\SharePointProjectItem.spdata">
@@ -79,33 +140,65 @@
     </None>
     <None Include="Package\Package.Template.xml">
       <DependentUpon>Package.package</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
-    <None Include="UI\CentralAdminLinks\SharePointProjectItem.spdata">
+    <None Include="UI\Farm\CentralAdminSettings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{10fdce67-d565-413e-847b-7281a6cecee2}</SharePointProjectItemId>
     </None>
+    <None Include="UI\Farm\Configuration\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{11348514-abf1-452f-96da-13be33b3e112}</SharePointProjectItemId>
+    </None>
+    <None Include="UI\Farm\CorrelationViewer\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{acfd8373-f7ce-42ca-923a-6466a2720363}</SharePointProjectItemId>
+    </None>
+    <None Include="UI\Farm\Logging\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{bdf51c19-2da1-4904-81f9-0ee03da3708b}</SharePointProjectItemId>
+    </None>
+    <None Include="UI\Site\SiteSettings\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0274915c-c420-4ece-a436-4b94bf1aa710}</SharePointProjectItemId>
+    </None>
+    <None Include="UI\Web\SitePropertyManager\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{de92e3bc-e339-4647-be78-689e8c66b22b}</SharePointProjectItemId>
+    </None>
+    <None Include="UI\Web\WebSettings\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f55945f7-8e52-46ca-9eab-de453f5ed929}</SharePointProjectItemId>
+    </None>
+    <None Include="WebParts\HostingWebPart\HostingWebPart.webpart" />
+    <None Include="WebParts\HostingWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{a3a8377a-ebd5-49eb-957b-0383d046717a}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sponge.Common.Configuration\Sponge.Common.Configuration.csproj">
-      <Project>{485bd112-d876-4842-8801-fb0352219ed6}</Project>
-      <Name>Sponge.Common.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sponge.Common.Logging\Sponge.Common.Logging.csproj">
-      <Project>{8b8f4acd-5e3b-49ad-aa3e-c7438d32db80}</Project>
-      <Name>Sponge.Common.Logging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sponge.Common\Sponge.Common.csproj">
-      <Project>{03ec5d38-1b92-43ad-b83a-6278f03eb896}</Project>
-      <Name>Sponge.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Features\Sponge.Feature\Sponge.Feature.Template.xml">
-      <DependentUpon>Sponge.Feature.feature</DependentUpon>
+    <Content Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx" />
+    <Content Include="Features\Sponge.Site\Sponge.Site.Template.xml">
+      <DependentUpon>Sponge.Site.feature</DependentUpon>
     </Content>
+    <Content Include="Features\Sponge.Web\Sponge.Web.Template.xml">
+      <DependentUpon>Sponge.Web.feature</DependentUpon>
+    </Content>
+    <Content Include="Features\Sponge\Sponge.Template.xml">
+      <DependentUpon>Sponge.feature</DependentUpon>
+    </Content>
+    <Content Include="Images\Sponge\delete.png" />
     <Content Include="Images\Sponge\logo_s.png" />
     <Content Include="Images\Sponge\logo.png" />
     <Content Include="Layouts\Sponge\ConfigService.asmx" />
-    <Content Include="UI\CentralAdminLinks\Elements.xml" />
+    <Content Include="ADMIN\Sponge\CorrelationViewer\Results.aspx" />
+    <Content Include="ADMIN\Sponge\CorrelationViewer\Get.aspx" />
+    <Content Include="Layouts\Sponge\LoggingService.asmx" />
+    <Content Include="Layouts\Sponge\scripts\jquery-1.7.2.min.js" />
+    <Content Include="Layouts\Sponge\SitePropertyManager.aspx" />
+    <Content Include="Layouts\Sponge\styles\sponge.css" />
+    <Content Include="UI\Farm\CentralAdminSettings\Elements.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="UI\Farm\Configuration\Elements.xml" />
+    <Content Include="UI\Farm\CorrelationViewer\Elements.xml" />
+    <Content Include="UI\Farm\Logging\Elements.xml" />
+    <Content Include="UI\Site\SiteSettings\Elements.xml" />
+    <Content Include="UI\Web\SitePropertyManager\Elements.xml" />
+    <Content Include="UI\Web\WebSettings\Elements.xml" />
+    <Content Include="WebParts\HostingWebPart\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Templates\" />
