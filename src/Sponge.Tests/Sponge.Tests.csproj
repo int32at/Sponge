@@ -62,18 +62,6 @@
     <Compile Include="ConfigTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sponge.Common.Configuration\Sponge.Common.Configuration.csproj">
-      <Project>{485bd112-d876-4842-8801-fb0352219ed6}</Project>
-      <Name>Sponge.Common.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sponge.Common.Logging\Sponge.Common.Logging.csproj">
-      <Project>{8b8f4acd-5e3b-49ad-aa3e-c7438d32db80}</Project>
-      <Name>Sponge.Common.Logging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Sponge.Common\Sponge.Common.csproj">
-      <Project>{03ec5d38-1b92-43ad-b83a-6278f03eb896}</Project>
-      <Name>Sponge.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Sponge\Sponge.csproj">
       <Project>{2c6070d5-c8f5-4e79-83db-6f6d90c0b60d}</Project>
       <Name>Sponge</Name>

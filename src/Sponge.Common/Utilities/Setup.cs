@@ -46,10 +46,10 @@ namespace Sponge.Common.Utilities
         {
             CreateConfigApplications(mgr);
             CreateConfigItems(mgr);
-            //CreateLogAppenders(mgr);
-            //CreateLogConfigs(mgr);
-
+            CreateLogAppenders(mgr);
+            CreateLogConfigs(mgr);
             CreateWebParts(mgr);
+            AddDefaultItems(mgr);
         }
 
         private static void CreateConfigItems(SPManager mgr)
@@ -59,7 +59,6 @@ namespace Sponge.Common.Utilities
             var targetList = list.ParentWeb.Lists[Constants.SPONGE_LIST_CONFIGAPPLICATIONS];
 
             list.Fields.Add("Value", SPFieldType.Note, true);
-
 
             list.Fields.AddLookup("Application", targetList.ID, false);
             SPFieldLookup lkp = (SPFieldLookup)list.Fields["Application"];
@@ -96,12 +95,38 @@ namespace Sponge.Common.Utilities
 
         private static void CreateLogAppenders(SPManager mgr)
         {
-            CreateList(mgr, Constants.SPONGE_LIST_LOGAPPENDERS);
+            var list = CreateList(mgr, Constants.SPONGE_LIST_LOGAPPENDERS);
+
+            list.Fields.Add("Xml", SPFieldType.Note, true);
+            SPView view = list.DefaultView;
+            view.ViewFields.DeleteAll();
+            view.ViewFields.Add("Title");
+            view.ViewFields.Add("Xml");
+            view.Update();
+            list.Update();
         }
 
         private static void CreateLogConfigs(SPManager mgr)
         {
-            CreateList(mgr, Constants.SPONGE_LIST_LOGCONFIGS);
+            var list = CreateList(mgr, Constants.SPONGE_LIST_LOGCONFIGS);
+
+            var targetList = list.ParentWeb.Lists[Constants.SPONGE_LIST_LOGAPPENDERS];
+
+            list.Fields.AddLookup("Appender", targetList.ID, false);
+            SPFieldLookup lkp = (SPFieldLookup)list.Fields["Appender"];
+            lkp.LookupField = targetList.Fields["Title"].InternalName;
+            lkp.Required = true;
+            lkp.Update();
+
+            SPView view = list.DefaultView;
+            var group = @" <GroupBy Collapse=""TRUE"" GroupLimit=""100""> <FieldRef Name=""Appender"" Ascending=""True""/> </GroupBy>";
+            view.Query = group;
+
+            view.ViewFields.DeleteAll();
+            view.ViewFields.Add("Title");
+            view.ViewFields.Add("Appender");
+            view.Update();
+            list.Update();
         }
 
         private static SPList CreateList(SPManager mgr, string listName)
@@ -121,8 +146,16 @@ namespace Sponge.Common.Utilities
             var configApps = new XsltListViewWebPart();
             configApps.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_CONFIGAPPLICATIONS].ID;
 
+            var logConfig = new XsltListViewWebPart();
+            logConfig.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGCONFIGS].ID;
+
+            var logAppenders = new XsltListViewWebPart();
+            logAppenders.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGAPPENDERS].ID;
+
             AddWebPart(mgr.ParentWeb, "default.aspx", configApps, "left", 1);
             AddWebPart(mgr.ParentWeb, "default.aspx", configItems, "left", 2);
+            AddWebPart(mgr.ParentWeb, "default.aspx", logConfig, "right", 1);
+            AddWebPart(mgr.ParentWeb, "default.aspx", logAppenders, "right", 2);
         }
 
         private static void AddWebPart(SPWeb web, string pageURL, System.Web.UI.WebControls.WebParts.WebPart webPart, string zoneID, int zoneIndex)
@@ -131,6 +164,16 @@ namespace Sponge.Common.Utilities
             webPartManager.AddWebPart(webPart, zoneID, zoneIndex);
             webPartManager.SaveChanges(webPart);
             web.Update();
+        }
+
+        private static void AddDefaultItems(SPManager mgr)
+        {
+            var logAppender = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGAPPENDERS];
+
+            var newLogApp = logAppender.AddItem();
+            newLogApp["Title"] = "Sponge ULS Logging";
+            newLogApp["Xml"] = "XML";
+            newLogApp.SystemUpdate();
         }
     }
 }

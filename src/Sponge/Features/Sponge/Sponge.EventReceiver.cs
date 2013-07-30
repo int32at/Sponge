@@ -1,8 +1,8 @@
 using System;
 using System.Runtime.InteropServices;
 using Microsoft.SharePoint;
-using Sponge.Common.Models;
-using Sponge.Common.Utilities;
+using Sponge.Models;
+using Sponge.Utilities;
 
 namespace Sponge.Features.Sponge
 {

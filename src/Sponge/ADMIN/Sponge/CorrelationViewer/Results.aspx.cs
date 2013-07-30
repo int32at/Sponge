@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
-using Sponge.Common.Components.CorrelationViewer;
+using Sponge.Components.CorrelationViewer;
 
 namespace Sponge.AdminPages.CorrelationViewer
 {

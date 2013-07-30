@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <!--<CustomAction
+  <CustomAction
     Id="Sponge.UI.Farm.CentralAdmin.Logging.Configs"
     GroupId="Sponge.UI.Farm.CentralAdmin"
     Location="Microsoft.SharePoint.Administration.Default"
@@ -15,5 +15,5 @@
    Title="Logging Appenders"
    Description="Logging Appenders">
     <UrlAction Url="/Sponge/Lists/LogAppenders"/>
-  </CustomAction>-->
+  </CustomAction>
 </Elements>

@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Sponge.Common.Models;
-using Sponge.Common.Utilities;
+using Sponge.Models;
+using Sponge.Utilities;
 using Microsoft.SharePoint;
 
 namespace Sponge.Tests

@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI.WebControls;
 using Microsoft.SharePoint;
 using Microsoft.SharePoint.WebControls;
-using Sponge.Common.Extensions;
+using Sponge.Extensions;
 
 namespace Sponge.Pages
 {

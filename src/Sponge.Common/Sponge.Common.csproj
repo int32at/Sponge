@@ -44,6 +44,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\14\ISAPI\Microsoft.SharePoint.Linq.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.1.2\lib\net35\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -60,6 +63,7 @@
     <Compile Include="Components\CorrelationViewer\CorrelationId.cs" />
     <Compile Include="Components\CorrelationViewer\CorrelationQuery.cs" />
     <Compile Include="Extensions\SPWebExtensions.cs" />
+    <Compile Include="Logging\Logger.cs" />
     <Compile Include="Models\SPListManager.cs" />
     <Compile Include="Models\SPManager.cs" />
     <Compile Include="Models\SPManagerBase.cs" />
@@ -75,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="key.snk" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
