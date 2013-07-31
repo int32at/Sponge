@@ -171,8 +171,21 @@ namespace Sponge.Utilities
             var logAppender = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGAPPENDERS];
 
             var newLogApp = logAppender.AddItem();
-            newLogApp["Title"] = "Sponge ULS Logging";
-            newLogApp["Xml"] = "XML";
+            newLogApp["Title"] = "File Logging";
+            newLogApp["Xml"] = @"<?xml version='1.0' ?>
+<nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+      xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+  <targets>
+    <target name='file' xsi:type='File'
+        layout='${longdate} ${logger} ${message}'
+        fileName='${basedir}/logs/logfile.txt'
+        keepFileOpen='false'
+        encoding='iso-8859-2' />
+  </targets>
+  <rules>
+    <logger name='*' minlevel='Debug' writeTo='file' />
+  </rules>
+</nlog>";
             newLogApp.SystemUpdate();
         }
     }
