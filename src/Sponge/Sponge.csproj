@@ -95,6 +95,8 @@
       <DependentUpon>SitePropertyManager.aspx.cs</DependentUpon>
     </Compile>
     <Compile Include="Logging\LogManager.cs" />
+    <Compile Include="Logging\UlsLogger.cs" />
+    <Compile Include="Logging\UlsTarget.cs" />
     <Compile Include="Models\SPListManager.cs" />
     <Compile Include="Models\SPManager.cs" />
     <Compile Include="Models\SPManagerBase.cs" />

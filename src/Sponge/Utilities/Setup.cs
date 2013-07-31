@@ -46,7 +46,7 @@ namespace Sponge.Utilities
         {
             CreateConfigApplications(mgr);
             CreateConfigItems(mgr);
-            CreateLogAppenders(mgr);
+            CreateLogTargetss(mgr);
             CreateLogConfigs(mgr);
             CreateWebParts(mgr);
             AddDefaultItems(mgr);
@@ -93,9 +93,9 @@ namespace Sponge.Utilities
             var list = CreateList(mgr, Constants.SPONGE_LIST_CONFIGAPPLICATIONS);
         }
 
-        private static void CreateLogAppenders(SPManager mgr)
+        private static void CreateLogTargetss(SPManager mgr)
         {
-            var list = CreateList(mgr, Constants.SPONGE_LIST_LOGAPPENDERS);
+            var list = CreateList(mgr, Constants.SPONGE_LIST_LOGTARGETS);
 
             list.Fields.Add("Xml", SPFieldType.Note, true);
             SPView view = list.DefaultView;
@@ -110,21 +110,21 @@ namespace Sponge.Utilities
         {
             var list = CreateList(mgr, Constants.SPONGE_LIST_LOGCONFIGS);
 
-            var targetList = list.ParentWeb.Lists[Constants.SPONGE_LIST_LOGAPPENDERS];
+            var targetList = list.ParentWeb.Lists[Constants.SPONGE_LIST_LOGTARGETS];
 
-            list.Fields.AddLookup("Appender", targetList.ID, false);
-            SPFieldLookup lkp = (SPFieldLookup)list.Fields["Appender"];
+            list.Fields.AddLookup("Target", targetList.ID, false);
+            SPFieldLookup lkp = (SPFieldLookup)list.Fields["Target"];
             lkp.LookupField = targetList.Fields["Title"].InternalName;
             lkp.Required = true;
             lkp.Update();
 
             SPView view = list.DefaultView;
-            var group = @" <GroupBy Collapse=""TRUE"" GroupLimit=""100""> <FieldRef Name=""Appender"" Ascending=""True""/> </GroupBy>";
+            var group = @" <GroupBy Collapse=""TRUE"" GroupLimit=""100""> <FieldRef Name=""Target"" Ascending=""True""/> </GroupBy>";
             view.Query = group;
 
             view.ViewFields.DeleteAll();
             view.ViewFields.Add("Title");
-            view.ViewFields.Add("Appender");
+            view.ViewFields.Add("Target");
             view.Update();
             list.Update();
         }
@@ -149,13 +149,13 @@ namespace Sponge.Utilities
             var logConfig = new XsltListViewWebPart();
             logConfig.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGCONFIGS].ID;
 
-            var logAppenders = new XsltListViewWebPart();
-            logAppenders.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGAPPENDERS].ID;
+            var logTargets = new XsltListViewWebPart();
+            logTargets.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGTARGETS].ID;
 
             AddWebPart(mgr.ParentWeb, "default.aspx", configApps, "left", 1);
             AddWebPart(mgr.ParentWeb, "default.aspx", configItems, "left", 2);
             AddWebPart(mgr.ParentWeb, "default.aspx", logConfig, "right", 1);
-            AddWebPart(mgr.ParentWeb, "default.aspx", logAppenders, "right", 2);
+            AddWebPart(mgr.ParentWeb, "default.aspx", logTargets, "right", 2);
         }
 
         private static void AddWebPart(SPWeb web, string pageURL, System.Web.UI.WebControls.WebParts.WebPart webPart, string zoneID, int zoneIndex)
@@ -168,9 +168,10 @@ namespace Sponge.Utilities
 
         private static void AddDefaultItems(SPManager mgr)
         {
-            var logAppender = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGAPPENDERS];
+            var logTarget = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGTARGETS];
 
-            var newLogApp = logAppender.AddItem();
+            #region file target 
+            var newLogApp = logTarget.AddItem();
             newLogApp["Title"] = "File Logging";
             newLogApp["Xml"] = @"<?xml version='1.0' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
@@ -187,6 +188,27 @@ namespace Sponge.Utilities
   </rules>
 </nlog>";
             newLogApp.SystemUpdate();
+
+            #endregion
+
+            #region uls target
+            var uls = logTarget.AddItem();
+            uls["Title"] = "ULS Logging";
+            uls["Xml"] = @"<nlog xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+  <extensions>
+    <add assembly='Sponge.Logging'/>
+  </extensions>
+  <targets>
+    <target name='UlsLogger' type='UlsTarget'/>
+  </targets>
+  <rules>
+    <logger name='*' minlevel='Debug' writeTo='UlsLogger' />
+  </rules>
+</nlog>";
+
+            uls.SystemUpdate();
+
+            #endregion
         }
     }
 }
