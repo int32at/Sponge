@@ -14,7 +14,7 @@ namespace Sponge.Utilities
 
         public const string SPONGE_LIST_CONFIGAPPLICATIONS = "ConfigApplications";
         public const string SPONGE_LIST_CONFIGITEMS = "ConfigItems";
-        public const string SPONGE_LIST_LOGAPPENDERS = "LogAppenders";
+        public const string SPONGE_LIST_LOGTARGETS = "LogTargets";
         public const string SPONGE_LIST_LOGCONFIGS= "LogConfigs";
 
         public const string SPONGE_LOGGER_NAME = "Sponge.Logging.Logger";

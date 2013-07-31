@@ -9,11 +9,11 @@
     <UrlAction Url="/Sponge/Lists/LogConfigs"/>
   </CustomAction>
   <CustomAction
-   Id="Sponge.UI.Farm.CentralAdmin.Logging.Appenders"
+   Id="Sponge.UI.Farm.CentralAdmin.Logging.Targets"
    GroupId="Sponge.UI.Farm.CentralAdmin"
    Location="Microsoft.SharePoint.Administration.Default"
-   Title="Logging Appenders"
-   Description="Logging Appenders">
-    <UrlAction Url="/Sponge/Lists/LogAppenders"/>
+   Title="Logging Targets"
+   Description="Logging Targets">
+    <UrlAction Url="/Sponge/Lists/LogTargets"/>
   </CustomAction>
 </Elements>

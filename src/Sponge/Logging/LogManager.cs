@@ -14,8 +14,7 @@ namespace Sponge.Logging
         {
             using (var reader = GetXml(loggerName))
             {
-                var config = new XmlLoggingConfiguration(reader, null);
-                NLog.LogManager.Configuration = config;
+                Configure(reader);
             }
 
             return NLog.LogManager.GetLogger(loggerName);
@@ -24,9 +23,7 @@ namespace Sponge.Logging
         public static Logger GetOffline(string configPath, Type type)
         {
             var name = type == null ? Constants.SPONGE_LOGGER_NAME : type.FullName;
-
-            var config = new XmlLoggingConfiguration(configPath);
-            NLog.LogManager.Configuration = config;
+            Configure(configPath);         
             return NLog.LogManager.GetLogger(name);
         }
 
@@ -37,6 +34,7 @@ namespace Sponge.Logging
 
         public static Logger GetOffline()
         {
+            Configure();
             return NLog.LogManager.GetLogger(Constants.SPONGE_LOGGER_NAME);
         }
 
@@ -49,7 +47,7 @@ namespace Sponge.Logging
                 using (var ca = Utils.GetSpongeWeb())
                 {
                     var configItems = ca.Lists[Constants.SPONGE_LIST_LOGCONFIGS];
-                    var q = new SPQuery() { Query = GetLoggerNameQuery(loggerName), ViewFields = "<FieldRef Name='Appender' /><FieldRef Name='Title' />" };
+                    var q = new SPQuery() { Query = GetLoggerNameQuery(loggerName), ViewFields = "<FieldRef Name='Target' /><FieldRef Name='Title' />" };
 
                     var items = configItems.GetItems(q);
 
@@ -58,10 +56,10 @@ namespace Sponge.Logging
 
                     var item = items[0];
 
-                    var app = Convert.ToInt32(item["Appender"].ToString().Split(';')[0]);
-                    var appender = ca.Lists[Constants.SPONGE_LIST_LOGAPPENDERS].GetItemById(app);
+                    var app = Convert.ToInt32(item["Target"].ToString().Split(';')[0]);
+                    var target = ca.Lists[Constants.SPONGE_LIST_LOGTARGETS].GetItemById(app);
 
-                    var xml = appender["Xml"].ToString();
+                    var xml = target["Xml"].ToString();
 
                     doc.LoadXml(xml);
                 }
@@ -90,6 +88,30 @@ namespace Sponge.Logging
                                             <Value Type='Text'>{0}</Value>
                                         </Eq>
                                    </Where>", loggerName);
+        }
+
+        private static void Configure(XmlReader reader)
+        {
+            AddCustomTargets();
+            var config = new XmlLoggingConfiguration(reader, null);
+            NLog.LogManager.Configuration = config;
+        }
+
+        private static void Configure(string path)
+        {
+            AddCustomTargets();
+            var config = new XmlLoggingConfiguration(path);
+            NLog.LogManager.Configuration = config;
+        }
+
+        private static void Configure()
+        {
+            AddCustomTargets();
+        }
+
+        private static void AddCustomTargets()
+        {
+            ConfigurationItemFactory.Default.Targets.RegisterDefinition("UlsTarget", typeof(UlsTarget));
         }
     }
 }
