@@ -31,6 +31,8 @@ namespace Sponge.Client.LoggingServiceReference {
         
         private System.Threading.SendOrPostCallback GetOperationCompleted;
         
+        private System.Threading.SendOrPostCallback LogOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -73,6 +75,9 @@ namespace Sponge.Client.LoggingServiceReference {
         public event GetCompletedEventHandler GetCompleted;
         
         /// <remarks/>
+        public event LogCompletedEventHandler LogCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://Sponge.WebService.ConfigService/Get", RequestNamespace="http://Sponge.WebService.ConfigService", ResponseNamespace="http://Sponge.WebService.ConfigService", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public System.Xml.XmlNode Get(string loggerName) {
             object[] results = this.Invoke("Get", new object[] {
@@ -98,6 +103,36 @@ namespace Sponge.Client.LoggingServiceReference {
             if ((this.GetCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.GetCompleted(this, new GetCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://Sponge.WebService.ConfigService/Log", RequestNamespace="http://Sponge.WebService.ConfigService", ResponseNamespace="http://Sponge.WebService.ConfigService", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void Log(string lvl, string msg) {
+            this.Invoke("Log", new object[] {
+                        lvl,
+                        msg});
+        }
+        
+        /// <remarks/>
+        public void LogAsync(string lvl, string msg) {
+            this.LogAsync(lvl, msg, null);
+        }
+        
+        /// <remarks/>
+        public void LogAsync(string lvl, string msg, object userState) {
+            if ((this.LogOperationCompleted == null)) {
+                this.LogOperationCompleted = new System.Threading.SendOrPostCallback(this.OnLogOperationCompleted);
+            }
+            this.InvokeAsync("Log", new object[] {
+                        lvl,
+                        msg}, this.LogOperationCompleted, userState);
+        }
+        
+        private void OnLogOperationCompleted(object arg) {
+            if ((this.LogCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.LogCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -145,6 +180,10 @@ namespace Sponge.Client.LoggingServiceReference {
             }
         }
     }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void LogCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591
