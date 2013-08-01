@@ -43,7 +43,7 @@ namespace Sponge.Tests
         [TestMethod]
         public void LogMsgClientSideOnline()
         {
-            var log = ClientLogManager.GetOnline("http://demo", "SpongeUnitTest");
+            var log = ClientLogManager.GetOnline("http://demo", "Sponge Client App");
             log.Debug("This is {0} debug msg", "my");
         }
 
