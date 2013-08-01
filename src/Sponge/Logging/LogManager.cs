@@ -20,22 +20,24 @@ namespace Sponge.Logging
             return NLog.LogManager.GetLogger(loggerName);
         }
 
+       public static Logger GetOffline(string configPath)
+        {
+            return GetOffline(configPath, "");
+        }
+
         public static Logger GetOffline(string configPath, Type type)
         {
             var name = type == null ? Constants.SPONGE_LOGGER_NAME : type.FullName;
-            Configure(configPath);         
-            return NLog.LogManager.GetLogger(name);
+            return GetOffline(configPath, name);
         }
 
-        public static Logger GetOffline(string configPath)
+        public static Logger GetOffline(string configPath, string loggerName)
         {
-            return GetOffline(configPath, null);
-        }
+            if (string.IsNullOrEmpty(loggerName))
+                loggerName = Constants.SPONGE_LOGGER_NAME;
 
-        public static Logger GetOffline()
-        {
-            Configure();
-            return NLog.LogManager.GetLogger(Constants.SPONGE_LOGGER_NAME);
+            Configure(configPath);
+            return NLog.LogManager.GetLogger(loggerName);
         }
 
         public static XmlDocument GetConfig(string loggerName)
