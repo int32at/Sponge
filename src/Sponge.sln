@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sponge.Tests", "Sponge.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sponge.Client", "Sponge.Client\Sponge.Client.csproj", "{0B148636-FA28-4903-A96C-2B3B77CF4246}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{076089FA-1B09-4E2A-9921-2943C7061184}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sponge.SampleApp", "Sponge.SampleApp\Sponge.SampleApp.csproj", "{13282114-3A54-4AB6-8001-F8BD7AA660C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,8 +31,15 @@ Global
 		{0B148636-FA28-4903-A96C-2B3B77CF4246}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B148636-FA28-4903-A96C-2B3B77CF4246}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B148636-FA28-4903-A96C-2B3B77CF4246}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13282114-3A54-4AB6-8001-F8BD7AA660C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13282114-3A54-4AB6-8001-F8BD7AA660C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13282114-3A54-4AB6-8001-F8BD7AA660C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13282114-3A54-4AB6-8001-F8BD7AA660C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{13282114-3A54-4AB6-8001-F8BD7AA660C3} = {076089FA-1B09-4E2A-9921-2943C7061184}
 	EndGlobalSection
 EndGlobal
