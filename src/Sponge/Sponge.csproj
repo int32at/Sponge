@@ -157,11 +157,11 @@
     <None Include="UI\Farm\Configuration\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{11348514-abf1-452f-96da-13be33b3e112}</SharePointProjectItemId>
     </None>
-    <None Include="UI\Farm\LogViewer\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{9884293d-32a1-468f-ae82-50b310f27b58}</SharePointProjectItemId>
-    </None>
     <None Include="UI\Farm\CorrelationViewer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{acfd8373-f7ce-42ca-923a-6466a2720363}</SharePointProjectItemId>
+    </None>
+    <None Include="UI\Farm\LogViewer\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{11266115-10f4-4aad-99a1-1664ac9ee932}</SharePointProjectItemId>
     </None>
     <None Include="UI\Farm\Logging\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bdf51c19-2da1-4904-81f9-0ee03da3708b}</SharePointProjectItemId>
@@ -206,8 +206,8 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="UI\Farm\Configuration\Elements.xml" />
-    <Content Include="UI\Farm\LogViewer\Elements.xml" />
     <Content Include="UI\Farm\CorrelationViewer\Elements.xml" />
+    <Content Include="UI\Farm\LogViewer\Elements.xml" />
     <Content Include="UI\Farm\Logging\Elements.xml" />
     <Content Include="UI\Site\SiteSettings\Elements.xml" />
     <Content Include="UI\Web\SitePropertyManager\Elements.xml" />
