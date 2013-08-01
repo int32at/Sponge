@@ -18,5 +18,7 @@ namespace Sponge.Utilities
         public const string SPONGE_LIST_LOGCONFIGS= "LogConfigs";
 
         public const string SPONGE_LOGGER_NAME = "Sponge.Logging.Logger";
+
+        public const string SPONGE_LOGGER_WSNAME = "Sponge Logging WebService";
     }
 }
