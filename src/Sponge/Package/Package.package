@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="260c5559-a3d4-4fef-825a-2809816b6378" solutionId="260c5559-a3d4-4fef-825a-2809816b6378" resetWebServer="false" name="Sponge" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <assemblies>
+    <customAssembly location="NLog.dll" deploymentTarget="GlobalAssemblyCache" sourcePath="..\packages\NLog.2.0.1.2\lib\net35\NLog.dll" />
+  </assemblies>
   <features>
     <featureReference itemId="c9e5c423-7fe5-499e-a942-4c9eb17da24b" />
     <featureReference itemId="4cdc0ac5-e5c7-4b7a-88a5-4a33d56737cc" />
