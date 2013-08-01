@@ -21,18 +21,25 @@ namespace Sponge.Client.Logging
             return NLog.LogManager.GetLogger(loggerName);
         }
 
+        public static Logger GetOffline(string configPath)
+        {
+            return GetOffline(configPath, "");
+        }
+
         public static Logger GetOffline(string configPath, Type type)
         {
             var name = type == null ? Constants.SPONGE_LOGGER_NAME : type.FullName;
+            return GetOffline(configPath, name);
+        }
+
+        public static Logger GetOffline(string configPath, string loggerName)
+        {
+            if (string.IsNullOrEmpty(loggerName))
+                loggerName = Constants.SPONGE_LOGGER_NAME;
 
             var config = new XmlLoggingConfiguration(configPath);
             NLog.LogManager.Configuration = config;
-            return NLog.LogManager.GetLogger(name);
-        }
-
-        public static Logger GetOffline(string configPath)
-        {
-            return GetOffline(configPath, null);
+            return NLog.LogManager.GetLogger(loggerName);
         }
 
         public static Logger GetOffline()
