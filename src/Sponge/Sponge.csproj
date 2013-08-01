@@ -72,9 +72,6 @@
       <DependentUpon>SampleControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\SPWebExtensions.cs" />
-    <Compile Include="Features\Sponge\Sponge.EventReceiver.cs">
-      <DependentUpon>Sponge.feature</DependentUpon>
-    </Compile>
     <Compile Include="ADMIN\Sponge\CorrelationViewer\Results.aspx.cs">
       <DependentUpon>Results.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -88,6 +85,9 @@
     </Compile>
     <Compile Include="ADMIN\Sponge\CorrelationViewer\Get.aspx.designer.cs">
       <DependentUpon>Get.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Sponge\Sponge.EventReceiver.cs">
+      <DependentUpon>Sponge.feature</DependentUpon>
     </Compile>
     <Compile Include="Layouts\Sponge\SitePropertyManager.aspx.cs">
       <DependentUpon>SitePropertyManager.aspx</DependentUpon>
@@ -122,14 +122,14 @@
     <None Include="CONTROLTEMPLATES\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{64fa7eb0-e9a5-4a22-8f3f-ec8797563a16}</SharePointProjectItemId>
     </None>
+    <None Include="Features\Sponge\Sponge.feature">
+      <FeatureId>{18c92ebd-056d-4525-a914-74b5537cfd0f}</FeatureId>
+    </None>
     <None Include="Features\Sponge.Site\Sponge.Site.feature">
       <FeatureId>{c0462f50-8f61-4bd8-b466-33f37e83599f}</FeatureId>
     </None>
     <None Include="Features\Sponge.Web\Sponge.Web.feature">
       <FeatureId>{4cdc0ac5-e5c7-4b7a-88a5-4a33d56737cc}</FeatureId>
-    </None>
-    <None Include="Features\Sponge\Sponge.feature">
-      <FeatureId>{c9e5c423-7fe5-499e-a942-4c9eb17da24b}</FeatureId>
     </None>
     <None Include="Images\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{fdd3dc6b-863d-4494-9391-490f43016eac}</SharePointProjectItemId>
@@ -174,14 +174,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx" />
+    <Content Include="Features\Sponge\Sponge.Template.xml">
+      <DependentUpon>Sponge.feature</DependentUpon>
+    </Content>
     <Content Include="Features\Sponge.Site\Sponge.Site.Template.xml">
       <DependentUpon>Sponge.Site.feature</DependentUpon>
     </Content>
     <Content Include="Features\Sponge.Web\Sponge.Web.Template.xml">
       <DependentUpon>Sponge.Web.feature</DependentUpon>
-    </Content>
-    <Content Include="Features\Sponge\Sponge.Template.xml">
-      <DependentUpon>Sponge.feature</DependentUpon>
     </Content>
     <Content Include="Images\Sponge\delete.png" />
     <Content Include="Images\Sponge\logo_s.png" />
