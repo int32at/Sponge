@@ -213,21 +213,21 @@ namespace Sponge.Utilities
 
             #region ws target
 
-            var ws = logTarget.AddItem();
-            ws["Title"] = "Sponge Logging Web Service";
-            ws["Xml"] = @"<?xml version='1.0'?>
-<nlog autoReload='true' xmlns='http://www.nlog-project.org/schemas/NLog.xsd' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
-    <targets>
-        <target name='ws' xsi:type='WebService' namespace='http://Sponge.WebService.LoggingService' protocol='Soap11' methodName='Log' url='http://demo/_layouts/Sponge/LoggingService.asmx'>
-            <parameter name='n3' type='System.String' layout='${level}' />
-            <parameter name='n2' type='System.String' layout='${message}' />
-        </target>
-    </targets>
-    <rules>
-        <logger name='*' writeTo='ws' />
-    </rules>
-</nlog>";
-            ws.SystemUpdate();
+//            var ws = logTarget.AddItem();
+//            ws["Title"] = "Sponge Logging Web Service";
+//            ws["Xml"] = @"<?xml version='1.0'?>
+//<nlog autoReload='true' xmlns='http://www.nlog-project.org/schemas/NLog.xsd' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+//    <targets>
+//        <target name='ws' xsi:type='WebService' namespace='http://Sponge.WebService.LoggingService' protocol='Soap11' methodName='Log' url='http://demo/_layouts/Sponge/LoggingService.asmx'>
+//            <parameter name='n3' type='System.String' layout='${level}' />
+//            <parameter name='n2' type='System.String' layout='${message}' />
+//        </target>
+//    </targets>
+//    <rules>
+//        <logger name='*' writeTo='ws' />
+//    </rules>
+//</nlog>";
+//            ws.SystemUpdate();
 
             #endregion
 
