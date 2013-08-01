@@ -22,7 +22,10 @@ namespace Sponge.Utilities
             using (var mgr = new SPManager(site))
             {
                 UpdateWeb(mgr, delete);
+                UpdateLoggingDatabase(mgr, delete);
                 UpdateLists(mgr);
+                CreateWebParts(mgr);
+                AddDefaultItems(mgr);
             }
         }
         
@@ -46,10 +49,9 @@ namespace Sponge.Utilities
         {
             CreateConfigApplications(mgr);
             CreateConfigItems(mgr);
-            CreateLogTargetss(mgr);
+            CreateLogTargets(mgr);
             CreateLogConfigs(mgr);
-            CreateWebParts(mgr);
-            AddDefaultItems(mgr);
+
         }
 
         private static void CreateConfigItems(SPManager mgr)
@@ -93,7 +95,7 @@ namespace Sponge.Utilities
             var list = CreateList(mgr, Constants.SPONGE_LIST_CONFIGAPPLICATIONS);
         }
 
-        private static void CreateLogTargetss(SPManager mgr)
+        private static void CreateLogTargets(SPManager mgr)
         {
             var list = CreateList(mgr, Constants.SPONGE_LIST_LOGTARGETS);
 
@@ -214,23 +216,17 @@ namespace Sponge.Utilities
 
             var ws = logTarget.AddItem();
             ws["Title"] = "Sponge Logging Web Service";
-            ws["Xml"] = @"<nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
-      xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
-  <targets>
-     <target xsi:type='WebService'
-             name='WebServiceTarget'
-             url='http://demo/_layouts/Sponge/LoggingService.asmx'
-             encoding='Encoding'
-             protocol='Soap11'
-             namespace='Sponge.WebService.LoggingService'
-             methodName='Log'>
-        <parameter layout='Layout' name='lvl' type='System.String'/>
-	    <parameter layout='Layout' name='msg' type='System.String'/>
-     </target>
-  </targets>
-  <rules>
-    <logger name='*' minlevel='Debug' writeTo='file' />
-  </rules>
+            ws["Xml"] = @"<?xml version='1.0'?>
+<nlog autoReload='true' xmlns='http://www.nlog-project.org/schemas/NLog.xsd' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+    <targets>
+        <target name='ws' xsi:type='WebService' namespace='http://Sponge.WebService.LoggingService' protocol='Soap11' methodName='Log' url='http://demo/_layouts/Sponge/LoggingService.asmx'>
+            <parameter name='n3' type='System.String' layout='${level}' />
+            <parameter name='n2' type='System.String' layout='${message}' />
+        </target>
+    </targets>
+    <rules>
+        <logger name='*' writeTo='ws' />
+    </rules>
 </nlog>";
             ws.SystemUpdate();
 
@@ -242,6 +238,19 @@ namespace Sponge.Utilities
             internalWs["Title"] = Constants.SPONGE_LOGGER_WSNAME;
             internalWs["Target"] = uls.ID;
             internalWs.SystemUpdate();
+        }
+
+        private static void UpdateLoggingDatabase(SPManager mgr, bool delete)
+        {
+            if (delete)
+            {
+                //do not delete the database on uninstall, otherwise all logging info will be lost
+                //has to be deleted manually!
+            }
+            else
+            {
+                //mgr.ParentSite.WebApplication.ContentDatabases[0].conn
+            }
         }
     }
 }
