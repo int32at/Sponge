@@ -47,12 +47,14 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\WindowsPowerShell\v1.0\System.Management.Automation.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
@@ -86,13 +88,6 @@
     </Compile>
     <Compile Include="ADMIN\Sponge\CorrelationViewer\Get.aspx.designer.cs">
       <DependentUpon>Get.aspx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ADMIN\Sponge\LogViewer\Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ADMIN\Sponge\LogViewer\Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx.cs</DependentUpon>
     </Compile>
     <Compile Include="Layouts\Sponge\SitePropertyManager.aspx.cs">
       <DependentUpon>SitePropertyManager.aspx</DependentUpon>
@@ -160,9 +155,6 @@
     <None Include="UI\Farm\CorrelationViewer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{acfd8373-f7ce-42ca-923a-6466a2720363}</SharePointProjectItemId>
     </None>
-    <None Include="UI\Farm\LogViewer\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{11266115-10f4-4aad-99a1-1664ac9ee932}</SharePointProjectItemId>
-    </None>
     <None Include="UI\Farm\Logging\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bdf51c19-2da1-4904-81f9-0ee03da3708b}</SharePointProjectItemId>
     </None>
@@ -194,10 +186,17 @@
     <Content Include="Images\Sponge\delete.png" />
     <Content Include="Images\Sponge\logo_s.png" />
     <Content Include="Images\Sponge\logo.png" />
+    <Content Include="Layouts\Sponge\bootstrap\css\bootstrap-responsive.css" />
+    <Content Include="Layouts\Sponge\bootstrap\css\bootstrap-responsive.min.css" />
+    <Content Include="Layouts\Sponge\bootstrap\css\bootstrap.css" />
+    <Content Include="Layouts\Sponge\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Layouts\Sponge\bootstrap\img\glyphicons-halflings-white.png" />
+    <Content Include="Layouts\Sponge\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Layouts\Sponge\bootstrap\js\bootstrap.js" />
+    <Content Include="Layouts\Sponge\bootstrap\js\bootstrap.min.js" />
     <Content Include="Layouts\Sponge\ConfigService.asmx" />
     <Content Include="ADMIN\Sponge\CorrelationViewer\Results.aspx" />
     <Content Include="ADMIN\Sponge\CorrelationViewer\Get.aspx" />
-    <Content Include="ADMIN\Sponge\LogViewer\Default.aspx" />
     <Content Include="Layouts\Sponge\LoggingService.asmx" />
     <Content Include="Layouts\Sponge\scripts\jquery-1.7.2.min.js" />
     <Content Include="Layouts\Sponge\SitePropertyManager.aspx" />
@@ -207,7 +206,6 @@
     </Content>
     <Content Include="UI\Farm\Configuration\Elements.xml" />
     <Content Include="UI\Farm\CorrelationViewer\Elements.xml" />
-    <Content Include="UI\Farm\LogViewer\Elements.xml" />
     <Content Include="UI\Farm\Logging\Elements.xml" />
     <Content Include="UI\Site\SiteSettings\Elements.xml" />
     <Content Include="UI\Web\SitePropertyManager\Elements.xml" />
@@ -216,6 +214,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Templates\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
