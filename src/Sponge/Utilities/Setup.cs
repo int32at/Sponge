@@ -22,7 +22,6 @@ namespace Sponge.Utilities
             using (var mgr = new SPManager(site))
             {
                 UpdateWeb(mgr, delete);
-                UpdateLoggingDatabase(mgr, delete);
                 UpdateLists(mgr);
                 CreateWebParts(mgr);
                 AddDefaultItems(mgr);
@@ -232,25 +231,47 @@ namespace Sponge.Utilities
 
             #endregion
 
+            #region db target
+
+            var db = logTarget.AddItem();
+            db["Title"] = "Sponge Logging Database";
+            db["Xml"] = @"<?xml version='1.0' encoding='utf-8' ?>
+<nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+      xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' internalLogFile='c:\Nlog.log'>
+  <targets>
+    <target name='database' type='Database'>
+      <connectionString>
+        Data Source=demo;Initial Catalog=SpongeDb;User ID=spongeloguser;Password=pass@word1;
+      </connectionString>
+      <commandText>
+        insert into Logs(log_date,log_level,log_logger, log_version, log_message,log_machine_name, log_user_name, log_call_site, log_thread, log_exception, log_stacktrace) values(@time_stamp, @level, @logger, @version, @message,@machinename, @user_name, @call_site, @threadid, @log_exception, @stacktrace);
+      </commandText>
+      <parameter name='@time_stamp' layout='${longdate}'/>
+      <parameter name='@level' layout='${level}'/>
+      <parameter name='@logger' layout='${logger}'/>
+      <parameter name='@version' layout='${assembly-version}' />
+      <parameter name='@message' layout='${message}'/>
+      <parameter name='@machinename' layout='${machinename}'/>
+      <parameter name='@user_name' layout='${windows-identity:domain=true}'/>
+      <parameter name='@call_site' layout='${callsite:filename=true}'/>
+      <parameter name='@threadid' layout='${threadid}'/>
+      <parameter name='@log_exception' layout='${exception}'/>
+      <parameter name='@stacktrace' layout='${stacktrace}'/>
+    </target>
+  </targets>
+  <rules>
+    <logger name='*' minlevel='Debug' appendTo='database'/>
+  </rules>
+</nlog>";
+            db.SystemUpdate();
+            #endregion
+
             var logItems = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGCONFIGS];
 
             var internalWs = logItems.AddItem();
             internalWs["Title"] = Constants.SPONGE_LOGGER_WSNAME;
             internalWs["Target"] = uls.ID;
             internalWs.SystemUpdate();
-        }
-
-        private static void UpdateLoggingDatabase(SPManager mgr, bool delete)
-        {
-            if (delete)
-            {
-                //do not delete the database on uninstall, otherwise all logging info will be lost
-                //has to be deleted manually!
-            }
-            else
-            {
-                //mgr.ParentSite.WebApplication.ContentDatabases[0].conn
-            }
         }
     }
 }
