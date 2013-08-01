@@ -87,6 +87,13 @@
     <Compile Include="ADMIN\Sponge\CorrelationViewer\Get.aspx.designer.cs">
       <DependentUpon>Get.aspx.cs</DependentUpon>
     </Compile>
+    <Compile Include="ADMIN\Sponge\LogViewer\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ADMIN\Sponge\LogViewer\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Layouts\Sponge\SitePropertyManager.aspx.cs">
       <DependentUpon>SitePropertyManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -150,6 +157,9 @@
     <None Include="UI\Farm\Configuration\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{11348514-abf1-452f-96da-13be33b3e112}</SharePointProjectItemId>
     </None>
+    <None Include="UI\Farm\LogViewer\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{9884293d-32a1-468f-ae82-50b310f27b58}</SharePointProjectItemId>
+    </None>
     <None Include="UI\Farm\CorrelationViewer\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{acfd8373-f7ce-42ca-923a-6466a2720363}</SharePointProjectItemId>
     </None>
@@ -187,6 +197,7 @@
     <Content Include="Layouts\Sponge\ConfigService.asmx" />
     <Content Include="ADMIN\Sponge\CorrelationViewer\Results.aspx" />
     <Content Include="ADMIN\Sponge\CorrelationViewer\Get.aspx" />
+    <Content Include="ADMIN\Sponge\LogViewer\Default.aspx" />
     <Content Include="Layouts\Sponge\LoggingService.asmx" />
     <Content Include="Layouts\Sponge\scripts\jquery-1.7.2.min.js" />
     <Content Include="Layouts\Sponge\SitePropertyManager.aspx" />
@@ -195,6 +206,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="UI\Farm\Configuration\Elements.xml" />
+    <Content Include="UI\Farm\LogViewer\Elements.xml" />
     <Content Include="UI\Farm\CorrelationViewer\Elements.xml" />
     <Content Include="UI\Farm\Logging\Elements.xml" />
     <Content Include="UI\Site\SiteSettings\Elements.xml" />

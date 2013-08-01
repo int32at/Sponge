@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <CustomAction
+  Id="Sponge.UI.Farm.CentralAdmin.LogViewer"
+  GroupId="Sponge.UI.Farm.CentralAdmin"
+  Location="Microsoft.SharePoint.Administration.Default"
+  Title="Log Viewer"
+  Description="Log Viewer">
+    <UrlAction Url="/_admin/Sponge/LogViewer/Default.aspx"/>
+  </CustomAction>
+</Elements>
