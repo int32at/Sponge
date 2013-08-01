@@ -119,8 +119,8 @@ namespace Sponge.Utilities
             lkp.Update();
 
             SPView view = list.DefaultView;
-            var group = @" <GroupBy Collapse=""TRUE"" GroupLimit=""100""> <FieldRef Name=""Target"" Ascending=""True""/> </GroupBy>";
-            view.Query = group;
+            //var group = @" <GroupBy Collapse=""TRUE"" GroupLimit=""100""> <FieldRef Name=""Target"" Ascending=""True""/> </GroupBy>";
+            //view.Query = group;
 
             view.ViewFields.DeleteAll();
             view.ViewFields.Add("Title");
@@ -210,6 +210,31 @@ namespace Sponge.Utilities
 
             #endregion
 
+            #region ws target
+
+            var ws = logTarget.AddItem();
+            ws["Title"] = "Sponge Logging Web Service";
+            ws["Xml"] = @"<nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
+      xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+  <targets>
+     <target xsi:type='WebService'
+             name='WebServiceTarget'
+             url='http://demo/_layouts/Sponge/LoggingService.asmx'
+             encoding='Encoding'
+             protocol='Soap11'
+             namespace='Sponge.WebService.LoggingService'
+             methodName='Log'>
+        <parameter layout='Layout' name='lvl' type='System.String'/>
+	    <parameter layout='Layout' name='msg' type='System.String'/>
+     </target>
+  </targets>
+  <rules>
+    <logger name='*' minlevel='Debug' writeTo='file' />
+  </rules>
+</nlog>";
+            ws.SystemUpdate();
+
+            #endregion
 
             var logItems = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGCONFIGS];
 
