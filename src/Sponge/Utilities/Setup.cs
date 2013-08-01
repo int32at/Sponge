@@ -272,18 +272,6 @@ namespace Sponge.Utilities
             internalWs["Title"] = Constants.SPONGE_LOGGER_WSNAME;
             internalWs["Target"] = uls.ID;
             internalWs.SystemUpdate();
-
-            var configApps = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_CONFIGAPPLICATIONS];
-            var logViewer = configApps.AddItem();
-            logViewer["Title"] = "Sponge Log Viewer";
-            logViewer.SystemUpdate();
-
-            var configItems = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_CONFIGITEMS];
-            var logViewerItem = configItems.AddItem();
-            logViewerItem["Key"] = "ConnectionString";
-            logViewerItem["Value"] = "Data Source=demo;Initial Catalog=SpongeDb;User ID=spongeloguser;Password=pass@word1;";
-            logViewerItem["Application"] = logViewer.ID;
-            logViewerItem.SystemUpdate();
         }
     }
 }
