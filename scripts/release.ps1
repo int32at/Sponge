@@ -1,1 +1,1 @@
-gci ..\src\ -recurse -include ("*.dll", "*.wsp") -exclude ('*Tests.dll', "*Reference*", "Sponge.dll")  | Copy-Item -destination ..\lib\ -force
+gci ..\src\ -recurse -include ("Sponge*.dll", "*.wsp") -exclude ('*Tests.dll', "*Reference*")  | Copy-Item -destination ..\lib\ -force

@@ -32,7 +32,7 @@ write-host "Adding solution $wspFileName to the farm"
 add-spsolution -literalpath "$path"
 
 write-host "Deploying solution $wspFileName"
-install-spsolution -Identity "$wspFileName" -gacdeployment
+install-spsolution -Identity "$wspFileName" -gacdeployment -allwebapplications
 
 wait4timer($wspFileName)
 write-host "Done adding"
