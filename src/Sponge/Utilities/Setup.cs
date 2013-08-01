@@ -172,7 +172,7 @@ namespace Sponge.Utilities
 
             #region file target 
             var newLogApp = logTarget.AddItem();
-            newLogApp["Title"] = "File Logging";
+            newLogApp["Title"] = "Sponge File Logging";
             newLogApp["Xml"] = @"<?xml version='1.0' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
@@ -193,7 +193,7 @@ namespace Sponge.Utilities
 
             #region uls target
             var uls = logTarget.AddItem();
-            uls["Title"] = "ULS Logging";
+            uls["Title"] = "Sponge ULS Logging";
             uls["Xml"] = @"<nlog xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
   <extensions>
     <add assembly='Sponge.Logging'/>
@@ -209,6 +209,14 @@ namespace Sponge.Utilities
             uls.SystemUpdate();
 
             #endregion
+
+
+            var logItems = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGCONFIGS];
+
+            var internalWs = logItems.AddItem();
+            internalWs["Title"] = Constants.SPONGE_LOGGER_WSNAME;
+            internalWs["Target"] = uls.ID;
+            internalWs.SystemUpdate();
         }
     }
 }
