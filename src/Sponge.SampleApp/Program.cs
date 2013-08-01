@@ -10,16 +10,8 @@ namespace Sponge.SampleApp
     {
         static void Main(string[] args)
         {
-            //gets the log from the offline config (relative to the executing assembly)
-            //var log = ClientLogManager.GetOffline("NLog.config", "Sponge Sample App");
+            var log = ClientLogManager.GetOffline("NLog.config", "Sponge.SampleApp.Program");
 
-            var log = ClientLogManager.GetOnline("http://demo", "Sponge Sample App");
-
-            Fail(log);
-        }
-
-        static void Fail(NLog.Logger log)
-        {
             for (int i = 0; i < 1000; i++)
             {
                 try
