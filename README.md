@@ -9,10 +9,11 @@ Sponge includes the following components:
 - [Centralized Configuration Component](../../wiki/Configuration-Component) 
 - [Centralized Logging Component](../../wiki/Logging-Component) 
 - [Site Property Manager](../../wiki/Site-Property-Manager) 
-- [Hosting Web Part](../../wiki/Hosting-Web-Part) 
-- Event Handler Manager (todo)
-- ULS Log Viewer (todo)
-- Advanced Event Handlers (todo)
+- Web Parts
+  - [Hosting Web Part](../../wiki/Hosting-Web-Part) 
+  - Youtube Web Part (todo)
+  - Google Maps Web Part (todo)
+  - Chat Web Part (todo)
 - etc
 
 See the [Wiki](../../wiki/Home)  for installing guide and more information.
