@@ -9,11 +9,13 @@ Sponge includes the following components:
 - [Centralized Configuration Component](../../wiki/Configuration-Component) 
 - [Centralized Logging Component](../../wiki/Logging-Component) 
 - [Site Property Manager](../../wiki/Site-Property-Manager) 
-- Web Parts
+- [Web Parts](../../wiki/Web-Parts) 
   - [Hosting Web Part](../../wiki/Hosting-Web-Part) 
-  - Youtube Web Part (todo)
-  - Google Maps Web Part (todo)
-  - Chat Web Part (todo)
-- etc
+  - [Shoutbox Web Part](../../wiki/Shoutbox-Web-Part) 
+  - [Google Maps Web Part](../../wiki/Google-Maps-Web-Part) 
+  - [Youtube Web Part](../../wiki/Youtube-Web-Part) 
+- [Custom Actions](../../wiki/Custom-Actions)
+  - [Copy List Item](../../wiki/Copy-List-Item) (todo)
+- etc.
 
 See the [Wiki](../../wiki/Home)  for installing guide and more information.
