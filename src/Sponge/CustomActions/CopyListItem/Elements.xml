@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <CustomAction Id="Sponge.CustomActions.CopyListItem" Location="CommandUI.Ribbon.ListView" RegistrationType="List" RegistrationId="100">
+    <CommandUIExtension>
+      <CommandUIDefinitions>
+        <CommandUIDefinition Location="Ribbon.ListItem.Actions.Controls._children">
+          <Button
+            Id="Ribbon.ListItem.Actions.SPListItemCopy"
+            Command="CopyItem"
+            Image16by16="/_layouts/$Resources:core,Language;/images/formatmap16x16.png"
+            Image16by16Top="-224"
+            Image16by16Left="-48"
+            Image32by32="/_layouts/$Resources:core,Language;/images/formatmap32x32.png"
+            Image32by32Top="-320"
+            Image32by32Left="-384"
+            LabelText="Copy Item(s)"
+            Sequence="200"
+            TemplateAlias="o1"
+            ToolTipTitle="Copy Item(s)"
+            ToolTipDescription="Copies the selected list item(s)." />
+        </CommandUIDefinition>
+      </CommandUIDefinitions>
+      <CommandUIHandlers>
+        <CommandUIHandler Command="CopyItem"
+                          CommandAction="javascript: sponge.actions.copyListItems();"
+                          EnabledScript="javascript:(SP.ListOperation.Selection.getSelectedItems().length == 1);" />
+      </CommandUIHandlers>
+    </CommandUIExtension>
+  </CustomAction>
+</Elements>

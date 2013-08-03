@@ -130,6 +130,9 @@
     <None Include="CONTROLTEMPLATES\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{64fa7eb0-e9a5-4a22-8f3f-ec8797563a16}</SharePointProjectItemId>
     </None>
+    <None Include="CustomActions\CopyListItem\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5a5ede3e-c1bf-4e10-b2cd-7d100e019def}</SharePointProjectItemId>
+    </None>
     <None Include="Features\Sponge\Sponge.feature">
       <FeatureId>{18c92ebd-056d-4525-a914-74b5537cfd0f}</FeatureId>
     </None>
@@ -166,6 +169,9 @@
     <None Include="UI\Farm\Logging\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{bdf51c19-2da1-4904-81f9-0ee03da3708b}</SharePointProjectItemId>
     </None>
+    <None Include="UI\Farm\ScriptLinks\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c3496271-9a56-4c7a-8368-6d73e11746d8}</SharePointProjectItemId>
+    </None>
     <None Include="UI\Site\SiteSettings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0274915c-c420-4ece-a436-4b94bf1aa710}</SharePointProjectItemId>
     </None>
@@ -186,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx" />
+    <Content Include="CustomActions\CopyListItem\Elements.xml" />
     <Content Include="Features\Sponge\Sponge.Template.xml">
       <DependentUpon>Sponge.feature</DependentUpon>
     </Content>
@@ -211,7 +218,8 @@
     <Content Include="ADMIN\Sponge\CorrelationViewer\Get.aspx" />
     <Content Include="Layouts\Sponge\LoggingService.asmx" />
     <Content Include="Layouts\Sponge\scripts\jquery-1.7.2.min.js" />
-    <Content Include="Layouts\Sponge\scripts\jquery.sponge.shoutbox-1.0.js" />
+    <Content Include="Layouts\Sponge\scripts\sponge.js" />
+    <Content Include="Layouts\Sponge\scripts\sponge.shoutbox-1.0.js" />
     <Content Include="Layouts\Sponge\SitePropertyManager.aspx" />
     <Content Include="Layouts\Sponge\styles\sponge.css" />
     <Content Include="UI\Farm\CentralAdminSettings\Elements.xml">
@@ -220,6 +228,7 @@
     <Content Include="UI\Farm\Configuration\Elements.xml" />
     <Content Include="UI\Farm\CorrelationViewer\Elements.xml" />
     <Content Include="UI\Farm\Logging\Elements.xml" />
+    <Content Include="UI\Farm\ScriptLinks\Elements.xml" />
     <Content Include="UI\Site\SiteSettings\Elements.xml" />
     <Content Include="UI\Web\SitePropertyManager\Elements.xml" />
     <Content Include="UI\Web\WebSettings\Elements.xml" />

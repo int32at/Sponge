@@ -8,7 +8,7 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ShoutboxWebPart.ascx.cs" Inherits="Sponge.WebParts.ShoutboxWebPart" %>
 
 <script src="_layouts/Sponge/scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
-<script src="_layouts/Sponge/scripts/jquery.sponge.shoutbox-1.0.js" type="text/javascript"></script>
+<script src="_layouts/Sponge/scripts/sponge.shoutbox-1.0.js" type="text/javascript"></script>
 <link type="text/css" rel="stylesheet" href="_layouts/Sponge/styles/sponge.css" />
 
 <div id="sponge_shoutbox_wrapper">
