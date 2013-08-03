@@ -33,7 +33,7 @@
                 this.spongeShoutboxItem = list.addItem(itemCreateInfo);
 
                 this.spongeShoutboxItem.set_item('Message', txt);
-                this.shoutbox.update();
+                this.spongeShoutboxItem.update();
                 ctx.load(this.spongeShoutboxItem);
 
                 ctx.executeQueryAsync(

@@ -21,6 +21,6 @@ namespace Sponge.Utilities
 
         public const string SPONGE_LOGGER_WSNAME = "Sponge Logging Web Service";
 
-        public const string SPONGE_SHOUTBOX_LISTNAME = "Sponge shoutbox";
+        public const string SPONGE_SHOUTBOX_LISTNAME = "Sponge Shoutbox";
     }
 }

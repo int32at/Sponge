@@ -18,7 +18,7 @@
     ExecuteOrDelayUntilScriptLoaded(initSpongeShoutBox, "sp.js");
 
     function initSpongeShoutBox() {
-        $.Shoutbox({
+        $.shoutbox({
             list: "<%=GetSpongeShoutboxListName()%>",
             container: "#sponge_shoutbox_wrapper",
             autoReload: 0,

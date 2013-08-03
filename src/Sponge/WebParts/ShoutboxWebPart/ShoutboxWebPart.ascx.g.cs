@@ -57,7 +57,7 @@ namespace Sponge.WebParts {
     ExecuteOrDelayUntilScriptLoaded(initSpongeShoutBox, ""sp.js"");
 
     function initSpongeShoutBox() {
-        $.Shoutbox({
+        $.shoutbox({
             list: """);
            @__w.Write(GetSpongeShoutboxListName());
 
