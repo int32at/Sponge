@@ -2,13 +2,13 @@
 <webParts>
   <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
     <metaData>
-      <type name="Sponge.WebParts.ChatWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <type name="Sponge.WebParts.ShoutboxWebPart, $SharePoint.Project.AssemblyFullName$" />
       <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
     </metaData>
     <data>
       <properties>
-        <property name="Title" type="string">Chat Web Part</property>
-        <property name="Description" type="string">My Visual Web Part</property>
+        <property name="Title" type="string">Shoutbox Web Part</property>
+        <property name="Description" type="string">This Web Part allows you to add a Shoutbox to your SharePoint Site.</property>
       </properties>
     </data>
   </webPart>

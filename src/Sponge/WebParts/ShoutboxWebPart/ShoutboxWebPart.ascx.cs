@@ -9,7 +9,7 @@ using Sponge.Utilities;
 namespace Sponge.WebParts
 {
     [ToolboxItemAttribute(false)]
-    public partial class ChatWebPart : WebPart
+    public partial class ShoutboxWebPart : WebPart
     {
         //private int _refreshInterval = 0;
         private int _rowLimit = 10;
@@ -18,7 +18,7 @@ namespace Sponge.WebParts
         //Category("Configuration"),
         //Personalizable(PersonalizationScope.Shared),
         //WebDisplayName("Auto Refresh Interval"),
-        //WebDescription("The Chat Web Part will automatically refresh in X milliseconds. Default = 0 (disabled)"),
+        //WebDescription("The Shoutbox Web Part will automatically refresh in X milliseconds. Default = 0 (disabled)"),
         //DefaultValue(0)]
         //public int RefreshInterval { get { return _refreshInterval; } set { _refreshInterval = value; } }
 
@@ -26,7 +26,7 @@ namespace Sponge.WebParts
         Category("Configuration"),
         Personalizable(PersonalizationScope.Shared),
         WebDisplayName("Entry Limit"),
-        WebDescription("The Chat Web Part will only display X items. Default = 10"),
+        WebDescription("The Shoutbox Web Part will only display X items. Default = 10"),
         DefaultValue(10)]
         public int RowLimit { get { return _rowLimit; } set { _rowLimit = value; } }
 
@@ -40,12 +40,12 @@ namespace Sponge.WebParts
         //    return RefreshInterval;
         //}
 
-        public string GetSpongeChatListName()
+        public string GetSpongeShoutboxListName()
         {
-            return Constants.SPONGE_CHAT_LISTNAME;
+            return Constants.SPONGE_SHOUTBOX_LISTNAME;
         }
 
-        public ChatWebPart()
+        public ShoutboxWebPart()
         {
         }
 
@@ -61,9 +61,9 @@ namespace Sponge.WebParts
             {
                 SPSecurity.RunWithElevatedPrivileges(() =>
                 {
-                        if (!SPListManager.Exists(SPContext.Current.Web, Constants.SPONGE_CHAT_LISTNAME))
+                    if (!SPListManager.Exists(SPContext.Current.Web, Constants.SPONGE_SHOUTBOX_LISTNAME))
                         {
-                            var guid = SPContext.Current.Web.Lists.Add(Constants.SPONGE_CHAT_LISTNAME, "Sponge Chat List", SPListTemplateType.GenericList);
+                            var guid = SPContext.Current.Web.Lists.Add(Constants.SPONGE_SHOUTBOX_LISTNAME, "Sponge Shoutbox List", SPListTemplateType.GenericList);
                             var list = SPContext.Current.Web.Lists[guid];
                             list.Fields.Add("Message", SPFieldType.Note, true);
 

@@ -30,15 +30,15 @@ namespace Sponge.WebParts {
     using System.Web.UI.HtmlControls;
     
     
-    public partial class ChatWebPart {
+    public partial class ShoutboxWebPart {
         
-        public static implicit operator global::System.Web.UI.TemplateControl(ChatWebPart target) 
+        public static implicit operator global::System.Web.UI.TemplateControl(ShoutboxWebPart target) 
         {
             return target == null ? null : target.TemplateControl;
         }
         
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Never)]
-        private void @__BuildControlTree(global::Sponge.WebParts.ChatWebPart @__ctrl) {
+        private void @__BuildControlTree(global::Sponge.WebParts.ShoutboxWebPart @__ctrl) {
             @__ctrl.SetRenderMethodDelegate(new System.Web.UI.RenderMethod(this.@__Render__control1));
         }
         
@@ -47,22 +47,22 @@ namespace Sponge.WebParts {
             @__w.Write(@"
 
 <script src=""_layouts/Sponge/scripts/jquery-1.7.2.min.js"" type=""text/javascript""></script>
-<script src=""_layouts/Sponge/scripts/jquery.sponge.chat-1.0.js"" type=""text/javascript""></script>
+<script src=""_layouts/Sponge/scripts/jquery.sponge.shoutbox-1.0.js"" type=""text/javascript""></script>
 <link type=""text/css"" rel=""stylesheet"" href=""_layouts/Sponge/styles/sponge.css"" />
 
-<div id=""sponge_chat_wrapper"">
+<div id=""sponge_shoutbox_wrapper"">
 </div>
 
 <script type=""text/javascript"">
-    ExecuteOrDelayUntilScriptLoaded(initSpongeChat, ""sp.js"");
+    ExecuteOrDelayUntilScriptLoaded(initSpongeShoutBox, ""sp.js"");
 
-    function initSpongeChat() {
-        $.chat({
+    function initSpongeShoutBox() {
+        $.Shoutbox({
             list: """);
-           @__w.Write(GetSpongeChatListName());
+           @__w.Write(GetSpongeShoutboxListName());
 
-            @__w.Write("\",\r\n            container: \"#sponge_chat_wrapper\",\r\n            autoReload: 0,\r\n " +
-                    "           rowLimit: ");
+            @__w.Write("\",\r\n            container: \"#sponge_shoutbox_wrapper\",\r\n            autoReload: 0" +
+                    ",\r\n            rowLimit: ");
               @__w.Write(GetRowLimit());
 
             @__w.Write("\r\n        });\r\n    }\r\n</script>\r\n");

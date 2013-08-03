@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
+  <Module Name="ShoutboxWebPart" List="113" Url="_catalogs/wp">
+    <File Path="ShoutboxWebPart\ShoutboxWebPart.webpart" Url="Sponge_ShoutboxWebPart.webpart" Type="GhostableInLibrary" >
+      <Property Name="Group" Value="Sponge Web Parts" />
+    </File>
+  <File Path="ShoutboxWebPart\ShoutboxWebPart.webpart" Url="ShoutboxWebPart.webpart" Type="GhostableInLibrary">
+<Property Name="Group" Value="Custom" />
+</File>
+</Module>
+</Elements>
