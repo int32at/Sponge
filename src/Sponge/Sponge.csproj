@@ -107,6 +107,14 @@
     <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Utilities\Setup.cs" />
     <Compile Include="Utilities\Utils.cs" />
+    <Compile Include="WebParts\ChatWebPart\ChatWebPart.ascx.cs">
+      <DependentUpon>ChatWebPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebParts\ChatWebPart\ChatWebPart.ascx.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChatWebPart.ascx</DependentUpon>
+    </Compile>
     <Compile Include="WebParts\HostingWebPart\HostingWebPart.cs" />
     <Compile Include="WebService\ConfigService.cs">
       <SubType>Component</SubType>
@@ -167,6 +175,10 @@
     <None Include="UI\Web\WebSettings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{f55945f7-8e52-46ca-9eab-de453f5ed929}</SharePointProjectItemId>
     </None>
+    <None Include="WebParts\ChatWebPart\ChatWebPart.webpart" />
+    <None Include="WebParts\ChatWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7dcf04f5-0145-4eb0-bee0-266a3fc3796b}</SharePointProjectItemId>
+    </None>
     <None Include="WebParts\HostingWebPart\HostingWebPart.webpart" />
     <None Include="WebParts\HostingWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a3a8377a-ebd5-49eb-957b-0383d046717a}</SharePointProjectItemId>
@@ -199,6 +211,7 @@
     <Content Include="ADMIN\Sponge\CorrelationViewer\Get.aspx" />
     <Content Include="Layouts\Sponge\LoggingService.asmx" />
     <Content Include="Layouts\Sponge\scripts\jquery-1.7.2.min.js" />
+    <Content Include="Layouts\Sponge\scripts\jquery.sponge.chat-1.0.js" />
     <Content Include="Layouts\Sponge\SitePropertyManager.aspx" />
     <Content Include="Layouts\Sponge\styles\sponge.css" />
     <Content Include="UI\Farm\CentralAdminSettings\Elements.xml">
@@ -210,6 +223,11 @@
     <Content Include="UI\Site\SiteSettings\Elements.xml" />
     <Content Include="UI\Web\SitePropertyManager\Elements.xml" />
     <Content Include="UI\Web\WebSettings\Elements.xml" />
+    <Content Include="WebParts\ChatWebPart\ChatWebPart.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>ChatWebPart.ascx.g.cs</LastGenOutput>
+    </Content>
+    <Content Include="WebParts\ChatWebPart\Elements.xml" />
     <Content Include="WebParts\HostingWebPart\Elements.xml" />
   </ItemGroup>
   <ItemGroup>

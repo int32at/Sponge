@@ -34,6 +34,19 @@ namespace Sponge.Models
             }
         }
 
+        public static bool Exists(SPWeb web, string internalName)
+        {
+            try
+            {
+                var tmp = web.Lists[internalName];
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public void Delete(string internalName)
         {
             if(Exists(internalName))

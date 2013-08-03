@@ -20,5 +20,7 @@ namespace Sponge.Utilities
         public const string SPONGE_LOGGER_NAME = "Sponge.Logging.Logger";
 
         public const string SPONGE_LOGGER_WSNAME = "Sponge Logging Web Service";
+
+        public const string SPONGE_CHAT_LISTNAME = "Sponge Chat";
     }
 }

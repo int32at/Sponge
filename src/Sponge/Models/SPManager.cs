@@ -32,6 +32,13 @@ namespace Sponge.Models
             CreateInstances();
         }
 
+        public SPManager(SPWeb web)
+        {
+            ParentSite = web.Site;
+            ParentWeb = web;
+            CreateInstances();
+        }
+
         public SPManager(SPSite site, SPWeb web)
         {
             ParentSite = site;
