@@ -16,8 +16,8 @@
             LabelText="Copy Item(s)"
             Sequence="200"
             TemplateAlias="o1"
-            ToolTipTitle="Copy Item(s)"
-            ToolTipDescription="Copies the selected list item(s)." />
+            ToolTipTitle="Copy Item"
+            ToolTipDescription="Copies the selected list item." />
         </CommandUIDefinition>
       </CommandUIDefinitions>
       <CommandUIHandlers>
