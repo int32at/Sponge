@@ -14,6 +14,7 @@ Sponge includes the following components:
   - Youtube Web Part (todo)
   - Google Maps Web Part (todo)
   - Chat Web Part (todo)
+- SharePoint Chat
 - etc
 
 See the [Wiki](../../wiki/Home)  for installing guide and more information.
