@@ -95,6 +95,35 @@ sponge.actions = function () {
             		    alert("Copy List Item failed. " + args.get_message() + "\n" + args.get_stackTrace());
             		})
 			);
+        },
+
+        multiApproveItems: function () {
+            var listId = SP.ListOperation.Selection.getSelectedList();
+            var ctx = SP.ClientContext.get_current();
+            var list = ctx.get_web().get_lists().getById(listId);
+
+            var ids = getSelectedItemIds();
+            for (var i in ids) {
+                this.item = list.getItemById(ids[i]);
+                this.item.set_item('_ModerationStatus', 0);
+                this.item.update();
+                ctx.load(this.item);
+                ctx.executeQueryAsync(
+					Function.createDelegate(this,
+						function () {
+						}),
+					Function.createDelegate(this,
+						function (sender, args) {
+						    alert("Multi Approve failed. " + args.get_message() + "\n" + args.get_stackTrace());
+						})
+				);
+            }
+
+            SP.UI.Notify.addNotification("Approved all items.", false);
+        },
+
+        isMultieApproveItemsEnabled: function () {
+            return true;
         }
     }
 }();

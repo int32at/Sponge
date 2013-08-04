@@ -133,6 +133,9 @@
     <None Include="CustomActions\CopyListItem\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5a5ede3e-c1bf-4e10-b2cd-7d100e019def}</SharePointProjectItemId>
     </None>
+    <None Include="CustomActions\MultiApprove\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{be8f143c-4bbe-48c2-a6fd-4a855581d6fb}</SharePointProjectItemId>
+    </None>
     <None Include="Features\Sponge.Web.CustomActions\Sponge.Web.CustomActions.feature">
       <FeatureId>{700c1627-42b4-462d-98b1-155ad1bff617}</FeatureId>
     </None>
@@ -196,6 +199,7 @@
   <ItemGroup>
     <Content Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx" />
     <Content Include="CustomActions\CopyListItem\Elements.xml" />
+    <Content Include="CustomActions\MultiApprove\Elements.xml" />
     <Content Include="Features\Sponge.Web.CustomActions\Sponge.Web.CustomActions.Template.xml">
       <DependentUpon>Sponge.Web.CustomActions.feature</DependentUpon>
     </Content>

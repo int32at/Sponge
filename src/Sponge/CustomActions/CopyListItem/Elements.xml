@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <CustomAction Id="Sponge.CustomActions.CopyListItem" Location="CommandUI.Ribbon.ListView" RegistrationType="List" RegistrationId="100">
+  <CustomAction Id="Sponge.CustomActions.CopyListItem" Location="CommandUI.Ribbon.ListView" RegistrationType="ContentType" RegistrationId="0x01">
     <CommandUIExtension>
       <CommandUIDefinitions>
         <CommandUIDefinition Location="Ribbon.ListItem.Actions.Controls._children">
@@ -13,11 +13,11 @@
             Image32by32="/_layouts/$Resources:core,Language;/images/formatmap32x32.png"
             Image32by32Top="-320"
             Image32by32Left="-384"
-            LabelText="Copy Item(s)"
+            LabelText="Copy Item"
             Sequence="200"
             TemplateAlias="o1"
             ToolTipTitle="Copy Item"
-            ToolTipDescription="Copies the selected list item." />
+            ToolTipDescription="Copies the selected item." />
         </CommandUIDefinition>
       </CommandUIDefinitions>
       <CommandUIHandlers>
