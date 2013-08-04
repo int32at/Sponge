@@ -15,7 +15,8 @@ Sponge includes the following components:
   - [Google Maps Web Part](../../wiki/Google-Maps-Web-Part) 
   - [Youtube Web Part](../../wiki/Youtube-Web-Part) 
 - [Custom Actions](../../wiki/Custom-Actions)
-  - [Copy List Item](../../wiki/Copy-List-Item) (todo)
+  - [Copy List Item](../../wiki/Copy-List-Item)
+  - [Multi Approve Documents](../../wiki/Multi-Approve-Documents)
 - etc.
 
 See the [Wiki](../../wiki/Home)  for installing guide and more information.
