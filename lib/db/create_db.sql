@@ -1,10 +1,10 @@
 use master;
 go
 
-create database SpongeDb
+create database Sponge
 go
 
-use SpongeDb;
+use Sponge;
 go
 
 CREATE TABLE Logs ( 
@@ -37,7 +37,7 @@ GO
 SET ANSI_PADDING OFF 
 GO
 
-exec sp_addlogin 'spongeloguser','pass@word1', SpongeDb
+exec sp_addlogin 'spongeloguser','pass@word1', Sponge
 go
 
 exec sp_grantdbaccess 'spongeloguser','spongeloguser'
