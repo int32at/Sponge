@@ -12,6 +12,7 @@ Sponge includes the following components:
 - [Web Parts](../../wiki/Web-Parts) 
   - [Hosting Web Part](../../wiki/Hosting-Web-Part) 
   - [Shoutbox Web Part](../../wiki/Shoutbox-Web-Part) 
+  - [Aggregation Web Part](../../wiki/Aggregation-Web-Part) 
   - [Google Maps Web Part](../../wiki/Google-Maps-Web-Part) (todo)
   - [Youtube Web Part](../../wiki/Youtube-Web-Part) (todo)
 - [Custom Actions](../../wiki/Custom-Actions)
