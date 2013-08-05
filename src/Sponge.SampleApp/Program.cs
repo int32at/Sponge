@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using NLog;
+using Sponge.Client.Configuration;
 using Sponge.Client.Logging;
 
 namespace Sponge.SampleApp
@@ -10,8 +12,25 @@ namespace Sponge.SampleApp
     {
         static void Main(string[] args)
         {
-            var log = ClientLogManager.GetOffline("NLog.config", "Sponge.SampleApp.Program");
+            var spUrl = "http://demo";
+            var app = "MyConsoleApp";
 
+            var log = ClientLogManager.GetOnline(spUrl, app);
+            //var log = ClientLogManager.GetOffline("NLog.config", app);
+
+            using(var cfg = new ClientConfigurationManager(spUrl))
+            {
+                foreach(var entry in cfg.GetAll(app))
+                {
+                    log.Debug("{0} - {1}", entry.Key, entry.Value);
+                }
+            }
+
+            //Dummy(log);
+        }
+
+        static void Dummy(Logger log)
+        {
             for (int i = 0; i < 1000; i++)
             {
                 try
