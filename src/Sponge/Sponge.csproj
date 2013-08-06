@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="Components\CorrelationViewer\CorrelationId.cs" />
     <Compile Include="Components\CorrelationViewer\CorrelationQuery.cs" />
+    <Compile Include="Configuration\ConfigurationItem.cs" />
+    <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Configuration\ConfigurationManager.cs" />
     <Compile Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx.cs">
       <DependentUpon>SampleControl.ascx</DependentUpon>
@@ -85,6 +87,9 @@
     </Compile>
     <Compile Include="ADMIN\Sponge\CorrelationViewer\Get.aspx.designer.cs">
       <DependentUpon>Get.aspx.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Sponge.Site.LogConfig\Sponge.Site.EventReceiver.cs">
+      <DependentUpon>Sponge.Site.LogConfig.feature</DependentUpon>
     </Compile>
     <Compile Include="Features\Sponge\Sponge.EventReceiver.cs">
       <DependentUpon>Sponge.feature</DependentUpon>
@@ -136,6 +141,9 @@
     <None Include="CustomActions\MultiApprove\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{be8f143c-4bbe-48c2-a6fd-4a855581d6fb}</SharePointProjectItemId>
     </None>
+    <None Include="Features\Sponge.Site.LogConfig\Sponge.Site.LogConfig.feature">
+      <FeatureId>{3b4d6617-3ec2-4981-9e9c-3308bc829cef}</FeatureId>
+    </None>
     <None Include="Features\Sponge.Web.CustomActions\Sponge.Web.CustomActions.feature">
       <FeatureId>{700c1627-42b4-462d-98b1-155ad1bff617}</FeatureId>
     </None>
@@ -178,6 +186,9 @@
     <None Include="UI\Farm\ScriptLinks\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c3496271-9a56-4c7a-8368-6d73e11746d8}</SharePointProjectItemId>
     </None>
+    <None Include="UI\Site\Logging\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{1fe5ba47-0369-43c7-bd43-4e7d1de31189}</SharePointProjectItemId>
+    </None>
     <None Include="UI\Site\SiteSettings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0274915c-c420-4ece-a436-4b94bf1aa710}</SharePointProjectItemId>
     </None>
@@ -200,6 +211,9 @@
     <Content Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx" />
     <Content Include="CustomActions\CopyListItem\Elements.xml" />
     <Content Include="CustomActions\MultiApprove\Elements.xml" />
+    <Content Include="Features\Sponge.Site.LogConfig\Sponge.Site.LogConfig.Template.xml">
+      <DependentUpon>Sponge.Site.LogConfig.feature</DependentUpon>
+    </Content>
     <Content Include="Features\Sponge.Web.CustomActions\Sponge.Web.CustomActions.Template.xml">
       <DependentUpon>Sponge.Web.CustomActions.feature</DependentUpon>
     </Content>
@@ -231,6 +245,7 @@
     <Content Include="UI\Farm\CorrelationViewer\Elements.xml" />
     <Content Include="UI\Farm\Logging\Elements.xml" />
     <Content Include="UI\Farm\ScriptLinks\Elements.xml" />
+    <Content Include="UI\Site\Logging\Elements.xml" />
     <Content Include="UI\Site\SiteSettings\Elements.xml" />
     <Content Include="UI\Web\SitePropertyManager\Elements.xml" />
     <Content Include="UI\Web\WebSettings\Elements.xml" />

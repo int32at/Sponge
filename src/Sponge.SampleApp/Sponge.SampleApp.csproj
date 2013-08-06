@@ -57,6 +57,10 @@
       <Project>{0b148636-fa28-4903-a96c-2b3b77cf4246}</Project>
       <Name>Sponge.Client</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sponge\Sponge.csproj">
+      <Project>{2c6070d5-c8f5-4e79-83db-6f6d90c0b60d}</Project>
+      <Name>Sponge</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -29,15 +29,9 @@ namespace Sponge.Client.ConfigServiceReference {
     [System.Web.Services.WebServiceBindingAttribute(Name="ConfigServiceSoap", Namespace="http://Sponge.WebService.ConfigService")]
     public partial class ConfigService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback GetOperationCompleted;
+        private System.Threading.SendOrPostCallback GetCentralOperationCompleted;
         
-        private System.Threading.SendOrPostCallback GetAllOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback CreateApplicationOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback ApplicationExistsOperationCompleted;
-        
-        private System.Threading.SendOrPostCallback SetOperationCompleted;
+        private System.Threading.SendOrPostCallback GetRelativeOperationCompleted;
         
         private bool useDefaultCredentialsSetExplicitly;
         
@@ -78,166 +72,70 @@ namespace Sponge.Client.ConfigServiceReference {
         }
         
         /// <remarks/>
-        public event GetCompletedEventHandler GetCompleted;
+        public event GetCentralCompletedEventHandler GetCentralCompleted;
         
         /// <remarks/>
-        public event GetAllCompletedEventHandler GetAllCompleted;
+        public event GetRelativeCompletedEventHandler GetRelativeCompleted;
         
         /// <remarks/>
-        public event CreateApplicationCompletedEventHandler CreateApplicationCompleted;
-        
-        /// <remarks/>
-        public event ApplicationExistsCompletedEventHandler ApplicationExistsCompleted;
-        
-        /// <remarks/>
-        public event SetCompletedEventHandler SetCompleted;
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://Sponge.WebService.ConfigService/Get", RequestNamespace="http://Sponge.WebService.ConfigService", ResponseNamespace="http://Sponge.WebService.ConfigService", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public string Get(string appName, string key) {
-            object[] results = this.Invoke("Get", new object[] {
-                        appName,
-                        key});
-            return ((string)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void GetAsync(string appName, string key) {
-            this.GetAsync(appName, key, null);
-        }
-        
-        /// <remarks/>
-        public void GetAsync(string appName, string key, object userState) {
-            if ((this.GetOperationCompleted == null)) {
-                this.GetOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetOperationCompleted);
-            }
-            this.InvokeAsync("Get", new object[] {
-                        appName,
-                        key}, this.GetOperationCompleted, userState);
-        }
-        
-        private void OnGetOperationCompleted(object arg) {
-            if ((this.GetCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetCompleted(this, new GetCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://Sponge.WebService.ConfigService/GetAll", RequestNamespace="http://Sponge.WebService.ConfigService", ResponseNamespace="http://Sponge.WebService.ConfigService", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Xml.XmlNode GetAll(string appName) {
-            object[] results = this.Invoke("GetAll", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://Sponge.WebService.ConfigService/GetCentral", RequestNamespace="http://Sponge.WebService.ConfigService", ResponseNamespace="http://Sponge.WebService.ConfigService", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("Configuration", IsNullable=true)]
+        public Configuration GetCentral(string appName) {
+            object[] results = this.Invoke("GetCentral", new object[] {
                         appName});
-            return ((System.Xml.XmlNode)(results[0]));
+            return ((Configuration)(results[0]));
         }
         
         /// <remarks/>
-        public void GetAllAsync(string appName) {
-            this.GetAllAsync(appName, null);
+        public void GetCentralAsync(string appName) {
+            this.GetCentralAsync(appName, null);
         }
         
         /// <remarks/>
-        public void GetAllAsync(string appName, object userState) {
-            if ((this.GetAllOperationCompleted == null)) {
-                this.GetAllOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetAllOperationCompleted);
+        public void GetCentralAsync(string appName, object userState) {
+            if ((this.GetCentralOperationCompleted == null)) {
+                this.GetCentralOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCentralOperationCompleted);
             }
-            this.InvokeAsync("GetAll", new object[] {
-                        appName}, this.GetAllOperationCompleted, userState);
+            this.InvokeAsync("GetCentral", new object[] {
+                        appName}, this.GetCentralOperationCompleted, userState);
         }
         
-        private void OnGetAllOperationCompleted(object arg) {
-            if ((this.GetAllCompleted != null)) {
+        private void OnGetCentralOperationCompleted(object arg) {
+            if ((this.GetCentralCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetAllCompleted(this, new GetAllCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GetCentralCompleted(this, new GetCentralCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://Sponge.WebService.ConfigService/CreateApplication", RequestNamespace="http://Sponge.WebService.ConfigService", ResponseNamespace="http://Sponge.WebService.ConfigService", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void CreateApplication(string appName) {
-            this.Invoke("CreateApplication", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://Sponge.WebService.ConfigService/GetRelative", RequestNamespace="http://Sponge.WebService.ConfigService", ResponseNamespace="http://Sponge.WebService.ConfigService", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        [return: System.Xml.Serialization.XmlElementAttribute("Configuration", IsNullable=true)]
+        public Configuration GetRelative(string spongeUrl, string appName) {
+            object[] results = this.Invoke("GetRelative", new object[] {
+                        spongeUrl,
                         appName});
+            return ((Configuration)(results[0]));
         }
         
         /// <remarks/>
-        public void CreateApplicationAsync(string appName) {
-            this.CreateApplicationAsync(appName, null);
+        public void GetRelativeAsync(string spongeUrl, string appName) {
+            this.GetRelativeAsync(spongeUrl, appName, null);
         }
         
         /// <remarks/>
-        public void CreateApplicationAsync(string appName, object userState) {
-            if ((this.CreateApplicationOperationCompleted == null)) {
-                this.CreateApplicationOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateApplicationOperationCompleted);
+        public void GetRelativeAsync(string spongeUrl, string appName, object userState) {
+            if ((this.GetRelativeOperationCompleted == null)) {
+                this.GetRelativeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetRelativeOperationCompleted);
             }
-            this.InvokeAsync("CreateApplication", new object[] {
-                        appName}, this.CreateApplicationOperationCompleted, userState);
+            this.InvokeAsync("GetRelative", new object[] {
+                        spongeUrl,
+                        appName}, this.GetRelativeOperationCompleted, userState);
         }
         
-        private void OnCreateApplicationOperationCompleted(object arg) {
-            if ((this.CreateApplicationCompleted != null)) {
+        private void OnGetRelativeOperationCompleted(object arg) {
+            if ((this.GetRelativeCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.CreateApplicationCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://Sponge.WebService.ConfigService/ApplicationExists", RequestNamespace="http://Sponge.WebService.ConfigService", ResponseNamespace="http://Sponge.WebService.ConfigService", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool ApplicationExists(string appName) {
-            object[] results = this.Invoke("ApplicationExists", new object[] {
-                        appName});
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        public void ApplicationExistsAsync(string appName) {
-            this.ApplicationExistsAsync(appName, null);
-        }
-        
-        /// <remarks/>
-        public void ApplicationExistsAsync(string appName, object userState) {
-            if ((this.ApplicationExistsOperationCompleted == null)) {
-                this.ApplicationExistsOperationCompleted = new System.Threading.SendOrPostCallback(this.OnApplicationExistsOperationCompleted);
-            }
-            this.InvokeAsync("ApplicationExists", new object[] {
-                        appName}, this.ApplicationExistsOperationCompleted, userState);
-        }
-        
-        private void OnApplicationExistsOperationCompleted(object arg) {
-            if ((this.ApplicationExistsCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.ApplicationExistsCompleted(this, new ApplicationExistsCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-            }
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://Sponge.WebService.ConfigService/Set", RequestNamespace="http://Sponge.WebService.ConfigService", ResponseNamespace="http://Sponge.WebService.ConfigService", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void Set(string appName, string key, string value) {
-            this.Invoke("Set", new object[] {
-                        appName,
-                        key,
-                        value});
-        }
-        
-        /// <remarks/>
-        public void SetAsync(string appName, string key, string value) {
-            this.SetAsync(appName, key, value, null);
-        }
-        
-        /// <remarks/>
-        public void SetAsync(string appName, string key, string value, object userState) {
-            if ((this.SetOperationCompleted == null)) {
-                this.SetOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSetOperationCompleted);
-            }
-            this.InvokeAsync("Set", new object[] {
-                        appName,
-                        key,
-                        value}, this.SetOperationCompleted, userState);
-        }
-        
-        private void OnSetOperationCompleted(object arg) {
-            if ((this.SetCompleted != null)) {
-                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.SetCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GetRelativeCompleted(this, new GetRelativeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -261,90 +159,147 @@ namespace Sponge.Client.ConfigServiceReference {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
-    public delegate void GetCompletedEventHandler(object sender, GetCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
+    [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://Sponge.WebService.ConfigService")]
+    public partial class Configuration {
         
-        private object[] results;
+        private Item[] configurationItemsField;
         
-        internal GetCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
-                base(exception, cancelled, userState) {
-            this.results = results;
+        private string nameField;
+        
+        private string spongeUrlField;
+        
+        private bool isOnlineField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute("ConfigurationItem")]
+        public Item[] ConfigurationItems {
+            get {
+                return this.configurationItemsField;
+            }
+            set {
+                this.configurationItemsField = value;
+            }
         }
         
         /// <remarks/>
-        public string Result {
+        public string Name {
             get {
-                this.RaiseExceptionIfNecessary();
-                return ((string)(this.results[0]));
+                return this.nameField;
+            }
+            set {
+                this.nameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SpongeUrl {
+            get {
+                return this.spongeUrlField;
+            }
+            set {
+                this.spongeUrlField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsOnline {
+            get {
+                return this.isOnlineField;
+            }
+            set {
+                this.isOnlineField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.0.30319.17929")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://Sponge.WebService.ConfigService")]
+    public partial class Item {
+        
+        private string keyField;
+        
+        private object valueField;
+        
+        /// <remarks/>
+        public string Key {
+            get {
+                return this.keyField;
+            }
+            set {
+                this.keyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public object Value {
+            get {
+                return this.valueField;
+            }
+            set {
+                this.valueField = value;
             }
         }
     }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
-    public delegate void GetAllCompletedEventHandler(object sender, GetAllCompletedEventArgs e);
+    public delegate void GetCentralCompletedEventHandler(object sender, GetCentralCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetAllCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetCentralCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal GetAllCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal GetCentralCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public System.Xml.XmlNode Result {
+        public Configuration Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((System.Xml.XmlNode)(this.results[0]));
+                return ((Configuration)(this.results[0]));
             }
         }
     }
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
-    public delegate void CreateApplicationCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
-    public delegate void ApplicationExistsCompletedEventHandler(object sender, ApplicationExistsCompletedEventArgs e);
+    public delegate void GetRelativeCompletedEventHandler(object sender, GetRelativeCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ApplicationExistsCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetRelativeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal ApplicationExistsCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal GetRelativeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
         
         /// <remarks/>
-        public bool Result {
+        public Configuration Result {
             get {
                 this.RaiseExceptionIfNecessary();
-                return ((bool)(this.results[0]));
+                return ((Configuration)(this.results[0]));
             }
         }
     }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
-    public delegate void SetCompletedEventHandler(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
 }
 
 #pragma warning restore 1591

@@ -12,7 +12,7 @@ namespace Sponge.Logging
     {
         public static Logger GetOnline(string loggerName)
         {
-            using (var reader = GetXml(loggerName))
+            using (var reader = GetXml(Utils.GetSpongeUrl(), loggerName))
             {
                 Configure(reader);
             }
@@ -20,7 +20,22 @@ namespace Sponge.Logging
             return NLog.LogManager.GetLogger(loggerName);
         }
 
-       public static Logger GetOffline(string configPath)
+        public static Logger GetOnline(string spongeUrl, string loggerName)
+        {
+            using (var reader = GetXml(loggerName, spongeUrl))
+            {
+                Configure(reader);
+            }
+
+            return NLog.LogManager.GetLogger(loggerName);
+        }
+
+        public static Logger GetOffline()
+        {
+            return NLog.LogManager.GetLogger(Constants.SPONGE_LOGGER_NAME);
+        }
+
+        public static Logger GetOffline(string configPath)
         {
             return GetOffline(configPath, "");
         }
@@ -42,39 +57,47 @@ namespace Sponge.Logging
 
         public static XmlDocument GetConfig(string loggerName)
         {
+            return GetConfig(Utils.GetSpongeUrl(), loggerName);
+        }
+
+        public static XmlDocument GetConfig(string spongeUrl, string loggerName)
+        {
             var doc = new XmlDocument();
 
             SPSecurity.RunWithElevatedPrivileges(() =>
             {
-                using (var ca = Utils.GetSpongeWeb())
+                using (var site = new SPSite(spongeUrl))
                 {
-                    var configItems = ca.Lists[Constants.SPONGE_LIST_LOGCONFIGS];
-                    var q = new SPQuery() { Query = GetLoggerNameQuery(loggerName), ViewFields = "<FieldRef Name='Target' /><FieldRef Name='Title' />" };
+                    using (var sponge = site.OpenWeb(Constants.SPONGE_WEB_URL))
+                    {
+                        var configItems = sponge.Lists[Constants.SPONGE_LIST_LOGCONFIGS];
+                        var q = new SPQuery() { Query = GetLoggerNameQuery(loggerName), ViewFields = "<FieldRef Name='Target' /><FieldRef Name='Title' />" };
 
-                    var items = configItems.GetItems(q);
+                        var items = configItems.GetItems(q);
 
-                    if (items.Count == 0)
-                        throw new Exception(string.Format("No Logger '{0}' found", loggerName));
+                        if (items.Count == 0)
+                            throw new Exception(string.Format("No Logger '{0}' found", loggerName));
 
-                    var item = items[0];
+                        var item = items[0];
 
-                    var app = Convert.ToInt32(item["Target"].ToString().Split(';')[0]);
-                    var target = ca.Lists[Constants.SPONGE_LIST_LOGTARGETS].GetItemById(app);
+                        var app = Convert.ToInt32(item["Target"].ToString().Split(';')[0]);
+                        var target = sponge.Lists[Constants.SPONGE_LIST_LOGTARGETS].GetItemById(app);
 
-                    var xml = target["Xml"].ToString();
+                        var xml = target["Xml"].ToString();
 
-                    doc.LoadXml(xml);
+                        doc.LoadXml(xml);
+                    }
                 }
             });
 
             return doc;
         }
 
-        private static XmlReader GetXml(string loggerName)
+        private static XmlReader GetXml(string spongeUrl, string loggerName)
         {
             XmlReader reader = null;
 
-            var doc = GetConfig(loggerName);
+            var doc = GetConfig(spongeUrl, loggerName);
 
             using (var builder = new StringReader(doc.OuterXml))
                 reader = XmlReader.Create(builder);

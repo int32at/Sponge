@@ -40,7 +40,7 @@ namespace Sponge.Pages
             if (!string.IsNullOrEmpty(property) &&
                 !string.IsNullOrEmpty(value))
             {
-                SPContext.Current.Site.RootWeb.SetPropertyString(property, value);
+                SPContext.Current.Web.SetPropertyString(property, value);
 
                 Response.Redirect(Request.Url.ToString());
 
@@ -64,7 +64,7 @@ namespace Sponge.Pages
                 propertyTable.Rows.RemoveAt(1);
 
             // get properties from site collection's property bag
-            var properties = SPContext.Current.Site.RootWeb.AllProperties;
+            var properties = SPContext.Current.Web.AllProperties;
 
             // filter all prefixed sponge properties
             var sortedProperties = new SortedDictionary<string, string>();

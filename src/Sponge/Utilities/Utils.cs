@@ -16,6 +16,11 @@ namespace Sponge.Utilities
                 return ca.Webs[Constants.SPONGE_WEB_URL];
         }
 
+        public static SPManager GetSpongeWebManager()
+        {
+            return new SPManager(GetSpongeWeb());
+        }
+
         public static string GetSpongeUrl()
         {
             using (var ca = SPWebManager.GetCentralAdminWeb())

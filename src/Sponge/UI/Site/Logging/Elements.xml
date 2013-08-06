@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <CustomAction GroupId="Sponge.UI.Site.SiteSettings"
+    Id="Sponge.UI.Site.LogConfig"
+    Location="Microsoft.SharePoint.SiteSettings.SiteCollectionAdmin"
+    Sequence="106"
+    RequireSiteAdministrator="true"
+    Title="Manage Site Properties">
+    <UrlAction Url="{SiteUrl}/Sponge/default.aspx" />
+  </CustomAction>
+</Elements>

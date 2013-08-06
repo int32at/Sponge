@@ -29,7 +29,9 @@ namespace Sponge.Client.LoggingServiceReference {
     [System.Web.Services.WebServiceBindingAttribute(Name="LoggingServiceSoap", Namespace="http://Sponge.WebService.ConfigService")]
     public partial class LoggingService : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
-        private System.Threading.SendOrPostCallback GetOperationCompleted;
+        private System.Threading.SendOrPostCallback GetCentralOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback GetRelativeOperationCompleted;
         
         private System.Threading.SendOrPostCallback LogOperationCompleted;
         
@@ -72,37 +74,71 @@ namespace Sponge.Client.LoggingServiceReference {
         }
         
         /// <remarks/>
-        public event GetCompletedEventHandler GetCompleted;
+        public event GetCentralCompletedEventHandler GetCentralCompleted;
+        
+        /// <remarks/>
+        public event GetRelativeCompletedEventHandler GetRelativeCompleted;
         
         /// <remarks/>
         public event LogCompletedEventHandler LogCompleted;
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://Sponge.WebService.ConfigService/Get", RequestNamespace="http://Sponge.WebService.ConfigService", ResponseNamespace="http://Sponge.WebService.ConfigService", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public System.Xml.XmlNode Get(string loggerName) {
-            object[] results = this.Invoke("Get", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://Sponge.WebService.ConfigService/GetCentral", RequestNamespace="http://Sponge.WebService.ConfigService", ResponseNamespace="http://Sponge.WebService.ConfigService", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Xml.XmlNode GetCentral(string loggerName) {
+            object[] results = this.Invoke("GetCentral", new object[] {
                         loggerName});
             return ((System.Xml.XmlNode)(results[0]));
         }
         
         /// <remarks/>
-        public void GetAsync(string loggerName) {
-            this.GetAsync(loggerName, null);
+        public void GetCentralAsync(string loggerName) {
+            this.GetCentralAsync(loggerName, null);
         }
         
         /// <remarks/>
-        public void GetAsync(string loggerName, object userState) {
-            if ((this.GetOperationCompleted == null)) {
-                this.GetOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetOperationCompleted);
+        public void GetCentralAsync(string loggerName, object userState) {
+            if ((this.GetCentralOperationCompleted == null)) {
+                this.GetCentralOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetCentralOperationCompleted);
             }
-            this.InvokeAsync("Get", new object[] {
-                        loggerName}, this.GetOperationCompleted, userState);
+            this.InvokeAsync("GetCentral", new object[] {
+                        loggerName}, this.GetCentralOperationCompleted, userState);
         }
         
-        private void OnGetOperationCompleted(object arg) {
-            if ((this.GetCompleted != null)) {
+        private void OnGetCentralOperationCompleted(object arg) {
+            if ((this.GetCentralCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-                this.GetCompleted(this, new GetCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+                this.GetCentralCompleted(this, new GetCentralCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://Sponge.WebService.ConfigService/GetRelative", RequestNamespace="http://Sponge.WebService.ConfigService", ResponseNamespace="http://Sponge.WebService.ConfigService", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public System.Xml.XmlNode GetRelative(string spongeUrl, string loggerName) {
+            object[] results = this.Invoke("GetRelative", new object[] {
+                        spongeUrl,
+                        loggerName});
+            return ((System.Xml.XmlNode)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void GetRelativeAsync(string spongeUrl, string loggerName) {
+            this.GetRelativeAsync(spongeUrl, loggerName, null);
+        }
+        
+        /// <remarks/>
+        public void GetRelativeAsync(string spongeUrl, string loggerName, object userState) {
+            if ((this.GetRelativeOperationCompleted == null)) {
+                this.GetRelativeOperationCompleted = new System.Threading.SendOrPostCallback(this.OnGetRelativeOperationCompleted);
+            }
+            this.InvokeAsync("GetRelative", new object[] {
+                        spongeUrl,
+                        loggerName}, this.GetRelativeOperationCompleted, userState);
+        }
+        
+        private void OnGetRelativeOperationCompleted(object arg) {
+            if ((this.GetRelativeCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.GetRelativeCompleted(this, new GetRelativeCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -157,17 +193,43 @@ namespace Sponge.Client.LoggingServiceReference {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
-    public delegate void GetCompletedEventHandler(object sender, GetCompletedEventArgs e);
+    public delegate void GetCentralCompletedEventHandler(object sender, GetCentralCompletedEventArgs e);
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class GetCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+    public partial class GetCentralCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
         
         private object[] results;
         
-        internal GetCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+        internal GetCentralCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public System.Xml.XmlNode Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((System.Xml.XmlNode)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    public delegate void GetRelativeCompletedEventHandler(object sender, GetRelativeCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.0.30319.17929")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class GetRelativeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal GetRelativeCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
