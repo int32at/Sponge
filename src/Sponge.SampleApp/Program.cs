@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using NLog;
 using Sponge.Client.Configuration;
 using Sponge.Client.Logging;
+using Sponge.Configuration;
+using Sponge.Logging;
 
 namespace Sponge.SampleApp
 {
@@ -34,7 +35,7 @@ namespace Sponge.SampleApp
             //int a = cfg.Get<int>("MyKey");
         }
 
-        static void Dummy(Logger log)
+        static void Dummy(NLog.Logger log)
         {
             for (int i = 0; i < 1000; i++)
             {

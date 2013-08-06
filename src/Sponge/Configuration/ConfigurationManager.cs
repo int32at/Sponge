@@ -50,16 +50,6 @@ namespace Sponge.Configuration
             return cfg;
         }
 
-        public static Configuration GetOffline()
-        {
-            throw new NotImplementedException();
-        }
-
-        public static Configuration GetOffline(string configPath)
-        {
-            throw new NotImplementedException();
-        }
-
         private static string GetAppQueryItems(string app)
         {
             return string.Format(@"<Where>

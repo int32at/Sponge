@@ -12,7 +12,7 @@ namespace Sponge.Logging
     {
         public static Logger GetOnline(string loggerName)
         {
-            using (var reader = GetXml(loggerName))
+            using (var reader = GetXml(Utils.GetSpongeUrl(), loggerName))
             {
                 Configure(reader);
             }
@@ -20,7 +20,22 @@ namespace Sponge.Logging
             return NLog.LogManager.GetLogger(loggerName);
         }
 
-       public static Logger GetOffline(string configPath)
+        public static Logger GetOnline(string spongeUrl, string loggerName)
+        {
+            using (var reader = GetXml(loggerName, spongeUrl))
+            {
+                Configure(reader);
+            }
+
+            return NLog.LogManager.GetLogger(loggerName);
+        }
+
+        public static Logger GetOffline()
+        {
+            return NLog.LogManager.GetLogger(Constants.SPONGE_LOGGER_NAME);
+        }
+
+        public static Logger GetOffline(string configPath)
         {
             return GetOffline(configPath, "");
         }
@@ -44,6 +59,7 @@ namespace Sponge.Logging
         {
             return GetConfig(Utils.GetSpongeUrl(), loggerName);
         }
+
         public static XmlDocument GetConfig(string spongeUrl, string loggerName)
         {
             var doc = new XmlDocument();
@@ -77,11 +93,11 @@ namespace Sponge.Logging
             return doc;
         }
 
-        private static XmlReader GetXml(string loggerName)
+        private static XmlReader GetXml(string spongeUrl, string loggerName)
         {
             XmlReader reader = null;
 
-            var doc = GetConfig(loggerName);
+            var doc = GetConfig(spongeUrl, loggerName);
 
             using (var builder = new StringReader(doc.OuterXml))
                 reader = XmlReader.Create(builder);
