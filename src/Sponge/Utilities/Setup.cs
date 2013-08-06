@@ -7,24 +7,21 @@ namespace Sponge.Utilities
 {
     public static class Setup
     {
-        public static void Install(SPSite site)
+        public static void Install(SPWeb web)
         {
-            Update(site, false);
+            Update(web, false);
         }
 
-        public static void Uninstall(SPSite site)
+        public static void Uninstall(SPWeb web)
         {
-            Update(site, true);
+            Update(web, true);
         }
 
-        private static void Update(SPSite site, bool delete)
+        private static void Update(SPWeb web, bool delete)
         {
-            using (var mgr = new SPManager(site))
+            using (var mgr = new SPManager(web))
             {
                 UpdateWeb(mgr, delete);
-                UpdateLists(mgr);
-                CreateWebParts(mgr);
-                AddDefaultItems(mgr);
             }
         }
         
@@ -36,11 +33,18 @@ namespace Sponge.Utilities
             }
             else
             {
-                var sponge = mgr.Webs.Create(Constants.SPONGE_WEB_NAME, "",
-                    Constants.SPONGE_WEB_URL, Constants.SPONGE_WEB_TEMPLATE);
-                sponge.SiteLogoUrl = Constants.SPONGE_WEB_IMGURL;
-                sponge.Update();
-                mgr.ParentWeb = sponge;
+                if (!mgr.Webs.Exists(Constants.SPONGE_WEB_URL))
+                {
+                    var sponge = mgr.Webs.Create(Constants.SPONGE_WEB_NAME, "",
+                        Constants.SPONGE_WEB_URL, Constants.SPONGE_WEB_TEMPLATE);
+                    sponge.SiteLogoUrl = Constants.SPONGE_WEB_IMGURL;
+                    sponge.Update();
+                    mgr.ParentWeb = sponge;
+
+                    UpdateLists(mgr);
+                    CreateWebParts(mgr);
+                    AddDefaultItems(mgr);
+                }
             }
         }
 

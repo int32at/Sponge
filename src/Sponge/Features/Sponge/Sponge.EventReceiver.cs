@@ -13,7 +13,7 @@ namespace Sponge.Features.Sponge
         {
             using (var ca = SPWebManager.GetCentralAdminWeb())
             {
-                Setup.Install(ca.Site);
+                Setup.Install(ca);
             }
         }
 
@@ -21,7 +21,7 @@ namespace Sponge.Features.Sponge
         {
             using (var ca = SPWebManager.GetCentralAdminWeb())
             {
-                Setup.Uninstall(ca.Site);
+                Setup.Uninstall(ca);
             }
         }
     }
