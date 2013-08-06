@@ -10,9 +10,9 @@ namespace Sponge.Client.Logging
 {
     public class ClientLogManager
     {
-        public static Logger GetOnline(string webUrl, string loggerName)
+        public static Logger GetOnline(string webUrl, string loggerName, bool central)
         {
-            using (var reader = GetXml(webUrl, loggerName))
+            using (var reader = GetXml(webUrl, loggerName, central))
             {
                 var config = new XmlLoggingConfiguration(reader, null);
                 NLog.LogManager.Configuration = config;
@@ -47,12 +47,12 @@ namespace Sponge.Client.Logging
             return NLog.LogManager.GetLogger(Constants.SPONGE_LOGGER_NAME);
         }
 
-        private static XmlReader GetXml(string webUrl, string loggerName)
+        private static XmlReader GetXml(string webUrl, string loggerName, bool central)
         {
             XmlReader reader = null;
             using (var svc = GetLoggingService(webUrl))
             {
-                var result = svc.Get(loggerName);
+                var result = central ? svc.GetCentral(loggerName) : svc.GetRelative(webUrl, loggerName);
 
                 if (result == null)
                     throw new Exception(string.Format("Invalid Result for Logger '{0}'", loggerName));
@@ -64,7 +64,7 @@ namespace Sponge.Client.Logging
             return reader;
         }
 
-        public static LoggingService GetLoggingService(string url)
+        private static LoggingService GetLoggingService(string url)
         {
             if (!url.EndsWith("/"))
                 url = url += "/";

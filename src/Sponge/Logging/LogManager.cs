@@ -42,28 +42,35 @@ namespace Sponge.Logging
 
         public static XmlDocument GetConfig(string loggerName)
         {
+            return GetConfig(Utils.GetSpongeUrl(), loggerName);
+        }
+        public static XmlDocument GetConfig(string spongeUrl, string loggerName)
+        {
             var doc = new XmlDocument();
 
             SPSecurity.RunWithElevatedPrivileges(() =>
             {
-                using (var ca = Utils.GetSpongeWeb())
+                using (var site = new SPSite(spongeUrl))
                 {
-                    var configItems = ca.Lists[Constants.SPONGE_LIST_LOGCONFIGS];
-                    var q = new SPQuery() { Query = GetLoggerNameQuery(loggerName), ViewFields = "<FieldRef Name='Target' /><FieldRef Name='Title' />" };
+                    using (var sponge = site.OpenWeb(Constants.SPONGE_WEB_URL))
+                    {
+                        var configItems = sponge.Lists[Constants.SPONGE_LIST_LOGCONFIGS];
+                        var q = new SPQuery() { Query = GetLoggerNameQuery(loggerName), ViewFields = "<FieldRef Name='Target' /><FieldRef Name='Title' />" };
 
-                    var items = configItems.GetItems(q);
+                        var items = configItems.GetItems(q);
 
-                    if (items.Count == 0)
-                        throw new Exception(string.Format("No Logger '{0}' found", loggerName));
+                        if (items.Count == 0)
+                            throw new Exception(string.Format("No Logger '{0}' found", loggerName));
 
-                    var item = items[0];
+                        var item = items[0];
 
-                    var app = Convert.ToInt32(item["Target"].ToString().Split(';')[0]);
-                    var target = ca.Lists[Constants.SPONGE_LIST_LOGTARGETS].GetItemById(app);
+                        var app = Convert.ToInt32(item["Target"].ToString().Split(';')[0]);
+                        var target = sponge.Lists[Constants.SPONGE_LIST_LOGTARGETS].GetItemById(app);
 
-                    var xml = target["Xml"].ToString();
+                        var xml = target["Xml"].ToString();
 
-                    doc.LoadXml(xml);
+                        doc.LoadXml(xml);
+                    }
                 }
             });
 

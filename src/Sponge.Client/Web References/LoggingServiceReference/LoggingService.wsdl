@@ -2,17 +2,38 @@
 <wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://Sponge.WebService.ConfigService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://Sponge.WebService.ConfigService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://Sponge.WebService.ConfigService">
-      <s:element name="Get">
+      <s:element name="GetCentral">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="loggerName" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="GetResponse">
+      <s:element name="GetCentralResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetResult">
+            <s:element minOccurs="0" maxOccurs="1" name="GetCentralResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRelative">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="spongeUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="loggerName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRelativeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRelativeResult">
               <s:complexType mixed="true">
                 <s:sequence>
                   <s:any />
@@ -35,11 +56,17 @@
       </s:element>
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="GetSoapIn">
-    <wsdl:part name="parameters" element="tns:Get" />
+  <wsdl:message name="GetCentralSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCentral" />
   </wsdl:message>
-  <wsdl:message name="GetSoapOut">
-    <wsdl:part name="parameters" element="tns:GetResponse" />
+  <wsdl:message name="GetCentralSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCentralResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRelativeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRelative" />
+  </wsdl:message>
+  <wsdl:message name="GetRelativeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRelativeResponse" />
   </wsdl:message>
   <wsdl:message name="LogSoapIn">
     <wsdl:part name="parameters" element="tns:Log" />
@@ -48,9 +75,13 @@
     <wsdl:part name="parameters" element="tns:LogResponse" />
   </wsdl:message>
   <wsdl:portType name="LoggingServiceSoap">
-    <wsdl:operation name="Get">
-      <wsdl:input message="tns:GetSoapIn" />
-      <wsdl:output message="tns:GetSoapOut" />
+    <wsdl:operation name="GetCentral">
+      <wsdl:input message="tns:GetCentralSoapIn" />
+      <wsdl:output message="tns:GetCentralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRelative">
+      <wsdl:input message="tns:GetRelativeSoapIn" />
+      <wsdl:output message="tns:GetRelativeSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="Log">
       <wsdl:input message="tns:LogSoapIn" />
@@ -59,8 +90,17 @@
   </wsdl:portType>
   <wsdl:binding name="LoggingServiceSoap" type="tns:LoggingServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="Get">
-      <soap:operation soapAction="http://Sponge.WebService.ConfigService/Get" style="document" />
+    <wsdl:operation name="GetCentral">
+      <soap:operation soapAction="http://Sponge.WebService.ConfigService/GetCentral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRelative">
+      <soap:operation soapAction="http://Sponge.WebService.ConfigService/GetRelative" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -80,8 +120,17 @@
   </wsdl:binding>
   <wsdl:binding name="LoggingServiceSoap12" type="tns:LoggingServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="Get">
-      <soap12:operation soapAction="http://Sponge.WebService.ConfigService/Get" style="document" />
+    <wsdl:operation name="GetCentral">
+      <soap12:operation soapAction="http://Sponge.WebService.ConfigService/GetCentral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRelative">
+      <soap12:operation soapAction="http://Sponge.WebService.ConfigService/GetRelative" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

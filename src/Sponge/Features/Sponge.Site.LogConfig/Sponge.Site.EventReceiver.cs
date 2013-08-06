@@ -13,7 +13,7 @@ namespace Sponge.Features.Sponge.Site.LogConfig
             Setup.Install((properties.Feature.Parent as SPSite).RootWeb);
         }
 
-        public override void FeatureUninstalling(SPFeatureReceiverProperties properties)
+        public override void FeatureDeactivating(SPFeatureReceiverProperties properties)
         {
             Setup.Uninstall((properties.Feature.Parent as SPSite).RootWeb);
         }

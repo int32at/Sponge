@@ -245,7 +245,7 @@ namespace Sponge.Utilities
   <targets>
     <target name='database' type='Database'>
       <connectionString>
-        Data Source=demo;Initial Catalog=SpongeDb;User ID=spongeloguser;Password=pass@word1;
+        Data Source=demo;Initial Catalog=Sponge;User ID=spongeloguser;Password=pass@word1;
       </connectionString>
       <commandText>
         insert into Logs(log_date,log_level,log_logger, log_version, log_message,log_machine_name, log_user_name, log_call_site, log_thread, log_exception, log_stacktrace) values(@time_stamp, @level, @logger, @version, @message,@machinename, @user_name, @call_site, @threadid, @log_exception, @stacktrace);

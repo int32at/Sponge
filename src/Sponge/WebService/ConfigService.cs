@@ -12,33 +12,15 @@ namespace Sponge.WebService
     public class ConfigService : System.Web.Services.WebService
     {
         [WebMethod]
-        public string Get(string appName, string key)
+        public Sponge.Configuration.Configuration GetCentral(string appName)
         {
-            return ConfigurationManager.Get<string>(appName, key);
+            return ConfigurationManager.GetOnline(appName);
         }
 
         [WebMethod]
-        public XmlDocument GetAll(string appName)
+        public Sponge.Configuration.Configuration GetRelative(string spongeUrl, string appName)
         {
-            return Utils.ToXml(ConfigurationManager.GetAll(appName));
-        }
-
-        [WebMethod]
-        public void CreateApplication(string appName)
-        {
-            ConfigurationManager.CreateApplication(appName);
-        }
-
-        [WebMethod]
-        public bool ApplicationExists(string appName)
-        {
-            return ConfigurationManager.ApplicationExists(appName);
-        }
-
-        [WebMethod]
-        public void Set(string appName, string key, string value)
-        {
-            ConfigurationManager.Set(appName, key, value);
+            return ConfigurationManager.GetOnline(spongeUrl, appName);
         }
     }
 }

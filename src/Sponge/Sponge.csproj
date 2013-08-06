@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="Components\CorrelationViewer\CorrelationId.cs" />
     <Compile Include="Components\CorrelationViewer\CorrelationQuery.cs" />
+    <Compile Include="Configuration\ConfigurationItem.cs" />
+    <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Configuration\ConfigurationManager.cs" />
     <Compile Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx.cs">
       <DependentUpon>SampleControl.ascx</DependentUpon>

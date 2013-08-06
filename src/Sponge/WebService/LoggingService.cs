@@ -14,9 +14,15 @@ namespace Sponge.WebService
         private static NLog.Logger _log = LogManager.GetOnline(Constants.SPONGE_LOGGER_WSNAME);
 
         [WebMethod]
-        public XmlDocument Get(string loggerName)
+        public XmlDocument GetCentral(string loggerName)
         {
             return LogManager.GetConfig(loggerName);
+        }
+
+        [WebMethod]
+        public XmlDocument GetRelative(string spongeUrl, string loggerName)
+        {
+            return LogManager.GetConfig(spongeUrl, loggerName);
         }
 
         [WebMethod]
