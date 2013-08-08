@@ -22,7 +22,7 @@ namespace Sponge.Logging
 
         public static Logger GetOnline(string spongeUrl, string loggerName)
         {
-            using (var reader = GetXml(loggerName, spongeUrl))
+            using (var reader = GetXml(spongeUrl, loggerName))
             {
                 Configure(reader);
             }

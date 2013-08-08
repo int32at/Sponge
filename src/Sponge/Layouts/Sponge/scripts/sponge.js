@@ -127,3 +127,121 @@ sponge.actions = function () {
         }
     }
 }();
+
+sponge.config = function () {
+    var self = this;
+    self.cfg = null;
+    return {
+        init: function (appName, url, callback) {
+            var method = "";
+            var data = "";
+
+            //central
+            if (url == null || url == "undefined") {
+                method = "GetCentralJson";
+                data = "{ appName: '" + appName + "'}";
+            }
+                //relative
+            else {
+                method = "GetRelativeJson";
+                data = "{ appName: '" + appName + "', spongeUrl: '" + url + "'}";
+            }
+
+            jQuery.ajax({
+                type: "POST",
+                url: "_layouts/Sponge/ConfigService.asmx/" + method,
+                data: data,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    var cfg = null;
+                    if (msg != "undefined" && msg.d != "undefined") {
+                        self.cfg = jQuery.parseJSON(msg.d);
+                    }
+
+                    if (callback && typeof (callback) != "undefined") {
+                        sponge.common.executeCallback(callback);
+                    }
+                },
+                error: function (msg) {
+                    alert("ERROR" + JSON.stringify(msg));
+                }
+            });
+        },
+
+        get: function (name) {
+            var result = jQuery.grep(self.cfg.Items, function (e) { return e.Key == name; })
+
+            if (result.length > 0)
+                return result[0].Value;
+        },
+
+        name: function () {
+            return self.cfg.Name;
+        }
+    }
+}();
+
+sponge.common = function () {
+    return {
+        executeFunctionByName: function (callback, context) {
+            var args = null;
+            if (arguments.length == 3) args = arguments[2];
+            var namespaces = callback.split(".");
+            var func = namespaces.pop();
+
+            for (var i = 0; i < namespaces.length; i++) {
+                context = context[namespaces[i]];
+            }
+
+            var params = [];
+            params.push(args);
+
+            return context[func].apply(context, params);
+        },
+
+        executeCallback: function (callback, args) {
+            if (typeof (callback) == 'function') {
+                var params = [];
+                params.push(args);
+                callback.apply(this, params);
+            }
+            else {
+                if (callback.length > 0)
+                    sponge.common.executeFunctionByName(callback, window, args);
+            }
+        }
+    }
+}();
+
+sponge.logging = function () {
+    return {
+
+        log: function (lvl, msg, url) {
+            var data = "";
+            var method = "";
+
+            if (url == null || url == "undefined") {
+                method = "LogCentral";
+                data = "{ lvl: '" + lvl + "', msg: '" + msg + "'}";
+            }
+            else {
+                method = "LogRelative";
+                data = "{ spongeUrl: '" + url + "', lvl: '" + lvl + "', msg: '" + msg + "'}";
+            }
+            jQuery.ajax({
+                type: "POST",
+                url: "_layouts/Sponge/LoggingService.asmx/" + method,
+                data: data,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    alert(msg);
+                },
+                error: function (msg) {
+                    alert("ERROR" + JSON.stringify(msg));
+                }
+            });
+        }
+    }
+}();

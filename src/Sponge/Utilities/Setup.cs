@@ -238,7 +238,7 @@ namespace Sponge.Utilities
             #region db target
 
             var db = logTarget.AddItem();
-            db["Title"] = "Sponge Logging Database";
+            db["Title"] = "Sponge Database Logging";
             db["Xml"] = @"<?xml version='1.0' encoding='utf-8' ?>
 <nlog xmlns='http://www.nlog-project.org/schemas/NLog.xsd'
       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' internalLogFile='c:\Nlog.log'>
