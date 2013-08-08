@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <CustomActionGroup Description="Sponge Site Collection Features" Id="Sponge.UI.Site.SiteSettings"
+  <!--<CustomActionGroup Description="Sponge Site Collection Features" Id="Sponge.UI.Site.SiteSettings"
     ImageUrl=""
-    Location="Microsoft.SharePoint.SiteSettings.SiteCollectionAdmin"
+    Location="Microsoft.SharePoint.SiteSettings"
     Sequence="111"
     Title="Sponge Site Settings">
-  </CustomActionGroup>
+  </CustomActionGroup>-->
 </Elements>
