@@ -132,11 +132,25 @@ sponge.config = function () {
     var self = this;
     self.cfg = null;
     return {
-        init: function (appName, callback) {
+        init: function (appName, url, callback) {
+            var method = "";
+            var data = "";
+
+            //central
+            if (url == null || url == "undefined") {
+                method = "GetCentralJson";
+                data = "{ appName: '" + appName + "'}";
+            }
+                //relative
+            else {
+                method = "GetRelativeJson";
+                data = "{ appName: '" + appName + "', spongeUrl: '" + url + "'}";
+            }
+
             jQuery.ajax({
                 type: "POST",
-                url: "_layouts/Sponge/ConfigService.asmx/GetCentralJson",
-                data: "{ appName: '" + appName + "'}",
+                url: "_layouts/Sponge/ConfigService.asmx/" + method,
+                data: data,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (msg) {

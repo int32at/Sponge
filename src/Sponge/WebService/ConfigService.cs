@@ -33,5 +33,13 @@ namespace Sponge.WebService
         {
             return ConfigurationManager.GetOnline(spongeUrl, appName);
         }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string GetRelativeJson(string spongeUrl, string appName)
+        {
+            var cfg = ConfigurationManager.GetOnline(spongeUrl, appName);
+            return new JavaScriptSerializer().Serialize(cfg);
+        }
     }
 }
