@@ -1,4 +1,5 @@
-﻿using System.Web.Services;
+﻿using System.Web.Script.Services;
+using System.Web.Services;
 using System.Xml;
 using Sponge.Logging;
 using Sponge.Utilities;
@@ -7,12 +8,11 @@ namespace Sponge.WebService
 {
     [WebService(Namespace = "http://Sponge.WebService.ConfigService")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
+    [ScriptService]
     [System.ComponentModel.ToolboxItem(false)]
 
     public class LoggingService : System.Web.Services.WebService
     {
-        private static NLog.Logger _log = LogManager.GetOnline(Constants.SPONGE_LOGGER_WSNAME);
-
         [WebMethod]
         public XmlDocument GetCentral(string loggerName)
         {
@@ -26,10 +26,21 @@ namespace Sponge.WebService
         }
 
         [WebMethod]
-        public void Log(string lvl, string msg)
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void LogCentral(string lvl, string msg)
         {
+            var log = LogManager.GetOnline(Constants.SPONGE_LOGGER_WSNAME);
             var level = NLog.LogLevel.FromString(lvl);
-            _log.Log(level, msg);
+            log.Log(level, msg);
+        }
+
+        [WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public void LogRelative(string spongeUrl, string lvl, string msg)
+        {
+            var log = LogManager.GetOnline(spongeUrl, Constants.SPONGE_LOGGER_WSNAME);
+            var level = NLog.LogLevel.FromString(lvl);
+            log.Log(level, msg);
         }
     }
 }

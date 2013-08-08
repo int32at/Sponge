@@ -213,3 +213,35 @@ sponge.common = function () {
         }
     }
 }();
+
+sponge.logging = function () {
+    return {
+
+        log: function (lvl, msg, url) {
+            var data = "";
+            var method = "";
+
+            if (url == null || url == "undefined") {
+                method = "LogCentral";
+                data = "{ lvl: '" + lvl + "', msg: '" + msg + "'}";
+            }
+            else {
+                method = "LogRelative";
+                data = "{ spongeUrl: '" + url + "', lvl: '" + lvl + "', msg: '" + msg + "'}";
+            }
+            jQuery.ajax({
+                type: "POST",
+                url: "_layouts/Sponge/LoggingService.asmx/" + method,
+                data: data,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (msg) {
+                    alert(msg);
+                },
+                error: function (msg) {
+                    alert("ERROR" + JSON.stringify(msg));
+                }
+            });
+        }
+    }
+}();
