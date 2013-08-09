@@ -7,27 +7,20 @@ namespace Sponge.Logging
 {
     public class UlsLogger : SPDiagnosticsService
     {
-        private static string PRODUCT_NAME = "Sponge Logging Component";
-        private static UlsLogger logService;
+        private const string ProductName = "Sponge Logging Component";
+        private static UlsLogger _logService;
 
         public static UlsLogger LogService
         {
-            get
-            {
-                if (logService == null)
-                {
-                    logService = new UlsLogger();
-                }
-                return logService;
-            }
+            get { return _logService ?? (_logService = new UlsLogger()); }
         }
 
         private UlsLogger() : base("Sponge ULS Logging Component", SPFarm.Local) { }
 
         protected override IEnumerable<SPDiagnosticsArea> ProvideAreas()
         {
-            List<SPDiagnosticsArea> areas = new List<SPDiagnosticsArea>{
-                new SPDiagnosticsArea(PRODUCT_NAME, new List<SPDiagnosticsCategory>{
+            var areas = new List<SPDiagnosticsArea>{
+                new SPDiagnosticsArea(ProductName, new List<SPDiagnosticsCategory>{
                     new SPDiagnosticsCategory("Off", TraceSeverity.None, EventSeverity.None),
                     new SPDiagnosticsCategory("Fatal", TraceSeverity.Unexpected, EventSeverity.ErrorCritical),
                     new SPDiagnosticsCategory("Error", TraceSeverity.High, EventSeverity.Error),
@@ -44,14 +37,14 @@ namespace Sponge.Logging
         public static void Log(LogLevel level, string msg, params object[] args)
         {
             var log = string.Format(msg, args);
-            SPDiagnosticsCategory category = UlsLogger.LogService.Areas[PRODUCT_NAME].Categories[level.ToString()];
-            UlsLogger.logService.WriteTrace(0, category, category.TraceSeverity, log);
+            var category = LogService.Areas[ProductName].Categories[level.ToString()];
+            _logService.WriteTrace(0, category, category.TraceSeverity, log);
         }
 
         public static void Log(LogLevel level, Exception ex)
         {
-            SPDiagnosticsCategory category = UlsLogger.LogService.Areas[PRODUCT_NAME].Categories[level.ToString()];
-            UlsLogger.logService.WriteTrace(0, category, category.TraceSeverity, ex.ToString());
+            var category = LogService.Areas[ProductName].Categories[level.ToString()];
+            _logService.WriteTrace(0, category, category.TraceSeverity, ex.ToString());
         }
     }
 }

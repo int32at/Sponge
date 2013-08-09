@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.SharePoint;
+﻿using Microsoft.SharePoint;
+using System;
 
 namespace Sponge.Models
 {
@@ -12,13 +9,11 @@ namespace Sponge.Models
 
         public SPList Create(string title, string description, SPListTemplateType template)
         {
-            if (!Exists(title))
-            {
-                var guid = Parent.ParentWeb.Lists.Add(title, description, template);
-                return Parent.ParentWeb.Lists[guid];
-            }
-            else
+            if (Exists(title)) 
                 throw new Exception(string.Format("List with Name '{0}' already exists", title));
+
+            var guid = Parent.ParentWeb.Lists.Add(title, description, template);
+            return Parent.ParentWeb.Lists[guid];
         }
 
         public bool Exists(string internalName)

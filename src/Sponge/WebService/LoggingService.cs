@@ -29,7 +29,7 @@ namespace Sponge.WebService
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void LogCentral(string lvl, string msg)
         {
-            var log = LogManager.GetOnline(Constants.SPONGE_LOGGER_WSNAME);
+            var log = LogManager.GetOnline(Constants.SpongeLoggerWsname);
             var level = NLog.LogLevel.FromString(lvl);
             log.Log(level, msg);
         }
@@ -38,7 +38,7 @@ namespace Sponge.WebService
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
         public void LogRelative(string spongeUrl, string lvl, string msg)
         {
-            var log = LogManager.GetOnline(spongeUrl, Constants.SPONGE_LOGGER_WSNAME);
+            var log = LogManager.GetOnline(spongeUrl, Constants.SpongeLoggerWsname);
             var level = NLog.LogLevel.FromString(lvl);
             log.Log(level, msg);
         }

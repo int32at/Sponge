@@ -9,10 +9,5 @@ namespace Sponge.Configuration
 
         [XmlElement("Value")]
         public object Value { get; set; }
-
-        public ConfigurationItem()
-        {
-
-        }
     }
 }

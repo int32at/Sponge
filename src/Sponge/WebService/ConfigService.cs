@@ -1,9 +1,7 @@
-﻿using System.Web.Script.Serialization;
+﻿using Sponge.Configuration;
+using System.Web.Script.Serialization;
 using System.Web.Script.Services;
 using System.Web.Services;
-using System.Xml;
-using Sponge.Configuration;
-using Sponge.Utilities;
 
 namespace Sponge.WebService
 {
@@ -15,7 +13,7 @@ namespace Sponge.WebService
     public class ConfigService : System.Web.Services.WebService
     {
         [WebMethod]
-        public Sponge.Configuration.Configuration GetCentral(string appName)
+        public Configuration.Configuration GetCentral(string appName)
         {
             return ConfigurationManager.GetOnline(appName);
         }
@@ -29,7 +27,7 @@ namespace Sponge.WebService
         }
 
         [WebMethod]
-        public Sponge.Configuration.Configuration GetRelative(string spongeUrl, string appName)
+        public Configuration.Configuration GetRelative(string spongeUrl, string appName)
         {
             return ConfigurationManager.GetOnline(spongeUrl, appName);
         }

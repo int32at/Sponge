@@ -61,8 +61,6 @@
     <Reference Include="Microsoft.SharePoint" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\CorrelationViewer\CorrelationId.cs" />
-    <Compile Include="Components\CorrelationViewer\CorrelationQuery.cs" />
     <Compile Include="Configuration\ConfigurationItem.cs" />
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Configuration\ConfigurationManager.cs" />
@@ -74,20 +72,6 @@
       <DependentUpon>SampleControl.ascx.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\SPWebExtensions.cs" />
-    <Compile Include="ADMIN\Sponge\CorrelationViewer\Results.aspx.cs">
-      <DependentUpon>Results.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ADMIN\Sponge\CorrelationViewer\Results.aspx.designer.cs">
-      <DependentUpon>Results.aspx.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ADMIN\Sponge\CorrelationViewer\Get.aspx.cs">
-      <DependentUpon>Get.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ADMIN\Sponge\CorrelationViewer\Get.aspx.designer.cs">
-      <DependentUpon>Get.aspx.cs</DependentUpon>
-    </Compile>
     <Compile Include="Features\Sponge.Site.LogConfig\Sponge.Site.EventReceiver.cs">
       <DependentUpon>Sponge.Site.LogConfig.feature</DependentUpon>
     </Compile>
@@ -230,8 +214,6 @@
     <Content Include="Images\Sponge\logo_s.png" />
     <Content Include="Images\Sponge\logo.png" />
     <Content Include="Layouts\Sponge\ConfigService.asmx" />
-    <Content Include="ADMIN\Sponge\CorrelationViewer\Results.aspx" />
-    <Content Include="ADMIN\Sponge\CorrelationViewer\Get.aspx" />
     <Content Include="Layouts\Sponge\LoggingService.asmx" />
     <Content Include="Layouts\Sponge\scripts\jquery-1.7.2.min.js" />
     <Content Include="Layouts\Sponge\scripts\sponge.js" />
@@ -257,6 +239,8 @@
     <Content Include="WebParts\HostingWebPart\Elements.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ADMIN\Sponge\" />
+    <Folder Include="Components\" />
     <Folder Include="Templates\" />
   </ItemGroup>
   <ItemGroup>

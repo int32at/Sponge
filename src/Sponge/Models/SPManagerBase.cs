@@ -8,8 +8,8 @@ namespace Sponge.Models
     public abstract class SPManagerBase
     {
         public SPManager Parent { get; private set; }
-        
-        public SPManagerBase(SPManager parent)
+
+        protected SPManagerBase(SPManager parent)
         {
             Parent = parent;   
         }

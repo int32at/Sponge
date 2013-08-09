@@ -29,15 +29,15 @@ namespace Sponge.Utilities
         {
             if (delete)
             {
-                mgr.Webs.Delete(Constants.SPONGE_WEB_URL);
+                mgr.Webs.Delete(Constants.SpongeWebUrl);
             }
             else
             {
-                if (!mgr.Webs.Exists(Constants.SPONGE_WEB_URL))
+                if (!mgr.Webs.Exists(Constants.SpongeWebUrl))
                 {
-                    var sponge = mgr.Webs.Create(Constants.SPONGE_WEB_NAME, "",
-                        Constants.SPONGE_WEB_URL, Constants.SPONGE_WEB_TEMPLATE);
-                    sponge.SiteLogoUrl = Constants.SPONGE_WEB_IMGURL;
+                    var sponge = mgr.Webs.Create(Constants.SpongeWebName, "",
+                        Constants.SpongeWebUrl, Constants.SpongeWebTemplate);
+                    sponge.SiteLogoUrl = Constants.SpongeWebImgurl;
                     sponge.Update();
                     mgr.ParentWeb = sponge;
 
@@ -59,14 +59,14 @@ namespace Sponge.Utilities
 
         private static void CreateConfigItems(SPManager mgr)
         {
-            var list = CreateList(mgr, Constants.SPONGE_LIST_CONFIGITEMS);
+            var list = CreateList(mgr, Constants.SpongeListConfigitems);
 
-            var targetList = list.ParentWeb.Lists[Constants.SPONGE_LIST_CONFIGAPPLICATIONS];
+            var targetList = list.ParentWeb.Lists[Constants.SpongeListConfigapplications];
 
             list.Fields.Add("Value", SPFieldType.Note, true);
 
             list.Fields.AddLookup("Application", targetList.ID, false);
-            SPFieldLookup lkp = (SPFieldLookup)list.Fields["Application"];
+            var lkp = (SPFieldLookup)list.Fields["Application"];
             lkp.LookupField = targetList.Fields["Title"].InternalName;
             lkp.Required = true;
             lkp.Update();
@@ -74,7 +74,7 @@ namespace Sponge.Utilities
             if (list.ContentTypes.Count > 0)
             {
                 var ct = list.ContentTypes[0];
-                ct.FieldLinks.Reorder(new string[] { "Application", "Key", "Value" });
+                ct.FieldLinks.Reorder(new[] { "Application", "Key", "Value" });
             }
 
             var title = list.Fields["Title"];
@@ -82,8 +82,8 @@ namespace Sponge.Utilities
             title.Description = "Do not use blanks or special characters here!";
             title.Update();
 
-            SPView view = list.DefaultView;
-            var group = @" <GroupBy Collapse=""TRUE"" GroupLimit=""100""> <FieldRef Name=""Application"" Ascending=""True""/> </GroupBy>";
+            var view = list.DefaultView;
+            const string @group = @" <GroupBy Collapse=""TRUE"" GroupLimit=""100""> <FieldRef Name=""Application"" Ascending=""True""/> </GroupBy>";
             view.Query = group;
 
             view.ViewFields.DeleteAll();
@@ -95,12 +95,12 @@ namespace Sponge.Utilities
 
         private static void CreateConfigApplications(SPManager mgr)
         {
-            var list = CreateList(mgr, Constants.SPONGE_LIST_CONFIGAPPLICATIONS);
+            CreateList(mgr, Constants.SpongeListConfigapplications);
         }
 
         private static void CreateLogTargets(SPManager mgr)
         {
-            var list = CreateList(mgr, Constants.SPONGE_LIST_LOGTARGETS);
+            var list = CreateList(mgr, Constants.SpongeListLogtargets);
 
             list.Fields.Add("Xml", SPFieldType.Note, true);
             SPView view = list.DefaultView;
@@ -113,12 +113,12 @@ namespace Sponge.Utilities
 
         private static void CreateLogConfigs(SPManager mgr)
         {
-            var list = CreateList(mgr, Constants.SPONGE_LIST_LOGCONFIGS);
+            var list = CreateList(mgr, Constants.SpongeListLogconfigs);
 
-            var targetList = list.ParentWeb.Lists[Constants.SPONGE_LIST_LOGTARGETS];
+            var targetList = list.ParentWeb.Lists[Constants.SpongeListLogtargets];
 
             list.Fields.AddLookup("Target", targetList.ID, false);
-            SPFieldLookup lkp = (SPFieldLookup)list.Fields["Target"];
+            var lkp = (SPFieldLookup)list.Fields["Target"];
             lkp.LookupField = targetList.Fields["Title"].InternalName;
             lkp.Required = true;
             lkp.Update();
@@ -145,17 +145,10 @@ namespace Sponge.Utilities
 
         private static void CreateWebParts(SPManager mgr)
         {
-            var configItems = new XsltListViewWebPart();
-            configItems.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_CONFIGITEMS].ID;
-
-            var configApps = new XsltListViewWebPart();
-            configApps.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_CONFIGAPPLICATIONS].ID;
-
-            var logConfig = new XsltListViewWebPart();
-            logConfig.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGCONFIGS].ID;
-
-            var logTargets = new XsltListViewWebPart();
-            logTargets.ListId = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGTARGETS].ID;
+            var configItems = new XsltListViewWebPart {ListId = mgr.ParentWeb.Lists[Constants.SpongeListConfigitems].ID};
+            var configApps = new XsltListViewWebPart {ListId = mgr.ParentWeb.Lists[Constants.SpongeListConfigapplications].ID};
+            var logConfig = new XsltListViewWebPart {ListId = mgr.ParentWeb.Lists[Constants.SpongeListLogconfigs].ID};
+            var logTargets = new XsltListViewWebPart {ListId = mgr.ParentWeb.Lists[Constants.SpongeListLogtargets].ID};
 
             AddWebPart(mgr.ParentWeb, "default.aspx", configApps, "left", 1);
             AddWebPart(mgr.ParentWeb, "default.aspx", configItems, "left", 2);
@@ -163,17 +156,17 @@ namespace Sponge.Utilities
             AddWebPart(mgr.ParentWeb, "default.aspx", logTargets, "right", 2);
         }
 
-        private static void AddWebPart(SPWeb web, string pageURL, System.Web.UI.WebControls.WebParts.WebPart webPart, string zoneID, int zoneIndex)
+        private static void AddWebPart(SPWeb web, string pageUrl, System.Web.UI.WebControls.WebParts.WebPart webPart, string zoneId, int zoneIndex)
         {
-            SPLimitedWebPartManager webPartManager = web.GetLimitedWebPartManager(pageURL, PersonalizationScope.Shared);
-            webPartManager.AddWebPart(webPart, zoneID, zoneIndex);
+            var webPartManager = web.GetLimitedWebPartManager(pageUrl, PersonalizationScope.Shared);
+            webPartManager.AddWebPart(webPart, zoneId, zoneIndex);
             webPartManager.SaveChanges(webPart);
             web.Update();
         }
 
         private static void AddDefaultItems(SPManager mgr)
         {
-            var logTarget = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGTARGETS];
+            var logTarget = mgr.ParentWeb.Lists[Constants.SpongeListLogtargets];
 
             #region file target 
             var newLogApp = logTarget.AddItem();
@@ -270,10 +263,10 @@ namespace Sponge.Utilities
             db.SystemUpdate();
             #endregion
 
-            var logItems = mgr.ParentWeb.Lists[Constants.SPONGE_LIST_LOGCONFIGS];
+            var logItems = mgr.ParentWeb.Lists[Constants.SpongeListLogconfigs];
 
             var internalWs = logItems.AddItem();
-            internalWs["Title"] = Constants.SPONGE_LOGGER_WSNAME;
+            internalWs["Title"] = Constants.SpongeLoggerWsname;
             internalWs["Target"] = uls.ID;
             internalWs.SystemUpdate();
         }

@@ -14,14 +14,6 @@ namespace Sponge.WebParts
         //private int _refreshInterval = 0;
         private int _rowLimit = 10;
 
-        //[WebBrowsable(true),
-        //Category("Configuration"),
-        //Personalizable(PersonalizationScope.Shared),
-        //WebDisplayName("Auto Refresh Interval"),
-        //WebDescription("The Shoutbox Web Part will automatically refresh in X milliseconds. Default = 0 (disabled)"),
-        //DefaultValue(0)]
-        //public int RefreshInterval { get { return _refreshInterval; } set { _refreshInterval = value; } }
-
         [WebBrowsable(true),
         Category("Configuration"),
         Personalizable(PersonalizationScope.Shared),
@@ -35,18 +27,9 @@ namespace Sponge.WebParts
             return RowLimit;
         }
 
-        //public int GetRefreshInterval()
-        //{
-        //    return RefreshInterval;
-        //}
-
         public string GetSpongeShoutboxListName()
         {
-            return Constants.SPONGE_SHOUTBOX_LISTNAME;
-        }
-
-        public ShoutboxWebPart()
-        {
+            return Constants.SpongeShoutboxListname;
         }
 
         protected override void OnInit(EventArgs e)
@@ -61,9 +44,9 @@ namespace Sponge.WebParts
             {
                 SPSecurity.RunWithElevatedPrivileges(() =>
                 {
-                    if (!SPListManager.Exists(SPContext.Current.Web, Constants.SPONGE_SHOUTBOX_LISTNAME))
+                    if (!SPListManager.Exists(SPContext.Current.Web, Constants.SpongeShoutboxListname))
                         {
-                            var guid = SPContext.Current.Web.Lists.Add(Constants.SPONGE_SHOUTBOX_LISTNAME, "Sponge Shoutbox List", SPListTemplateType.GenericList);
+                            var guid = SPContext.Current.Web.Lists.Add(Constants.SpongeShoutboxListname, "Sponge Shoutbox List", SPListTemplateType.GenericList);
                             var list = SPContext.Current.Web.Lists[guid];
                             list.Fields.Add("Message", SPFieldType.Note, true);
 
@@ -77,9 +60,8 @@ namespace Sponge.WebParts
             }
             catch(Exception ex)
             {
-                var lbl = new Label();
-                lbl.Text = ex.ToString();
-                this.Controls.Add(lbl);
+                var lbl = new Label {Text = ex.ToString()};
+                Controls.Add(lbl);
             }
         }
     }

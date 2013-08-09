@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Web.UI.WebControls.WebParts;
-using System.Web;
 using System;
 using System.Web.UI.WebControls;
 
@@ -27,8 +26,7 @@ namespace Sponge.WebParts
                 }
                 catch(Exception ex)
                 {
-                    var lbl = new Label();
-                    lbl.Text = ex.Message;
+                    var lbl = new Label {Text = ex.Message};
                     Controls.Add(lbl);
                 }
             }

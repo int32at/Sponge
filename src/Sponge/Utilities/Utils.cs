@@ -13,7 +13,7 @@ namespace Sponge.Utilities
         public static SPWeb GetSpongeWeb()
         {
             using (var ca = SPWebManager.GetCentralAdminWeb())
-                return ca.Webs[Constants.SPONGE_WEB_URL];
+                return ca.Webs[Constants.SpongeWebUrl];
         }
 
         public static SPManager GetSpongeWebManager()
@@ -24,12 +24,12 @@ namespace Sponge.Utilities
         public static string GetSpongeUrl()
         {
             using (var ca = SPWebManager.GetCentralAdminWeb())
-                return ca.Url + "/" + Constants.SPONGE_WEB_URL;
+                return ca.Url + "/" + Constants.SpongeWebUrl;
         }
 
         public static XmlDocument ToXml(Dictionary<string, string> dict)
         {
-            XElement el = new XElement("Config",
+            var el = new XElement("Config",
                 dict.Select(kv => new XElement(kv.Key, kv.Value)));
             var doc = new XmlDocument();
             doc.LoadXml(el.ToString());
@@ -39,11 +39,7 @@ namespace Sponge.Utilities
 
         public static Dictionary<string, string> FromXml(XmlDocument doc)
         {
-            var dict = new Dictionary<string, string>();
-            foreach (XmlNode el in doc.ChildNodes)
-                dict.Add(el.Name, el.Value);
-
-            return dict;
+            return doc.ChildNodes.Cast<XmlNode>().ToDictionary(el => el.Name, el => el.Value);
         }
 
         public static IEnumerable<string> GetAvailableServerNames()

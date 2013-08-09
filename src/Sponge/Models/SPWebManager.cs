@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.SharePoint;
+﻿using Microsoft.SharePoint;
 using Microsoft.SharePoint.Administration;
+using System;
 
 namespace Sponge.Models
 {
@@ -13,14 +10,12 @@ namespace Sponge.Models
 
         public SPWeb Create(string title, string description, string url, string template)
         {
-            if (!Exists(url))
-            {
-                var web = Parent.ParentWeb.Webs.Add(url, title, description, 1033, template, false, false);
-                web.Update();
-                return web;
-            }
-            else
+            if (Exists(url)) 
                 throw new Exception(string.Format("SPWeb at {0} already exists", url));
+
+            var web = Parent.ParentWeb.Webs.Add(url, title, description, 1033, template, false, false);
+            web.Update();
+            return web;
         }
 
         public bool Exists(string url)

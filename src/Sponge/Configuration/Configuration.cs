@@ -36,17 +36,15 @@ namespace Sponge.Configuration
 
         public T Get<T>(string key)
         {
-            if(Items != null && Items.Count > 0)
-            {
-                var result = Items.Single(i => i.Key.Equals(key));
-
-                if (result == null)
-                    throw new Exception(string.Format("No Item with Key '{0}' found", key));
-
-                return (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFrom(result.Value);
-            }
-            else
+            if (Items == null || Items.Count <= 0) 
                 throw new Exception("Configuration does not contain any items");
+
+            var result = Items.Single(i => i.Key.Equals(key));
+
+            if (result == null)
+                throw new Exception(string.Format("No Item with Key '{0}' found", key));
+
+            return (T)TypeDescriptor.GetConverter(typeof(T)).ConvertFrom(result.Value);
         }
     }
 }

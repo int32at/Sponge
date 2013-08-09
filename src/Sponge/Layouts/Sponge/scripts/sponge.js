@@ -41,13 +41,13 @@ sponge.actions = function () {
 
             ctx.load(item);
             ctx.load(this.fields);
-
+            var fields = this.fields;
             ctx.executeQueryAsync(
             	Function.createDelegate(this,
             		function () {
             		    var itemCreateInfo = new SP.ListItemCreationInformation();
             		    var newItem = list.addItem(itemCreateInfo);
-            		    var flds = this.fields.getEnumerator();
+            		    var flds = fields.getEnumerator();
 
             		    while (flds.moveNext()) {
             		        var field = flds.get_current();
@@ -133,8 +133,8 @@ sponge.config = function () {
     self.cfg = null;
     return {
         init: function (appName, url, callback) {
-            var method = "";
-            var data = "";
+            var method = '';
+            var data = '';
 
             //central
             if (url == null || url == "undefined") {
@@ -154,7 +154,6 @@ sponge.config = function () {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (msg) {
-                    var cfg = null;
                     if (msg != "undefined" && msg.d != "undefined") {
                         self.cfg = jQuery.parseJSON(msg.d);
                     }
@@ -170,7 +169,7 @@ sponge.config = function () {
         },
 
         get: function (name) {
-            var result = jQuery.grep(self.cfg.Items, function (e) { return e.Key == name; })
+            var result = jQuery.grep(self.cfg.Items, function(e) { return e.Key == name; });
 
             if (result.length > 0)
                 return result[0].Value;
@@ -236,7 +235,6 @@ sponge.logging = function () {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (msg) {
-                    alert(msg);
                 },
                 error: function (msg) {
                     alert("ERROR" + JSON.stringify(msg));

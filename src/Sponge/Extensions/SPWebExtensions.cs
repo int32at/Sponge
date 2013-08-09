@@ -15,11 +15,11 @@ namespace Sponge.Extensions
             if (string.IsNullOrEmpty(propertyName))
                 return;
 
-            SPSecurity.RunWithElevatedPrivileges(delegate()
+            SPSecurity.RunWithElevatedPrivileges(delegate
             {
-                using (SPSite elevatedSite = new SPSite(web.Site.ID))
+                using (var elevatedSite = new SPSite(web.Site.ID))
                 {
-                    using (SPWeb elevatedWeb = elevatedSite.OpenWeb(web.ID))
+                    using (var elevatedWeb = elevatedSite.OpenWeb(web.ID))
                     {
                         elevatedWeb.AllowUnsafeUpdates = true;
 
@@ -74,7 +74,7 @@ namespace Sponge.Extensions
 
         public static string TryGetPropertyString(this SPWeb web, string propertyName, string defaultValue)
         {
-            string value = null;
+            string value;
 
             try
             {
@@ -90,11 +90,11 @@ namespace Sponge.Extensions
 
         public static void RemovePropertyString(this SPWeb web, string propertyName)
         {
-            SPSecurity.RunWithElevatedPrivileges(delegate()
+            SPSecurity.RunWithElevatedPrivileges(delegate
             {
-                using (SPSite elevatedSite = new SPSite(web.Site.ID))
+                using (var elevatedSite = new SPSite(web.Site.ID))
                 {
-                    using (SPWeb elevatedWeb = elevatedSite.OpenWeb(web.ID))
+                    using (var elevatedWeb = elevatedSite.OpenWeb(web.ID))
                     {
                         elevatedWeb.AllowUnsafeUpdates = true;
                         elevatedWeb.DeleteProperty(propertyName);
@@ -122,14 +122,16 @@ namespace Sponge.Extensions
                 throw new ApplicationException("No recipient specified.");
 
             // auto-generate reply address from recipient address (assuming mailing will be used company-internal only)
-            var from = string.Format("noreply{0}", to.Remove(0, to.IndexOf("@")));
+            var from = string.Format("noreply{0}", to.Remove(0, to.IndexOf("@", StringComparison.Ordinal)));
 
             // assemble message headers
-            var messageHeaders = new StringDictionary();
-            messageHeaders.Add("to", to);
-            messageHeaders.Add("from", from);
-            messageHeaders.Add("subject", subject);
-            messageHeaders.Add("content-type", "text/html");
+            var messageHeaders = new StringDictionary
+            {
+                {"to", to},
+                {"from", @from},
+                {"subject", subject},
+                {"content-type", "text/html"}
+            };
             if (!string.IsNullOrEmpty(cc))
                 messageHeaders.Add("cc", cc);
             if (!string.IsNullOrEmpty(bcc))

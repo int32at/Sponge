@@ -32,7 +32,7 @@ namespace Sponge.Logging
 
         public static Logger GetOffline()
         {
-            return NLog.LogManager.GetLogger(Constants.SPONGE_LOGGER_NAME);
+            return NLog.LogManager.GetLogger(Constants.SpongeLoggerName);
         }
 
         public static Logger GetOffline(string configPath)
@@ -42,14 +42,14 @@ namespace Sponge.Logging
 
         public static Logger GetOffline(string configPath, Type type)
         {
-            var name = type == null ? Constants.SPONGE_LOGGER_NAME : type.FullName;
+            var name = type == null ? Constants.SpongeLoggerName : type.FullName;
             return GetOffline(configPath, name);
         }
 
         public static Logger GetOffline(string configPath, string loggerName)
         {
             if (string.IsNullOrEmpty(loggerName))
-                loggerName = Constants.SPONGE_LOGGER_NAME;
+                loggerName = Constants.SpongeLoggerName;
 
             Configure(configPath);
             return NLog.LogManager.GetLogger(loggerName);
@@ -68,10 +68,10 @@ namespace Sponge.Logging
             {
                 using (var site = new SPSite(spongeUrl))
                 {
-                    using (var sponge = site.OpenWeb(Constants.SPONGE_WEB_URL))
+                    using (var sponge = site.OpenWeb(Constants.SpongeWebUrl))
                     {
-                        var configItems = sponge.Lists[Constants.SPONGE_LIST_LOGCONFIGS];
-                        var q = new SPQuery() { Query = GetLoggerNameQuery(loggerName), ViewFields = "<FieldRef Name='Target' /><FieldRef Name='Title' />" };
+                        var configItems = sponge.Lists[Constants.SpongeListLogconfigs];
+                        var q = new SPQuery { Query = GetLoggerNameQuery(loggerName), ViewFields = "<FieldRef Name='Target' /><FieldRef Name='Title' />" };
 
                         var items = configItems.GetItems(q);
 
@@ -81,7 +81,7 @@ namespace Sponge.Logging
                         var item = items[0];
 
                         var app = Convert.ToInt32(item["Target"].ToString().Split(';')[0]);
-                        var target = sponge.Lists[Constants.SPONGE_LIST_LOGTARGETS].GetItemById(app);
+                        var target = sponge.Lists[Constants.SpongeListLogtargets].GetItemById(app);
 
                         var xml = target["Xml"].ToString();
 
@@ -95,7 +95,7 @@ namespace Sponge.Logging
 
         private static XmlReader GetXml(string spongeUrl, string loggerName)
         {
-            XmlReader reader = null;
+            XmlReader reader;
 
             var doc = GetConfig(spongeUrl, loggerName);
 
@@ -127,11 +127,6 @@ namespace Sponge.Logging
             AddCustomTargets();
             var config = new XmlLoggingConfiguration(path);
             NLog.LogManager.Configuration = config;
-        }
-
-        private static void Configure()
-        {
-            AddCustomTargets();
         }
 
         private static void AddCustomTargets()

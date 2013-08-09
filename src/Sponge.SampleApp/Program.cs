@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Sponge.Client.Configuration;
+﻿using Sponge.Client.Configuration;
 using Sponge.Client.Logging;
-using Sponge.Configuration;
-using Sponge.Logging;
 
 namespace Sponge.SampleApp
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             //site collection
-            var spUrl = "http://demo";
-            var app = "MyConsoleApp";
+            const string spUrl = "http://demo";
+            const string app = "MyConsoleApp";
 
             //if last parameter = true --> the config manager will look for the config/logging in the central admin
             //if parameter = false --> it will look in the http://demo/Sponge web to retreive the config/logging info
@@ -33,22 +27,6 @@ namespace Sponge.SampleApp
 
             //get a specific entry and cast it to int
             //int a = cfg.Get<int>("MyKey");
-        }
-
-        static void Dummy(NLog.Logger log)
-        {
-            for (int i = 0; i < 1000; i++)
-            {
-                try
-                {
-                    var a = 0;
-                    var x = 3 / a;
-                }
-                catch (Exception ex)
-                {
-                    log.FatalException("Unexpected Exception occured.", ex);
-                }
-            }
         }
     }
 }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using Microsoft.SharePoint;
+﻿using Microsoft.SharePoint;
 using Sponge.Utilities;
-using Sponge.Models;
+using System;
+using System.Linq;
 
 namespace Sponge.Configuration
 {
@@ -24,11 +22,11 @@ namespace Sponge.Configuration
                 {
                     using (var site = new SPSite(spongeUrl))
                     {
-                        using (var sponge = site.OpenWeb(Constants.SPONGE_WEB_URL))
+                        using (var sponge = site.OpenWeb(Constants.SpongeWebUrl))
                         {
-                            var query = new SPQuery() { Query = GetAppQueryItems(appName) };
+                            var query = new SPQuery { Query = GetAppQueryItems(appName) };
 
-                            var items = sponge.Lists[Constants.SPONGE_LIST_CONFIGITEMS].GetItems(query);
+                            var items = sponge.Lists[Constants.SpongeListConfigitems].GetItems(query);
 
                             if (items.Count == 0)
                                 throw new Exception(string.Format("No Entries in Application '{0}' found.", appName));

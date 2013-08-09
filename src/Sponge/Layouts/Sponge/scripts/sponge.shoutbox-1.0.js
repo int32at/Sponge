@@ -1,5 +1,5 @@
-(function ($) {
-    $.shoutbox = function (options) {
+(function($) {
+    $.shoutbox = function(options) {
         $.shoutbox.settings = $.extend({
             list: "",
             container: "",
@@ -17,13 +17,13 @@
             var msg = "<input name='sponge_shoutbox_usrmsg' type='text' id='sponge_shoutbox_usrmsg' class='sponge_shoutbox_usrmsg' />";
             var send = "<button type='button' name='sponge_shoutbox_submit' id='sponge_shoutbox_submit' class='sponge_shoutbox_submit'>Send</button>";
 
-            var html = box += msg += send;
+            var html = box + msg + send;
 
             $($.shoutbox.settings.container).html(html);
         }
 
         function register() {
-            $("#sponge_shoutbox_submit").click(function () {
+            $("#sponge_shoutbox_submit").click(function() {
                 var txt = $("#sponge_shoutbox_usrmsg").val();
 
                 var ctx = SP.ClientContext.get_current();
@@ -37,21 +37,21 @@
                 ctx.load(this.spongeShoutboxItem);
 
                 ctx.executeQueryAsync(
-            	Function.createDelegate(this,
-            		function () {
-            		    //alert('Item created: ' + this.spongeshoutboxItem.get_id());
-            		    SP.UI.Notify.addNotification('Your message has been posted.', false);
+                    Function.createDelegate(this,
+                        function() {
+                            //alert('Item created: ' + this.spongeshoutboxItem.get_id());
+                            SP.UI.Notify.addNotification('Your message has been posted.', false);
 
-            		    //clean default values
-            		    $("#sponge_shoutbox_usrmsg").val("");
+                            //clean default values
+                            $("#sponge_shoutbox_usrmsg").val("");
 
-            		    reloadPosts();
-            		}),
-            	Function.createDelegate(this,
-            		function (sender, args) {
-            		    alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
-            		})
-				);
+                            reloadPosts();
+                        }),
+                    Function.createDelegate(this,
+                        function(sender, args) {
+                            alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+                        })
+                );
             });
         }
 
@@ -66,24 +66,24 @@
             this.spongeShoutboxItems = list.getItems(camlQuery);
 
             ctx.load(this.spongeShoutboxItems);
+            var listItemCollection = this.spongeShoutboxItems;
             ctx.executeQueryAsync(
-            	Function.createDelegate(this,
-           		function () {
-           		    var listItemInfo = '';
-           		    var enumerator = this.spongeShoutboxItems.getEnumerator();
+                Function.createDelegate(this,
+                    function() {
+                        var enumerator = listItemCollection.getEnumerator();
 
-           		    while (enumerator.moveNext()) {
-           		        var item = enumerator.get_current();
+                        while (enumerator.moveNext()) {
+                            var item = enumerator.get_current();
 
-           		        var msg = createMessageEntry(item);
-           		        $("#sponge_shoutbox_box").append(msg);
-           		    }
-           		}),
-				Function.createDelegate(this,
-            	function (sender, args) {
-            	    alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
-            	})
-			);
+                            var msg = createMessageEntry(item);
+                            $("#sponge_shoutbox_box").append(msg);
+                        }
+                    }),
+                Function.createDelegate(this,
+                    function(sender, args) {
+                        alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+                    })
+            );
         }
 
         function autoReloadPosts() {
@@ -103,9 +103,9 @@
             var date = new Date(item.get_item("Created"));
 
             return "<li id='sponge_shoutbox_entry'>" +
-						"<div id='sponge_shoutbox_msg'>" + msg + "</div>" +
-						"<div id='sponge_shoutbox_meta'>" + author + "  -  " + date.toLocaleString() + "</div>" +
-					"</li>";
+                "<div id='sponge_shoutbox_msg'>" + msg + "</div>" +
+                "<div id='sponge_shoutbox_meta'>" + author + "  -  " + date.toLocaleString() + "</div>" +
+                "</li>";
         }
     }
 })(jQuery);

@@ -34,8 +34,8 @@ namespace Sponge.Pages
 
         protected void Add_Click(object sender, EventArgs e)
         {
-            var property = this.txtKey.Text.Trim();
-            var value = this.txtValue.Text.Trim();
+            var property = txtKey.Text.Trim();
+            var value = txtValue.Text.Trim();
 
             if (!string.IsNullOrEmpty(property) &&
                 !string.IsNullOrEmpty(value))
@@ -78,30 +78,36 @@ namespace Sponge.Pages
             foreach (KeyValuePair<string, string> property in sortedProperties)
             {
                 //var propertyKey = property.Key.ToString().Remove(0, C.PROPERTY_PREFIX.Length);
-                var propertyKey = property.Key.ToString();
-                var propertyValue = property.Value.ToString();
+                var propertyKey = property.Key;
+                var propertyValue = property.Value;
                 var propertyEditClickHandler = string.Format(propertyEditClickTemplate, propertyKey, propertyValue);
 
-                var removeButton = new ImageButton() { ImageUrl = "/_layouts/images/sponge/delete.png" };
-                removeButton.Command += new CommandEventHandler(RemovePropertyButton_Click);
+                var removeButton = new ImageButton { ImageUrl = "/_layouts/images/sponge/delete.png" };
+                removeButton.Command += RemovePropertyButton_Click;
                 removeButton.CommandName = "Open";
-                removeButton.CommandArgument = property.Key.ToString();
+                removeButton.CommandArgument = property.Key;
                 removeButton.ToolTip = "Remove this property";
-                removeButton.ID = "RemovePropertyButton" + idx.ToString();
+                removeButton.ID = "RemovePropertyButton" + idx;
                 // removeButton.OnClientClick = string.Format("__doPostBack($('[id$=\"{0}\"]')[0].id, '')", removeButton.ID);
 
-                var propertyCell = new TableCell();
-                propertyCell.Text = string.Format("<div style='font-weight:bold;margin:{0};cursor:pointer' {1}>{2}</div>", cellPadding, propertyEditClickHandler, propertyKey);
-                propertyCell.ToolTip = "Edit this property";
-                propertyCell.BorderWidth = 1;
-                propertyCell.BorderStyle = BorderStyle.Dashed;
-                propertyCell.BorderColor = Color.FromArgb(219, 221, 222); // =#dbddde
+                var propertyCell = new TableCell
+                {
+                    Text =
+                        string.Format("<div style='font-weight:bold;margin:{0};cursor:pointer' {1}>{2}</div>",
+                            cellPadding, propertyEditClickHandler, propertyKey),
+                    ToolTip = "Edit this property",
+                    BorderWidth = 1,
+                    BorderStyle = BorderStyle.Dashed,
+                    BorderColor = Color.FromArgb(219, 221, 222)
+                };
 
-                var valueCell = new TableCell();
-                valueCell.Text = string.Format("<div style='margin:{0}'>{1}</div>", cellPadding, propertyValue);
-                valueCell.BorderWidth = 1;
-                valueCell.BorderStyle = BorderStyle.Dashed;
-                valueCell.BorderColor = Color.FromArgb(219, 221, 222); // =#dbddde
+                var valueCell = new TableCell
+                {
+                    Text = string.Format("<div style='margin:{0}'>{1}</div>", cellPadding, propertyValue),
+                    BorderWidth = 1,
+                    BorderStyle = BorderStyle.Dashed,
+                    BorderColor = Color.FromArgb(219, 221, 222)
+                };
 
                 var buttonCell = new TableCell();
                 buttonCell.Controls.Add(removeButton);
@@ -122,16 +128,26 @@ namespace Sponge.Pages
         protected void RemovePropertyButton_Click(object sender, CommandEventArgs e)
         {
             var button = sender as ImageButton;
-            var cell = button.Parent as TableCell;
-            var row = cell.Parent as TableRow;
-            var property = StripHtml(row.Cells[0].Text);
 
-            SPContext.Current.Site.RootWeb.TryRemovePropertyString(property);
+            if (button != null)
+            {
+                var cell = button.Parent as TableCell;
+                if (cell != null)
+                {
+                    var row = cell.Parent as TableRow;
+                    if (row != null)
+                    {
+                        var property = StripHtml(row.Cells[0].Text);
+
+                        SPContext.Current.Site.RootWeb.TryRemovePropertyString(property);
+                    }
+                }
+            }
 
             Response.Redirect(Request.Url.ToString());
         }
 
-        private string StripHtml(string htmlText)
+        private static string StripHtml(string htmlText)
         {
             var reg = new Regex("<[^>]+>", RegexOptions.IgnoreCase);
             return HttpUtility.HtmlDecode(reg.Replace(htmlText, ""));
@@ -142,7 +158,7 @@ namespace Sponge.Pages
             var source = Request.QueryString.Get("Source");
 
             if (!string.IsNullOrEmpty(source))
-                this.Response.Redirect(source);
+                Response.Redirect(source);
         }
     }
 }
