@@ -78,6 +78,13 @@
     <Compile Include="Features\Sponge\Sponge.EventReceiver.cs">
       <DependentUpon>Sponge.feature</DependentUpon>
     </Compile>
+    <Compile Include="Layouts\Sponge\EventHandlerManager.aspx.cs">
+      <DependentUpon>EventHandlerManager.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layouts\Sponge\EventHandlerManager.aspx.designer.cs">
+      <DependentUpon>EventHandlerManager.aspx.cs</DependentUpon>
+    </Compile>
     <Compile Include="Layouts\Sponge\SitePropertyManager.aspx.cs">
       <DependentUpon>SitePropertyManager.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -176,6 +183,9 @@
     <None Include="UI\Site\SiteSettings\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{0274915c-c420-4ece-a436-4b94bf1aa710}</SharePointProjectItemId>
     </None>
+    <None Include="UI\Web\EventHandlerManager\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{d9a13653-c051-4a54-8db1-2a00180dcc0d}</SharePointProjectItemId>
+    </None>
     <None Include="UI\Web\SitePropertyManager\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{de92e3bc-e339-4647-be78-689e8c66b22b}</SharePointProjectItemId>
     </None>
@@ -214,6 +224,7 @@
     <Content Include="Images\Sponge\logo_s.png" />
     <Content Include="Images\Sponge\logo.png" />
     <Content Include="Layouts\Sponge\ConfigService.asmx" />
+    <Content Include="Layouts\Sponge\EventHandlerManager.aspx" />
     <Content Include="Layouts\Sponge\LoggingService.asmx" />
     <Content Include="Layouts\Sponge\scripts\jquery-1.7.2.min.js" />
     <Content Include="Layouts\Sponge\scripts\sponge.js" />
@@ -229,6 +240,7 @@
     <Content Include="UI\Farm\ScriptLinks\Elements.xml" />
     <Content Include="UI\Site\Logging\Elements.xml" />
     <Content Include="UI\Site\SiteSettings\Elements.xml" />
+    <Content Include="UI\Web\EventHandlerManager\Elements.xml" />
     <Content Include="UI\Web\SitePropertyManager\Elements.xml" />
     <Content Include="UI\Web\WebSettings\Elements.xml" />
     <Content Include="WebParts\ShoutboxWebPart\ShoutboxWebPart.ascx">

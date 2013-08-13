@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <CustomAction GroupId="Sponge.UI.Web.WebSettings"
+    Id="Sponge.UI.Web.EventHandlerManager"
+    Location="Microsoft.SharePoint.SiteSettings"
+    Sequence="107"
+    RequireSiteAdministrator="true"
+    Title="Manage Event Handlers">
+    <UrlAction Url="{SiteUrl}/_layouts/Sponge/EventHandlerManager.aspx?Source={SiteUrl}" />
+  </CustomAction>
+</Elements>
