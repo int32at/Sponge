@@ -112,6 +112,14 @@
       <DependentUpon>ShoutboxWebPart.ascx</DependentUpon>
     </Compile>
     <Compile Include="WebParts\HostingWebPart\HostingWebPart.cs" />
+    <Compile Include="WebParts\WeatherWebPart\WeatherWebPart.ascx.cs">
+      <DependentUpon>WeatherWebPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebParts\WeatherWebPart\WeatherWebPart.ascx.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WeatherWebPart.ascx</DependentUpon>
+    </Compile>
     <Compile Include="WebService\ConfigService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -154,6 +162,8 @@
     <None Include="Layouts\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{00f8b62e-6d87-4dc1-b69b-460bc5dbd75d}</SharePointProjectItemId>
     </None>
+    <Content Include="Layouts\Sponge\styles\sponge.webparts.shoutbox.css" />
+    <Content Include="Layouts\Sponge\styles\sponge.webparts.weather.css" />
     <None Include="packages.config" />
     <None Include="Package\Package.package">
       <PackageId>{260c5559-a3d4-4fef-825a-2809816b6378}</PackageId>
@@ -200,6 +210,10 @@
     <None Include="WebParts\HostingWebPart\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{a3a8377a-ebd5-49eb-957b-0383d046717a}</SharePointProjectItemId>
     </None>
+    <None Include="WebParts\WeatherWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{13c01c55-4a67-4407-8315-9701d6c13ee7}</SharePointProjectItemId>
+    </None>
+    <None Include="WebParts\WeatherWebPart\WeatherWebPart.webpart" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx" />
@@ -227,6 +241,8 @@
     <Content Include="Layouts\Sponge\EventHandlerManager.aspx" />
     <Content Include="Layouts\Sponge\LoggingService.asmx" />
     <Content Include="Layouts\Sponge\scripts\jquery-1.7.2.min.js" />
+    <Content Include="Layouts\Sponge\scripts\jquery.geolocation.js" />
+    <Content Include="Layouts\Sponge\scripts\jquery.zweatherfeed.min.js" />
     <Content Include="Layouts\Sponge\scripts\sponge.js" />
     <Content Include="Layouts\Sponge\scripts\sponge.shoutbox-1.0.js" />
     <Content Include="Layouts\Sponge\SitePropertyManager.aspx" />
@@ -249,6 +265,11 @@
     </Content>
     <Content Include="WebParts\ShoutboxWebPart\Elements.xml" />
     <Content Include="WebParts\HostingWebPart\Elements.xml" />
+    <Content Include="WebParts\WeatherWebPart\Elements.xml" />
+    <Content Include="WebParts\WeatherWebPart\WeatherWebPart.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>WeatherWebPart.ascx.g.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ADMIN\Sponge\" />
