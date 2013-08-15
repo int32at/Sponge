@@ -30,7 +30,7 @@ namespace Sponge.Logging
                     new SPDiagnosticsCategory("Trace", TraceSeverity.VerboseEx, EventSeverity.Verbose)
                 })
             };
-
+            fsadfdsafsda
             return areas;
         }
 
