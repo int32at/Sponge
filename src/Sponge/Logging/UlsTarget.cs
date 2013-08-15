@@ -9,6 +9,7 @@ namespace Sponge.Logging
         {
             var msg = Layout.Render(logEvent);
             var lvl = logEvent.Level;
+
             UlsLogger.Log(lvl, msg);
         }
     }
