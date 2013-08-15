@@ -76,6 +76,8 @@
     <Compile Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx.designer.cs">
       <DependentUpon>SampleControl.ascx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Extensions\SPFileExtensions.cs" />
+    <Compile Include="Extensions\SPFolderExtensions.cs" />
     <Compile Include="Extensions\SPWebExtensions.cs" />
     <Compile Include="Features\Sponge.Site.LogConfig\Sponge.Site.EventReceiver.cs">
       <DependentUpon>Sponge.Site.LogConfig.feature</DependentUpon>
@@ -108,6 +110,7 @@
     <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Utilities\Setup.cs" />
     <Compile Include="Utilities\Utils.cs" />
+    <Compile Include="WebParts\DocLibTreeViewWebPart\DocLibTreeViewWebPartEditor.cs" />
     <Compile Include="WebParts\ShoutboxWebPart\ShoutboxWebPart.ascx.cs">
       <DependentUpon>ShoutboxWebPart.ascx</DependentUpon>
     </Compile>
@@ -128,11 +131,24 @@
     <Compile Include="WebService\ConfigService.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="WebParts\DocLibTreeViewWebPart\DocLibTreeViewWebPart.ascx.cs">
+      <DependentUpon>DocLibTreeViewWebPart.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WebParts\DocLibTreeViewWebPart\DocLibTreeViewWebPart.ascx.g.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocLibTreeViewWebPart.ascx</DependentUpon>
+    </Compile>
     <Compile Include="WebService\LoggingService.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="WebParts\DocLibTreeViewWebPart\DocLibTreeViewWebPart.ascx">
+      <Generator>SharePointWebPartCodeGenerator</Generator>
+      <LastGenOutput>DocLibTreeViewWebPart.ascx.g.cs</LastGenOutput>
+    </Content>
+    <Content Include="WebParts\DocLibTreeViewWebPart\Elements.xml" />
     <None Include="ADMIN\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{3bf5f888-caef-4cf5-958d-86a1bc4140ea}</SharePointProjectItemId>
     </None>
@@ -219,6 +235,10 @@
       <SharePointProjectItemId>{13c01c55-4a67-4407-8315-9701d6c13ee7}</SharePointProjectItemId>
     </None>
     <None Include="WebParts\WeatherWebPart\WeatherWebPart.webpart" />
+    <None Include="WebParts\DocLibTreeViewWebPart\DocLibTreeViewWebPart.webpart" />
+    <None Include="WebParts\DocLibTreeViewWebPart\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c6125fc9-7978-44a9-ac93-813ecd06faab}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="CONTROLTEMPLATES\Sponge\SampleControl.ascx" />
