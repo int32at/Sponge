@@ -22,3 +22,5 @@ Sponge includes the following components:
 - etc.
 
 See the [Wiki](../../wiki/Home)  for installing guide and more information.
+
+Follow [Sponge](https://twitter.com/sponge__sp) on Twitter.
