@@ -8,7 +8,7 @@
     <data>
       <properties>
         <property name="Title" type="string">Weather Web Part</property>
-        <property name="Description" type="string">My Visual Web Part</property>
+        <property name="Description" type="string">This Web Part allows you to show the user's current weather information.</property>
       </properties>
     </data>
   </webPart>

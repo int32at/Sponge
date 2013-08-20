@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Sponge.WebParts.DocLibTreeViewWebPart, $SharePoint.Project.AssemblyFullName$" />
+      <importErrorMessage>$Resources:core,ImportErrorMessage;</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="Title" type="string">TreeView Web Part</property>
+        <property name="Description" type="string">This Web Part allows you to display a selected Document Library in a Tree View.</property>
+      </properties>
+    </data>
+  </webPart>
+</webParts>
