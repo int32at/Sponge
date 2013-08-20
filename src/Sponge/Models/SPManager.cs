@@ -46,6 +46,22 @@ namespace Sponge.Models
             CreateInstances();
         }
 
+        public void Change(SPSite site)
+        {
+            Change(site, site.RootWeb);
+        }
+
+        public void Change(SPWeb web)
+        {
+            Change(web.Site, web);
+        }
+
+        public void Change(SPSite site, SPWeb web)
+        {
+            ParentSite = site;
+            ParentWeb = web;
+        }
+
         private void CreateInstances()
         {
             Lists = new SPListManager(this);
