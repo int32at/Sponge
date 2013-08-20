@@ -13,6 +13,7 @@ Sponge includes the following components:
   - [Hosting Web Part](../../wiki/Hosting-Web-Part) 
   - [Shoutbox Web Part](../../wiki/Shoutbox-Web-Part) 
   - [Weather Web Part](../../wiki/Weather-Web-Part) 
+  - [TreeViewer Web Part](../../wiki/TreeViewer-Web-Part) 
   - [Aggregation Web Part](../../wiki/Aggregation-Web-Part) (todo)
   - [Google Maps Web Part](../../wiki/Google-Maps-Web-Part) (todo)
   - [Youtube Web Part](../../wiki/Youtube-Web-Part) (todo)
