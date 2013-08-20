@@ -43,6 +43,7 @@ namespace Sponge.WebParts
                 Controls.Add(lbl);
                 return;
             }
+
             var list = SPContext.Current.Web.Lists[DocLib];
             var node = new TreeNode(list.Title) {NavigateUrl = list.DefaultViewUrl};
             node = BuildTreeNode(node, list.RootFolder);
