@@ -5,4 +5,9 @@
     Location="ScriptLink"
     Sequence="100">
   </CustomAction>
+  <CustomAction
+    ScriptSrc="/Sponge/scripts/jquery-1.7.2.min.js"
+    Location="ScriptLink"
+    Sequence="100">
+  </CustomAction>
 </Elements>
