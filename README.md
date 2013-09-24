@@ -8,6 +8,12 @@ The idea behind Sponge is pretty simple - provide centralized logging and config
 Sponge includes the following components:
 - [Centralized Configuration Component](../../wiki/Configuration-Component) 
 - [Centralized Logging Component](../../wiki/Logging-Component) 
+- [JavaScript API](../../wiki/Logging-Component) 
+  - [Enhancements](../../wiki/JS-Enhancements) 
+  - [Configuration](../../wiki/JS-Configuration)
+  - [Logging](../../wiki/JS-Logging)
+  - [Localization](../../wiki/JS-Localization)
+  - [Form Manipulation](../../wiki/JS-Forms)
 - [Site Property Manager](../../wiki/Site-Property-Manager) 
 - [SP Manager](../../wiki/SPManager) 
   - [Web Manager](../../wiki/Web-Manager) 
