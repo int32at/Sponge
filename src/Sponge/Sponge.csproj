@@ -144,6 +144,24 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Layouts\Sponge\scripts\jquery.geolocation.min.js">
+      <DependentUpon>jquery.geolocation.js</DependentUpon>
+    </Content>
+    <Content Include="Layouts\Sponge\scripts\sponge.min.js">
+      <DependentUpon>sponge.js</DependentUpon>
+    </Content>
+    <Content Include="Layouts\Sponge\scripts\sponge.shoutbox-1.0.min.js">
+      <DependentUpon>sponge.shoutbox-1.0.js</DependentUpon>
+    </Content>
+    <Content Include="Layouts\Sponge\styles\sponge.min.css">
+      <DependentUpon>sponge.css</DependentUpon>
+    </Content>
+    <Content Include="Layouts\Sponge\styles\sponge.webparts.shoutbox.min.css">
+      <DependentUpon>sponge.webparts.shoutbox.css</DependentUpon>
+    </Content>
+    <Content Include="Layouts\Sponge\styles\sponge.webparts.weather.min.css">
+      <DependentUpon>sponge.webparts.weather.css</DependentUpon>
+    </Content>
     <Content Include="WebParts\DocLibTreeViewWebPart\DocLibTreeViewWebPart.ascx">
       <Generator>SharePointWebPartCodeGenerator</Generator>
       <LastGenOutput>DocLibTreeViewWebPart.ascx.g.cs</LastGenOutput>
@@ -185,6 +203,15 @@
     </None>
     <Content Include="Layouts\Sponge\styles\sponge.webparts.shoutbox.css" />
     <Content Include="Layouts\Sponge\styles\sponge.webparts.weather.css" />
+    <None Include="Layouts\Sponge\scripts\jquery.geolocation.min.js.map">
+      <DependentUpon>jquery.geolocation.js</DependentUpon>
+    </None>
+    <None Include="Layouts\Sponge\scripts\sponge.min.js.map">
+      <DependentUpon>sponge.js</DependentUpon>
+    </None>
+    <None Include="Layouts\Sponge\scripts\sponge.shoutbox-1.0.min.js.map">
+      <DependentUpon>sponge.shoutbox-1.0.js</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Package\Package.package">
       <PackageId>{260c5559-a3d4-4fef-825a-2809816b6378}</PackageId>
